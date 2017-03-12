@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProjectViewController">
+            <connections>
+                <outlet property="name" destination="5de-dl-kUY" id="hev-KY-taj"/>
+                <outlet property="url" destination="t67-Do-iAk" id="G7S-Hl-234"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTZ-N1-ipc">
+                    <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                    <items>
+                        <navigationItem title="Project" id="RKm-4V-feH">
+                            <barButtonItem key="leftBarButtonItem" title="Cancel" id="TAc-fu-50k">
+                                <connections>
+                                    <action selector="cancel:" destination="-1" id="AM3-4B-dnd"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" title="Save" id="bS5-fm-jsq">
+                                <connections>
+                                    <action selector="save:" destination="-1" id="tU2-h6-a5g"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lb0-sw-VCY">
+                    <rect key="frame" x="8" y="73" width="46" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="28k-TH-T9h"/>
+                        <constraint firstAttribute="height" constant="21" id="Fdu-Ul-fvo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the name of the project" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5de-dl-kUY">
+                    <rect key="frame" x="8" y="102" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the url of the project" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t67-Do-iAk">
+                    <rect key="frame" x="8" y="169" width="584" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zt5-SY-h2U">
+                    <rect key="frame" x="8" y="140" width="34" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="LvL-dz-Y2f"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="t67-Do-iAk" firstAttribute="top" secondItem="Zt5-SY-h2U" secondAttribute="bottom" constant="8" symbolic="YES" id="5er-tI-muh"/>
+                <constraint firstItem="MTZ-N1-ipc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AWR-id-4Rl"/>
+                <constraint firstItem="MTZ-N1-ipc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="12" id="B2h-DD-9sC"/>
+                <constraint firstItem="5de-dl-kUY" firstAttribute="top" secondItem="Lb0-sw-VCY" secondAttribute="bottom" constant="8" symbolic="YES" id="DER-um-mMa"/>
+                <constraint firstItem="Lb0-sw-VCY" firstAttribute="top" secondItem="MTZ-N1-ipc" secondAttribute="bottom" constant="9" id="ZAs-Hm-00y"/>
+                <constraint firstItem="MTZ-N1-ipc" firstAttribute="centerX" secondItem="5de-dl-kUY" secondAttribute="centerX" id="bdr-Hg-pzr"/>
+                <constraint firstAttribute="trailing" secondItem="MTZ-N1-ipc" secondAttribute="trailing" id="gBY-qf-SoQ"/>
+                <constraint firstItem="Lb0-sw-VCY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="gle-vo-P3a"/>
+                <constraint firstItem="5de-dl-kUY" firstAttribute="leading" secondItem="Zt5-SY-h2U" secondAttribute="leading" id="pLc-R9-5yG"/>
+                <constraint firstItem="t67-Do-iAk" firstAttribute="trailing" secondItem="5de-dl-kUY" secondAttribute="trailing" id="rRj-8q-xG6"/>
+                <constraint firstItem="t67-Do-iAk" firstAttribute="leading" secondItem="Zt5-SY-h2U" secondAttribute="leading" id="rZe-70-MEB"/>
+                <constraint firstItem="Lb0-sw-VCY" firstAttribute="leading" secondItem="5de-dl-kUY" secondAttribute="leading" id="taX-ew-J3a"/>
+                <constraint firstItem="Zt5-SY-h2U" firstAttribute="top" secondItem="5de-dl-kUY" secondAttribute="bottom" constant="8" symbolic="YES" id="tcE-bc-40K"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
