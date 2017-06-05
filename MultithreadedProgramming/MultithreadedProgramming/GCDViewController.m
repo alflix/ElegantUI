@@ -7,9 +7,10 @@
 //
 
 #import "GCDViewController.h"
-#define kURL @"http://c.hiphotos.baidu.com/image/pic/item/bd3eb13533fa828b5c141beefe1f4134970a5a8c.jpg"
+#import "JJConfig.h"
 
 @interface GCDViewController ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
@@ -28,7 +29,7 @@
 
 // 创建一个串行queue
 -(void)createSerialQueue{
-    dispatch_queue_t queue = dispatch_queue_create("queueName", NULL);
+    dispatch_queue_t queue = dispatch_queue_create("queueName", DISPATCH_QUEUE_SERIAL);
     
     dispatch_async(queue, ^{
         NSLog(@"开启了一个异步任务，当前线程：%@", [NSThread currentThread]);
@@ -37,6 +38,8 @@
     dispatch_sync(queue, ^{
         NSLog(@"开启了一个同步任务，当前线程：%@", [NSThread currentThread]);
     });
+    
+    
 }
 
 - (void)showImage{

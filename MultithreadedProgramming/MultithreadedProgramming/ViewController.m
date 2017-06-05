@@ -7,10 +7,12 @@
 //
 
 #import "ViewController.h"
-#define kURL @"http://c.hiphotos.baidu.com/image/pic/item/bd3eb13533fa828b5c141beefe1f4134970a5a8c.jpg"
+#import "JJConfig.h"
 
 @interface ViewController ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *urlImageView;
+
 @end
 
 @implementation ViewController
@@ -21,7 +23,6 @@
     NSThread *thread = [[NSThread alloc]initWithTarget:self selector:@selector(downloadImage:) object:kURL];
     [thread start];
 }
-
 
 -(void)downloadImage:(NSString *) url{
     NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
@@ -36,6 +37,5 @@
 -(void)updateUI:(UIImage*) image{
     self.urlImageView.image = image;
 }
-
 
 @end

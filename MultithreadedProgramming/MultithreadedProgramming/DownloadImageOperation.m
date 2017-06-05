@@ -10,7 +10,6 @@
 
 @implementation DownloadImageOperation
 
-
 @synthesize delegate = _delegate;
 @synthesize imageUrl = _imageUrl;
 
@@ -22,7 +21,6 @@
     }
     return self;
 }
-
 
 // 执行主任务
 - (void)main {

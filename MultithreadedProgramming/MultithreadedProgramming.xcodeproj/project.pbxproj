@@ -31,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1672FE7C1EE30B5800A84D2A /* JJConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJConfig.h; sourceTree = "<group>"; };
 		BD86414A1AA4ED0C005B9639 /* MultithreadedProgramming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultithreadedProgramming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD86414E1AA4ED0C005B9639 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD86414F1AA4ED0C005B9639 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 		BD86414C1AA4ED0C005B9639 /* MultithreadedProgramming */ = {
 			isa = PBXGroup;
 			children = (
+				1672FE7C1EE30B5800A84D2A /* JJConfig.h */,
 				BD8641511AA4ED0C005B9639 /* AppDelegate.h */,
 				BD8641521AA4ED0C005B9639 /* AppDelegate.m */,
 				BD8641541AA4ED0C005B9639 /* ViewController.h */,
@@ -436,6 +438,7 @@
 				BD86416F1AA4ED0C005B9639 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BD8641701AA4ED0C005B9639 /* Build configuration list for PBXNativeTarget "MultithreadedProgrammingTests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +447,7 @@
 				BD8641721AA4ED0C005B9639 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

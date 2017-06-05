@@ -7,18 +7,18 @@
 //
 
 #import "OperationViewController.h"
-#define kURL @"http://c.hiphotos.baidu.com/image/pic/item/bd3eb13533fa828b5c141beefe1f4134970a5a8c.jpg"
+#import "JJConfig.h"
 
 @interface OperationViewController ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *image;
+
 @end
 
 @implementation OperationViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
-    
     [self createSynchronouslyOperations];
     [self createAsynchronouslyOperations];
     [self BlockOperation];
