@@ -14,14 +14,13 @@
 @property (nonatomic,strong,readwrite) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic,strong) NSURL* modelURL;
 @property (nonatomic,strong) NSURL* storeURL;
-
 @property (nonatomic,strong) UIManagedDocument *document;
 @end
 
+
 @implementation ContextSetup
 
-- (id)initWithStoreURL:(NSURL*)storeURL modelURL:(NSURL*)modelURL
-{
+- (id)initWithStoreURL:(NSURL*)storeURL modelURL:(NSURL*)modelURL{
     self = [super init];
     if (self) {
         self.storeURL = storeURL;
@@ -33,8 +32,7 @@
 
 
 //设置 Core Data 堆栈(相当于建立数据库)：为其提供一个 Core Data 模型和一个文件名，会返回一个 managed object context。该堆栈拥有持久化存储协调器的 managed object context。
-- (void)setupManagedObjectContext
-{
+- (void)setupManagedObjectContext {
     //初始化：在比较老的代码中，你可能见到 [[NSManagedObjectContext alloc] init]。现在你应该用 initWithConcurrencyType: 初始化，以明确你是使用基于队列的并发模型。
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     //设置持久化存储协调器
@@ -56,8 +54,7 @@
 }
 
 
-- (NSManagedObjectModel*)managedObjectModel
-{
+- (NSManagedObjectModel*)managedObjectModel {
     return [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];
 }
 

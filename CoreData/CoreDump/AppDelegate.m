@@ -29,8 +29,7 @@
 }
 
 //保存
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
+- (void)applicationDidEnterBackground:(UIApplication *)application {
     [self saveContext];
 }
 
@@ -51,8 +50,7 @@
     }
 }
 
-- (NSURL*)storeURL
-{
+- (NSURL*)storeURL {
     NSURL* documentsDirectory = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
     
     NSLog(@"路径-%@",[documentsDirectory URLByAppendingPathComponent:@"db.sqlite"]);
@@ -60,8 +58,7 @@
     return [documentsDirectory URLByAppendingPathComponent:@"db.sqlite"];
 }
 
-- (NSURL*)modelURL
-{
+- (NSURL*)modelURL {
     return [[NSBundle mainBundle] URLForResource:@"CoreDump" withExtension:@"momd"];
 }
 

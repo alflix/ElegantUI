@@ -20,6 +20,9 @@
 		162EC37A1EEFE512005ECC7C /* JJRuntimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162EC3771EEFE512005ECC7C /* JJRuntimeModel.m */; };
 		162EC37B1EEFE512005ECC7C /* JJRuntimeModel+JJModify.m in Sources */ = {isa = PBXBuildFile; fileRef = 162EC3791EEFE512005ECC7C /* JJRuntimeModel+JJModify.m */; };
 		162EC37E1EEFE540005ECC7C /* JJRuntimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 162EC37D1EEFE540005ECC7C /* JJRuntimeViewController.m */; };
+		162EC3811EEFECC9005ECC7C /* JJRuntimeForwardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 162EC3801EEFECC9005ECC7C /* JJRuntimeForwardModel.m */; };
+		162EC3841EEFF2FC005ECC7C /* JJRuntimeInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 162EC3831EEFF2FC005ECC7C /* JJRuntimeInvocation.m */; };
+		162EC3871EF04633005ECC7C /* NSObject+JJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 162EC3861EF04633005ECC7C /* NSObject+JJExtension.m */; };
 		165DA5FC1EE9B92100254AFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 165DA5FB1EE9B92100254AFD /* main.m */; };
 		165DA5FF1EE9B92100254AFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 165DA5FE1EE9B92100254AFD /* AppDelegate.m */; };
 		165DA6051EE9B92100254AFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 165DA6031EE9B92100254AFD /* Main.storyboard */; };
@@ -58,6 +61,12 @@
 		162EC3791EEFE512005ECC7C /* JJRuntimeModel+JJModify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JJRuntimeModel+JJModify.m"; sourceTree = "<group>"; };
 		162EC37C1EEFE540005ECC7C /* JJRuntimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJRuntimeViewController.h; sourceTree = "<group>"; };
 		162EC37D1EEFE540005ECC7C /* JJRuntimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRuntimeViewController.m; sourceTree = "<group>"; };
+		162EC37F1EEFECC9005ECC7C /* JJRuntimeForwardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJRuntimeForwardModel.h; sourceTree = "<group>"; };
+		162EC3801EEFECC9005ECC7C /* JJRuntimeForwardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRuntimeForwardModel.m; sourceTree = "<group>"; };
+		162EC3821EEFF2FC005ECC7C /* JJRuntimeInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJRuntimeInvocation.h; sourceTree = "<group>"; };
+		162EC3831EEFF2FC005ECC7C /* JJRuntimeInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRuntimeInvocation.m; sourceTree = "<group>"; };
+		162EC3851EF04633005ECC7C /* NSObject+JJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JJExtension.h"; sourceTree = "<group>"; };
+		162EC3861EF04633005ECC7C /* NSObject+JJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JJExtension.m"; sourceTree = "<group>"; };
 		165DA5F71EE9B92100254AFD /* iosLearningDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosLearningDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		165DA5FB1EE9B92100254AFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		165DA5FD1EE9B92100254AFD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -126,8 +135,14 @@
 				162EC3771EEFE512005ECC7C /* JJRuntimeModel.m */,
 				162EC3781EEFE512005ECC7C /* JJRuntimeModel+JJModify.h */,
 				162EC3791EEFE512005ECC7C /* JJRuntimeModel+JJModify.m */,
+				162EC37F1EEFECC9005ECC7C /* JJRuntimeForwardModel.h */,
+				162EC3801EEFECC9005ECC7C /* JJRuntimeForwardModel.m */,
+				162EC3821EEFF2FC005ECC7C /* JJRuntimeInvocation.h */,
+				162EC3831EEFF2FC005ECC7C /* JJRuntimeInvocation.m */,
 				162EC37C1EEFE540005ECC7C /* JJRuntimeViewController.h */,
 				162EC37D1EEFE540005ECC7C /* JJRuntimeViewController.m */,
+				162EC3851EF04633005ECC7C /* NSObject+JJExtension.h */,
+				162EC3861EF04633005ECC7C /* NSObject+JJExtension.m */,
 			);
 			path = Runtime;
 			sourceTree = "<group>";
@@ -333,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				162EC3871EF04633005ECC7C /* NSObject+JJExtension.m in Sources */,
 				160F5CEE1EED782800FDDE4E /* NSTimer+JJHelper.m in Sources */,
 				162EC37E1EEFE540005ECC7C /* JJRuntimeViewController.m in Sources */,
 				160F5CFC1EEEC45900FDDE4E /* JJMessageViewController.m in Sources */,
@@ -343,6 +359,7 @@
 				165DA5FC1EE9B92100254AFD /* main.m in Sources */,
 				160F5D0B1EEED40300FDDE4E /* JJCat.m in Sources */,
 				160F5CF81EEE9A3200FDDE4E /* JJGCDViewController.m in Sources */,
+				162EC3841EEFF2FC005ECC7C /* JJRuntimeInvocation.m in Sources */,
 				160F5D081EEED3B700FDDE4E /* JJPet.m in Sources */,
 				16BA18481EEA39A8003F0DD3 /* JJMemoryObject.m in Sources */,
 				160F5CF21EEE7E7700FDDE4E /* JJMultithreadingViewController.m in Sources */,
@@ -350,6 +367,7 @@
 				160F5D021EEEC4C800FDDE4E /* JJTestModel.m in Sources */,
 				160F5D0E1EEED40B00FDDE4E /* JJDog.m in Sources */,
 				160F5CEB1EED5B2B00FDDE4E /* JJTestMemoryViewController.m in Sources */,
+				162EC3811EEFECC9005ECC7C /* JJRuntimeForwardModel.m in Sources */,
 				160F5CF51EEE7E9900FDDE4E /* JJCustomOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

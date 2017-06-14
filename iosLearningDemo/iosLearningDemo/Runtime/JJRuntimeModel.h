@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface JJRuntimeModel : NSObject
+@interface JJRuntimeModel : NSObject<NSCoding>
 
 - (void)sendMessage;
 
-+ (NSString *)sendMessage;
++ (NSString *)getSendMessage;
+
+@property (nonatomic, copy) NSString *message;
 
 @end

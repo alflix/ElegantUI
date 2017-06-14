@@ -7,14 +7,28 @@
 //
 
 #import "JJRuntimeModel.h"
+#import "NSObject+JJExtension.h"
 
 @implementation JJRuntimeModel
 
 - (void)sendMessage{
     NSLog(@"=== sendMessage");
+    
+    for (id object in @[@1,@"string"]) {
+        if ([object isKindOfClass:[NSNumber class]]) {
+            //
+        }else if ([object isKindOfClass:[NSString class]]){
+            //
+        }
+    }
+    typedef struct objc_object {
+        Class isa;
+    } *id;
+    
+    
 }
 
-+ (NSString *)sendMessage{
++ (NSString *)getSendMessage{
     return @"=== sendMessage";
 }
 
@@ -22,14 +36,17 @@
     NSLog(@"=== 😄😄");
 }
 
-+ (BOOL)resolveInstanceMethod:(SEL)selector {
-    
-    class_addMethod([self class], selector,(IMP)emptyMethodIMP,"v@:");
-    return YES;
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    [self encode:aCoder];
+//    [aCoder encodeObject:self.message forKey:@"message"];
 }
 
-void emptyMethodIMP(){
-    NSLog(@"=== 😢😢");
+- (id)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super init]) {
+        [self decode:aDecoder];
+//        self.message = [aDecoder decodeObjectForKey:@"message"];
+    }
+    return self;
 }
 
 @end

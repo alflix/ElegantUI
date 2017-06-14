@@ -11,19 +11,17 @@
 #import "Bug.h"  
 #import "BugViewController.h"
 
-@interface DetailViewController ()
-@end
 
 @implementation DetailViewController
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
+    [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  self.title = self.project.name;
-  [self.tableView reloadData];
+    [super viewWillAppear:animated];
+    self.title = self.project.name;
+    [self.tableView reloadData];
 }
 
 - (IBAction)insertNewObject:(UIBarButtonItem *)sender {
@@ -34,33 +32,33 @@
 #pragma mark - Table View  
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [self.project.bugs count];
+    return [self.project.bugs count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell" forIndexPath:indexPath];
-  [self configureCell:cell atIndexPath:indexPath];
-  return cell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell" forIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-  Bug *bug = [self sortedBugs][indexPath.row];
-  BugViewController *bugViewController = [[BugViewController alloc] initWithBug:bug project:self.project];
-  [self presentViewController:bugViewController animated:YES completion:nil];
+    Bug *bug = [self sortedBugs][indexPath.row];
+    BugViewController *bugViewController = [[BugViewController alloc] initWithBug:bug project:self.project];
+    [self presentViewController:bugViewController animated:YES completion:nil];
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-  Bug *bug = [self sortedBugs][indexPath.row];
-  cell.textLabel.text = bug.title;
+    Bug *bug = [self sortedBugs][indexPath.row];
+    cell.textLabel.text = bug.title;
 }
 
 - (NSArray *)sortedBugs {
-  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
-  return [self.project.bugs sortedArrayUsingDescriptors:@[sortDescriptor]];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
+    return [self.project.bugs sortedArrayUsingDescriptors:@[sortDescriptor]];
 }
 
 @end

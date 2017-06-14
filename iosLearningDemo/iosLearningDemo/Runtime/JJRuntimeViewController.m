@@ -8,7 +8,7 @@
 
 #import "JJRuntimeViewController.h"
 #import "JJRuntimeModel.h"
-#import <objc/Runtime.h>
+#import "JJRuntimeModel+JJModify.h"
 
 @interface JJRuntimeViewController ()
 
@@ -19,14 +19,27 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [JJRuntimeModel sendMessage];
     
     JJRuntimeModel *model = [JJRuntimeModel new];
-    
-    if ([model respondsToSelector:@selector(p_ddd)]) {
-        [model performSelector:@selector(p_ddd) withObject:nil];
-    }
+//    NSString *modifyName = model.modifyName;
+    NSLog(@"%@",[JJRuntimeModel getSendMessage]);
     [model sendMessage];
+    
+    //调用私有消息
+//    if ([model respondsToSelector:@selector(p_sendMessage)]) {
+//        [model performSelector:@selector(p_sendMessage) withObject:nil];
+//    }
+//    
+//    //调用没有声明过的消息
+//    if ([model respondsToSelector:@selector(test)]) {
+//        [model performSelector:@selector(test) withObject:nil];
+//    }
+//    
+//    if ([model respondsToSelector:@selector(forward)]) {
+//        [model performSelector:@selector(forward) withObject:nil];
+//    }
+//    
+//    [model performSelector:@selector(xxxxxx) withObject:nil];
 }
 
 @end

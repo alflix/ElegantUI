@@ -10,6 +10,6 @@
 
 @interface JJRuntimeModel (JJModify)
 
-@property (nonatomic, strong) NSString *modifyName;
+@property (nonatomic, copy) NSString *modifyName;
 
 @end

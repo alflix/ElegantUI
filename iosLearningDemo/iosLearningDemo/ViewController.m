@@ -10,6 +10,7 @@
 #import "JJMemoryViewController.h"
 #import "JJMultithreadingViewController.h"
 #import "JJMessageViewController.h"
+#import "JJRuntimeViewController.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -47,6 +48,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
         JJMemoryViewController *vc = [JJMemoryViewController new];
         [self.navigationController pushViewController:vc animated:YES];
@@ -56,6 +58,9 @@
     }else if (indexPath.row == 2){
         JJMessageViewController *vc = [JJMessageViewController new];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 3){
+        JJRuntimeViewController *vc = [JJRuntimeViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -63,7 +68,7 @@
 
 - (NSArray *)dataSource{
     if (!_dataSource) {
-        _dataSource = @[@"Memory Manager",@"Multithreading",@"Message"];
+        _dataSource = @[@"Memory Manager",@"Multithreading",@"Message",@"Runtime"];
     }
     return _dataSource;
 }
