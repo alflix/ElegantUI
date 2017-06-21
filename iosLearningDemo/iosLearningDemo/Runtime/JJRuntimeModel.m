@@ -24,8 +24,6 @@
     typedef struct objc_object {
         Class isa;
     } *id;
-    
-    
 }
 
 + (NSString *)getSendMessage{

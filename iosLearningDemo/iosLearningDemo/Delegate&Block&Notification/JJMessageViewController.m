@@ -15,7 +15,6 @@ typedef int(^BlockName)(int a);
 @interface JJMessageViewController ()<JJTestModelDelegate>
 
 @property (nonatomic, copy) int(^BlockName)(int a);
-
 @property (nonatomic, copy) BlockName blockName;
 
 @end
