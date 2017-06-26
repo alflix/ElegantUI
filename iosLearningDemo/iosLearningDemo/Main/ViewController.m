@@ -11,6 +11,7 @@
 #import "JJMultithreadingViewController.h"
 #import "JJMessageViewController.h"
 #import "JJRuntimeViewController.h"
+#import "JJCoreTextViewController.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -61,6 +62,9 @@
     }else if (indexPath.row == 3){
         JJRuntimeViewController *vc = [JJRuntimeViewController new];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 4){
+        JJCoreTextViewController *vc = [JJCoreTextViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -68,7 +72,7 @@
 
 - (NSArray *)dataSource{
     if (!_dataSource) {
-        _dataSource = @[@"Memory Manager",@"Multithreading",@"Message",@"Runtime"];
+        _dataSource = @[@"Memory Manager",@"Multithreading",@"Message",@"Runtime",@"CoreText"];
     }
     return _dataSource;
 }

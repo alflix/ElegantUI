@@ -55,6 +55,14 @@
 		165DA6051EE9B92100254AFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 165DA6031EE9B92100254AFD /* Main.storyboard */; };
 		165DA6071EE9B92100254AFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 165DA6061EE9B92100254AFD /* Assets.xcassets */; };
 		165DA60A1EE9B92100254AFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 165DA6081EE9B92100254AFD /* LaunchScreen.storyboard */; };
+		168698E61EFE02CE00D268C4 /* JJCoreTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 168698E51EFE02CE00D268C4 /* JJCoreTextViewController.m */; };
+		16A0A2401EFE0856001D9812 /* JJDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A23F1EFE0856001D9812 /* JJDisplayView.m */; };
+		16A0A2431EFE16BD001D9812 /* UIView+frameAdjust.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A2421EFE16BD001D9812 /* UIView+frameAdjust.m */; };
+		16A0A2461EFE1AFA001D9812 /* CTFrameParserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A2451EFE1AFA001D9812 /* CTFrameParserConfig.m */; };
+		16A0A2491EFE370F001D9812 /* CoreTextData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A2481EFE370F001D9812 /* CoreTextData.m */; };
+		16A0A24C1EFE37F3001D9812 /* CTFrameParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A24B1EFE37F3001D9812 /* CTFrameParser.m */; };
+		16A0A24F1EFE3BCC001D9812 /* CoreTextPinyinData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A24E1EFE3BCC001D9812 /* CoreTextPinyinData.m */; };
+		16A0A2521EFE72D1001D9812 /* OutlineTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A2511EFE72D1001D9812 /* OutlineTextView.m */; };
 		16BA18481EEA39A8003F0DD3 /* JJMemoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 16BA18451EEA39A8003F0DD3 /* JJMemoryObject.m */; };
 		16BA18491EEA39A8003F0DD3 /* JJMemoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16BA18471EEA39A8003F0DD3 /* JJMemoryViewController.m */; };
 		631A09BB55C9C4C885DE3CF1 /* libPods-iosLearningDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 986832720315B43CB6220909 /* libPods-iosLearningDemo.a */; };
@@ -150,6 +158,22 @@
 		165DA6061EE9B92100254AFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		165DA6091EE9B92100254AFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		165DA60B1EE9B92100254AFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		168698E41EFE02CE00D268C4 /* JJCoreTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJCoreTextViewController.h; sourceTree = "<group>"; };
+		168698E51EFE02CE00D268C4 /* JJCoreTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJCoreTextViewController.m; sourceTree = "<group>"; };
+		16A0A23E1EFE0856001D9812 /* JJDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJDisplayView.h; sourceTree = "<group>"; };
+		16A0A23F1EFE0856001D9812 /* JJDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJDisplayView.m; sourceTree = "<group>"; };
+		16A0A2411EFE16BD001D9812 /* UIView+frameAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+frameAdjust.h"; sourceTree = "<group>"; };
+		16A0A2421EFE16BD001D9812 /* UIView+frameAdjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+frameAdjust.m"; sourceTree = "<group>"; };
+		16A0A2441EFE1AFA001D9812 /* CTFrameParserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFrameParserConfig.h; sourceTree = "<group>"; };
+		16A0A2451EFE1AFA001D9812 /* CTFrameParserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFrameParserConfig.m; sourceTree = "<group>"; };
+		16A0A2471EFE370F001D9812 /* CoreTextData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextData.h; sourceTree = "<group>"; };
+		16A0A2481EFE370F001D9812 /* CoreTextData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextData.m; sourceTree = "<group>"; };
+		16A0A24A1EFE37F3001D9812 /* CTFrameParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFrameParser.h; sourceTree = "<group>"; };
+		16A0A24B1EFE37F3001D9812 /* CTFrameParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFrameParser.m; sourceTree = "<group>"; };
+		16A0A24D1EFE3BCC001D9812 /* CoreTextPinyinData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextPinyinData.h; sourceTree = "<group>"; };
+		16A0A24E1EFE3BCC001D9812 /* CoreTextPinyinData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextPinyinData.m; sourceTree = "<group>"; };
+		16A0A2501EFE72D1001D9812 /* OutlineTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineTextView.h; sourceTree = "<group>"; };
+		16A0A2511EFE72D1001D9812 /* OutlineTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineTextView.m; sourceTree = "<group>"; };
 		16BA18441EEA39A8003F0DD3 /* JJMemoryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMemoryObject.h; sourceTree = "<group>"; };
 		16BA18451EEA39A8003F0DD3 /* JJMemoryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMemoryObject.m; sourceTree = "<group>"; };
 		16BA18461EEA39A8003F0DD3 /* JJMemoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMemoryViewController.h; sourceTree = "<group>"; };
@@ -337,11 +361,12 @@
 		165DA5F91EE9B92100254AFD /* iosLearningDemo */ = {
 			isa = PBXGroup;
 			children = (
+				163FE84D1EFAC97100967C66 /* Main */,
+				168698E31EFE029900D268C4 /* CoreText */,
 				163FE8591EFACCFE00967C66 /* Animation */,
 				163FE8581EFACCF200967C66 /* Drawing */,
 				163FE8571EFACCE100967C66 /* CoreData */,
 				163FE8561EFACC6900967C66 /* AutoLayoutGuide */,
-				163FE84D1EFAC97100967C66 /* Main */,
 				16BA18431EEA3958003F0DD3 /* Memory */,
 				162EC3881EF0E51A005ECC7C /* Sort */,
 				162EC3751EEFE3A1005ECC7C /* Runtime */,
@@ -359,6 +384,29 @@
 				165DA60B1EE9B92100254AFD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		168698E31EFE029900D268C4 /* CoreText */ = {
+			isa = PBXGroup;
+			children = (
+				168698E41EFE02CE00D268C4 /* JJCoreTextViewController.h */,
+				168698E51EFE02CE00D268C4 /* JJCoreTextViewController.m */,
+				16A0A23E1EFE0856001D9812 /* JJDisplayView.h */,
+				16A0A23F1EFE0856001D9812 /* JJDisplayView.m */,
+				16A0A2501EFE72D1001D9812 /* OutlineTextView.h */,
+				16A0A2511EFE72D1001D9812 /* OutlineTextView.m */,
+				16A0A2411EFE16BD001D9812 /* UIView+frameAdjust.h */,
+				16A0A2421EFE16BD001D9812 /* UIView+frameAdjust.m */,
+				16A0A2441EFE1AFA001D9812 /* CTFrameParserConfig.h */,
+				16A0A2451EFE1AFA001D9812 /* CTFrameParserConfig.m */,
+				16A0A2471EFE370F001D9812 /* CoreTextData.h */,
+				16A0A2481EFE370F001D9812 /* CoreTextData.m */,
+				16A0A24D1EFE3BCC001D9812 /* CoreTextPinyinData.h */,
+				16A0A24E1EFE3BCC001D9812 /* CoreTextPinyinData.m */,
+				16A0A24A1EFE37F3001D9812 /* CTFrameParser.h */,
+				16A0A24B1EFE37F3001D9812 /* CTFrameParser.m */,
+			);
+			path = CoreText;
 			sourceTree = "<group>";
 		};
 		16BA18431EEA3958003F0DD3 /* Memory */ = {
@@ -526,14 +574,19 @@
 				160F5CEE1EED782800FDDE4E /* NSTimer+JJHelper.m in Sources */,
 				163FE86E1EFACD3900967C66 /* FlowerView.m in Sources */,
 				163FE8801EFACE9D00967C66 /* CustomTableViewCell.m in Sources */,
+				16A0A2461EFE1AFA001D9812 /* CTFrameParserConfig.m in Sources */,
 				163FE8931EFACF8400967C66 /* Bug.m in Sources */,
+				16A0A24F1EFE3BCC001D9812 /* CoreTextPinyinData.m in Sources */,
 				163FE89D1EFACF8F00967C66 /* CoreDump.xcdatamodel in Sources */,
 				162EC37E1EEFE540005ECC7C /* JJRuntimeViewController.m in Sources */,
 				160F5CFC1EEEC45900FDDE4E /* JJMessageViewController.m in Sources */,
 				163FE8741EFACD8700967C66 /* JJDrawingViewController.m in Sources */,
 				16BA18491EEA39A8003F0DD3 /* JJMemoryViewController.m in Sources */,
+				16A0A2401EFE0856001D9812 /* JJDisplayView.m in Sources */,
+				16A0A2431EFE16BD001D9812 /* UIView+frameAdjust.m in Sources */,
 				163FE86D1EFACD3900967C66 /* FaceViewController.m in Sources */,
 				163FE8981EFACF8400967C66 /* MasterViewController.m in Sources */,
+				16A0A2491EFE370F001D9812 /* CoreTextData.m in Sources */,
 				163FE8991EFACF8400967C66 /* Project.m in Sources */,
 				162EC37A1EEFE512005ECC7C /* JJRuntimeModel.m in Sources */,
 				160F5D0B1EEED40300FDDE4E /* JJCat.m in Sources */,
@@ -546,6 +599,8 @@
 				163FE8811EFACE9D00967C66 /* DynamicCellHeightViewController.m in Sources */,
 				16BA18481EEA39A8003F0DD3 /* JJMemoryObject.m in Sources */,
 				160F5CF21EEE7E7700FDDE4E /* JJMultithreadingViewController.m in Sources */,
+				168698E61EFE02CE00D268C4 /* JJCoreTextViewController.m in Sources */,
+				16A0A2521EFE72D1001D9812 /* OutlineTextView.m in Sources */,
 				163FE86C1EFACD3900967C66 /* FaceView.m in Sources */,
 				162EC37B1EEFE512005ECC7C /* JJRuntimeModel+JJModify.m in Sources */,
 				163FE8821EFACE9D00967C66 /* NSString+addition.m in Sources */,
@@ -562,6 +617,7 @@
 				163FE8971EFACF8400967C66 /* DetailViewController.m in Sources */,
 				163FE8541EFAC97100967C66 /* main.m in Sources */,
 				163FE86B1EFACD3900967C66 /* CurveView.m in Sources */,
+				16A0A24C1EFE37F3001D9812 /* CTFrameParser.m in Sources */,
 				163FE8531EFAC97100967C66 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
