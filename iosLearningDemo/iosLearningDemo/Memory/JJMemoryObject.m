@@ -73,7 +73,10 @@
         return nil;
     }
     if ([target respondsToSelector:action]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         return [target performSelector:action withObject:params];
+        #pragma clang diagnostic pop
     } else {
         // 这里是处理无响应请求的地方，如果无响应，则尝试调用对应target的notFound方法统一处理
         SEL action = NSSelectorFromString(@"notFound:");

@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
 //    JJDisplayView *view = [[JJDisplayView alloc]initWithFrame:CGRectMake(0, 64, 250, self.view.height)];
     
 //    OutlineTextView *textView = [[OutlineTextView alloc]initWithFrame:CGRectMake(0, 64, 250, self.view.height)];

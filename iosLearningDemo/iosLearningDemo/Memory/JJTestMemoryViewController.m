@@ -23,8 +23,6 @@
 }
 
 - (void)viewDidLoad{
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"B 界面 ";
     __weak typeof(self) weakSelf = self;
     self.block = ^{
         __strong typeof(self) strongSelf = weakSelf;

@@ -25,7 +25,6 @@ typedef int(^BlockName)(int a);
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     _model = [[JJTestModel alloc]init];
     _model.delegate = self;
     [_model start];

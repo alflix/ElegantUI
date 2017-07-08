@@ -10,10 +10,11 @@
 #import "JJMemoryObject.h"
 #import "JJTestMemoryViewController.h"
 #import "NSTimer+JJHelper.h"
+#import "JJMRCTestObject.h"
 
 @interface JJMemoryViewController ()
 
-@property (nonatomic, strong) NSArray *imageArray;
+@property (nonatomic, copy) NSArray *imageArray;
 
 @end
 
@@ -26,11 +27,21 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.title = @"A 界面";
-    self.view.backgroundColor = [UIColor whiteColor];
     _object = [JJMemoryObject new];
-//    [self.navigationController pushViewController:[JJTestMemoryViewController new] animated:YES];
-    [self testTimer];
+    NSString *s = @"";
+    [self testStackAndHeap:&s];
+}
+
+#pragma mark - 堆和栈
+
+- (void)testStackAndHeap:(NSString **)str{
+    int a = 0;
+    NSNumber *b = @(1);
+    char *p = malloc(3);
+    JJMemoryObject *c = [JJMemoryObject new];
+    void (^d)() = ^{};
+    NSLog(@"\n a:%d, &a:%p, \n b:%p, &b:%p,size: %lu \n c:%p,&c:%p,size: %lu\n d:%p, &d:%p",a,&p,b,&b,sizeof(&b), c,&c,sizeof(c), d,&d);
+    JJMRCTestObject *object = [JJMRCTestObject new];
 }
 
 #pragma mark - 互相引用问题
@@ -57,6 +68,10 @@
     }];
 }
 
+- (void)testPushViewController{
+    [self.navigationController pushViewController:[JJTestMemoryViewController new] animated:YES];
+}
+
 #pragma mark - performSelector 问题
 
 - (void)testPerformSelector{
@@ -64,7 +79,6 @@
     
     //编译器报错
 //    [_object performSelector:@selector(copyOne:) withObject:nil];
-    
     
     SEL selector = number.integerValue > 1?@selector(copyOne:):@selector(addOne:);
     _object = [_object performSelector:selector withObject:number];

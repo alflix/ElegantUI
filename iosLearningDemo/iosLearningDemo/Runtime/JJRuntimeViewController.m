@@ -18,7 +18,6 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     
     JJRuntimeModel *model = [JJRuntimeModel new];
 //    NSString *modifyName = model.modifyName;

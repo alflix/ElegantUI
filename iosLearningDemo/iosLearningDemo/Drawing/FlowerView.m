@@ -11,7 +11,7 @@
 @implementation FlowerView
 
 - (void)awakeFromNib {
-    // Comment this line to see default behavior
+    [super awakeFromNib];
     self.contentMode = UIViewContentModeRedraw;
 }
 

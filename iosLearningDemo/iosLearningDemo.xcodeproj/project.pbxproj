@@ -55,6 +55,7 @@
 		165DA6051EE9B92100254AFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 165DA6031EE9B92100254AFD /* Main.storyboard */; };
 		165DA6071EE9B92100254AFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 165DA6061EE9B92100254AFD /* Assets.xcassets */; };
 		165DA60A1EE9B92100254AFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 165DA6081EE9B92100254AFD /* LaunchScreen.storyboard */; };
+		1684DA1E1F0E801500455F7B /* UIViewController+JJConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1684DA1D1F0E801500455F7B /* UIViewController+JJConfig.m */; };
 		168698E61EFE02CE00D268C4 /* JJCoreTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 168698E51EFE02CE00D268C4 /* JJCoreTextViewController.m */; };
 		16A0A2401EFE0856001D9812 /* JJDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A23F1EFE0856001D9812 /* JJDisplayView.m */; };
 		16A0A2431EFE16BD001D9812 /* UIView+frameAdjust.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A2421EFE16BD001D9812 /* UIView+frameAdjust.m */; };
@@ -63,6 +64,7 @@
 		16A0A24C1EFE37F3001D9812 /* CTFrameParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A24B1EFE37F3001D9812 /* CTFrameParser.m */; };
 		16A0A24F1EFE3BCC001D9812 /* CoreTextPinyinData.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A24E1EFE3BCC001D9812 /* CoreTextPinyinData.m */; };
 		16A0A2521EFE72D1001D9812 /* OutlineTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A2511EFE72D1001D9812 /* OutlineTextView.m */; };
+		16A0A28B1F0A249B001D9812 /* JJMRCTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A0A28A1F0A249B001D9812 /* JJMRCTestObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		16BA18481EEA39A8003F0DD3 /* JJMemoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 16BA18451EEA39A8003F0DD3 /* JJMemoryObject.m */; };
 		16BA18491EEA39A8003F0DD3 /* JJMemoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16BA18471EEA39A8003F0DD3 /* JJMemoryViewController.m */; };
 		631A09BB55C9C4C885DE3CF1 /* libPods-iosLearningDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 986832720315B43CB6220909 /* libPods-iosLearningDemo.a */; };
@@ -158,6 +160,8 @@
 		165DA6061EE9B92100254AFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		165DA6091EE9B92100254AFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		165DA60B1EE9B92100254AFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1684DA1C1F0E801500455F7B /* UIViewController+JJConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JJConfig.h"; sourceTree = "<group>"; };
+		1684DA1D1F0E801500455F7B /* UIViewController+JJConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JJConfig.m"; sourceTree = "<group>"; };
 		168698E41EFE02CE00D268C4 /* JJCoreTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJCoreTextViewController.h; sourceTree = "<group>"; };
 		168698E51EFE02CE00D268C4 /* JJCoreTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJCoreTextViewController.m; sourceTree = "<group>"; };
 		16A0A23E1EFE0856001D9812 /* JJDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJDisplayView.h; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 		16A0A24E1EFE3BCC001D9812 /* CoreTextPinyinData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextPinyinData.m; sourceTree = "<group>"; };
 		16A0A2501EFE72D1001D9812 /* OutlineTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineTextView.h; sourceTree = "<group>"; };
 		16A0A2511EFE72D1001D9812 /* OutlineTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineTextView.m; sourceTree = "<group>"; };
+		16A0A2891F0A249B001D9812 /* JJMRCTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMRCTestObject.h; sourceTree = "<group>"; };
+		16A0A28A1F0A249B001D9812 /* JJMRCTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMRCTestObject.m; sourceTree = "<group>"; };
 		16BA18441EEA39A8003F0DD3 /* JJMemoryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMemoryObject.h; sourceTree = "<group>"; };
 		16BA18451EEA39A8003F0DD3 /* JJMemoryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMemoryObject.m; sourceTree = "<group>"; };
 		16BA18461EEA39A8003F0DD3 /* JJMemoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMemoryViewController.h; sourceTree = "<group>"; };
@@ -261,6 +267,8 @@
 				163FE84F1EFAC97100967C66 /* AppDelegate.m */,
 				163FE8511EFAC97100967C66 /* ViewController.h */,
 				163FE8521EFAC97100967C66 /* ViewController.m */,
+				1684DA1C1F0E801500455F7B /* UIViewController+JJConfig.h */,
+				1684DA1D1F0E801500455F7B /* UIViewController+JJConfig.m */,
 				165DA6031EE9B92100254AFD /* Main.storyboard */,
 				165DA6081EE9B92100254AFD /* LaunchScreen.storyboard */,
 			);
@@ -362,12 +370,12 @@
 			isa = PBXGroup;
 			children = (
 				163FE84D1EFAC97100967C66 /* Main */,
+				16BA18431EEA3958003F0DD3 /* Memory */,
 				168698E31EFE029900D268C4 /* CoreText */,
 				163FE8591EFACCFE00967C66 /* Animation */,
 				163FE8581EFACCF200967C66 /* Drawing */,
 				163FE8571EFACCE100967C66 /* CoreData */,
 				163FE8561EFACC6900967C66 /* AutoLayoutGuide */,
-				16BA18431EEA3958003F0DD3 /* Memory */,
 				162EC3881EF0E51A005ECC7C /* Sort */,
 				162EC3751EEFE3A1005ECC7C /* Runtime */,
 				160F5CF91EEEBBCC00FDDE4E /* Delegate&Block&Notification */,
@@ -412,14 +420,16 @@
 		16BA18431EEA3958003F0DD3 /* Memory */ = {
 			isa = PBXGroup;
 			children = (
-				16BA18441EEA39A8003F0DD3 /* JJMemoryObject.h */,
-				16BA18451EEA39A8003F0DD3 /* JJMemoryObject.m */,
 				16BA18461EEA39A8003F0DD3 /* JJMemoryViewController.h */,
 				16BA18471EEA39A8003F0DD3 /* JJMemoryViewController.m */,
+				16BA18441EEA39A8003F0DD3 /* JJMemoryObject.h */,
+				16BA18451EEA39A8003F0DD3 /* JJMemoryObject.m */,
 				160F5CE91EED5B2B00FDDE4E /* JJTestMemoryViewController.h */,
 				160F5CEA1EED5B2B00FDDE4E /* JJTestMemoryViewController.m */,
 				160F5CEC1EED782800FDDE4E /* NSTimer+JJHelper.h */,
 				160F5CED1EED782800FDDE4E /* NSTimer+JJHelper.m */,
+				16A0A2891F0A249B001D9812 /* JJMRCTestObject.h */,
+				16A0A28A1F0A249B001D9812 /* JJMRCTestObject.m */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
@@ -585,6 +595,7 @@
 				16A0A2401EFE0856001D9812 /* JJDisplayView.m in Sources */,
 				16A0A2431EFE16BD001D9812 /* UIView+frameAdjust.m in Sources */,
 				163FE86D1EFACD3900967C66 /* FaceViewController.m in Sources */,
+				1684DA1E1F0E801500455F7B /* UIViewController+JJConfig.m in Sources */,
 				163FE8981EFACF8400967C66 /* MasterViewController.m in Sources */,
 				16A0A2491EFE370F001D9812 /* CoreTextData.m in Sources */,
 				163FE8991EFACF8400967C66 /* Project.m in Sources */,
@@ -601,6 +612,7 @@
 				160F5CF21EEE7E7700FDDE4E /* JJMultithreadingViewController.m in Sources */,
 				168698E61EFE02CE00D268C4 /* JJCoreTextViewController.m in Sources */,
 				16A0A2521EFE72D1001D9812 /* OutlineTextView.m in Sources */,
+				16A0A28B1F0A249B001D9812 /* JJMRCTestObject.m in Sources */,
 				163FE86C1EFACD3900967C66 /* FaceView.m in Sources */,
 				162EC37B1EEFE512005ECC7C /* JJRuntimeModel+JJModify.m in Sources */,
 				163FE8821EFACE9D00967C66 /* NSString+addition.m in Sources */,
@@ -746,6 +758,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jieyuan.zhuang.iosLearningDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-Wno-unused-variable";
 			};
 			name = Debug;
 		};
@@ -759,6 +772,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jieyuan.zhuang.iosLearningDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "-Wno-unused-variable";
 			};
 			name = Release;
 		};
