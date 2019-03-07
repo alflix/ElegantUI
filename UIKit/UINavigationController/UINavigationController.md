@@ -4,7 +4,7 @@ UINavigationController，是一个容器类（命名上，UIKit 中容器类一�
 
 ```swift
 open class UINavigationController : UIViewController {
-	open var viewControllers: [UIViewController]
+    open var viewControllers: [UIViewController]
 }
 ```
 
@@ -12,7 +12,7 @@ UINavigationBar，是 UINavigationController 顶部的导航栏，主要负责 U
 
 ```swift
 open class UINavigationController : UIViewController {
-	open var navigationBar: UINavigationBar { get }
+    open var navigationBar: UINavigationBar { get }
 }
 ```
 
@@ -34,7 +34,7 @@ class NavigationController: UINavigationController {}
 
 常见的 UINavigationBar 设置项包括：
 
-![1](/Users/john/Documents/GitHub/awesome-ios/UIKit/UINavigationController/1.png)
+![1](1.png)
 
 ```swift
 func setupNavigationBar() {
@@ -75,7 +75,7 @@ func hideBottomLine() {
 
 UINavigationItem 其实并不是 UIView，它是一个 NSObject。
 
-navigationItem 默认有一个 backBarButtonItem，如下图。![2](/Users/john/Documents/GitHub/awesome-ios/UIKit/UINavigationController/2.png)
+navigationItem 默认有一个 backBarButtonItem，如下图。![2](2.png)
 
 可以点击回到上一个控制器。可以通过设置 hidesBackButton 隐藏：
 
@@ -87,8 +87,7 @@ open var hidesBackButton: Bool
 设置标题，左右 Item：
 
 ```swift
-func setupNavigationItem() {
-    
+func setupNavigationItem() {    
     // 设置标题，等效 self.title
     navigationItem.title = "😄"
     title = "title-\(navigationController?.children.count ?? 0)"
@@ -132,8 +131,7 @@ extension NavigationController: UIGestureRecognizerDelegate {
 解决方案：
 
 ```swift
-class NavigationController: UINavigationController {    
-    
+class NavigationController: UINavigationController {        
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
