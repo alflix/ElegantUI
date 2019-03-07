@@ -1,0 +1,12 @@
+platform :ios, '10.0'
+inhibit_all_warnings!
+use_frameworks!
+
+target 'Awesome' do
+    
+    pod 'SwifterSwift'
+    pod 'GestureRecognizerClosures'
+    pod 'Reusable'
+    pod 'FLEX'
+  
+end
