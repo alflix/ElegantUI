@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FLEX
 
 @UIApplicationMain
 
@@ -20,7 +21,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         keyWindow.backgroundColor = .white
         keyWindow.rootViewController = NavigationController(rootViewController: HomeViewController.instantiate())
         keyWindow.makeKeyAndVisible()
+        addFlexTapGesture()
         return true
+    }
+    
+    private func addFlexTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapFlex))
+        tap.numberOfTouchesRequired = 2
+        window?.addGestureRecognizer(tap)
+    }
+    
+    @objc private func didTapFlex(tap: UITapGestureRecognizer) {
+        if tap.state == .recognized {
+            FLEXManager.shared().showExplorer()
+        }
     }
 }
 

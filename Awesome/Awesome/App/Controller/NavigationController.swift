@@ -11,17 +11,16 @@ import SwifterSwift
 
 class NavigationController: UINavigationController {
     
-    var enablePop = true
+    var enablePopGesture = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
         interactivePopGestureRecognizer?.delegate = self
         delegate = self
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        setupDefaultBackItem(push: viewController)
+//        setupDefaultBackItem(push: viewController)
         super.pushViewController(viewController, animated: animated)
     }
 }
@@ -29,18 +28,19 @@ class NavigationController: UINavigationController {
 // MARK: - UIGestureRecognizerDelegate
 extension NavigationController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive press: UIPress) -> Bool {
-        return enablePop
+        return enablePopGesture
     }
 }
 
 // MARK: - UINavigationControllerDelegate
 extension NavigationController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        interactivePopGestureRecognizer?.isEnabled = navigationController.children.count > 1
+        guard let interactivePopGestureRecognizer = interactivePopGestureRecognizer else { return }
+        interactivePopGestureRecognizer.isEnabled = navigationController.children.count > 1
         if navigationController.children.count == 1 {
-            interactivePopGestureRecognizer?.isEnabled = false
+            interactivePopGestureRecognizer.isEnabled = false
         } else {
-            interactivePopGestureRecognizer?.isEnabled = enablePop
+            interactivePopGestureRecognizer.isEnabled = enablePopGesture
         }
     }
 }
@@ -74,7 +74,7 @@ private extension NavigationController {
         navigationBar.barTintColor = .white
         
         // 设置背景图片(会使 barTintColor，isTranslucent = true 失效)
-        // navigationBar.setBackgroundImage(UIImage(named: "trello"), for: .default)
+        navigationBar.setBackgroundImage(UIImage(named: "trello"), for: .default)
     }
     
     func hideBottomLine() {
