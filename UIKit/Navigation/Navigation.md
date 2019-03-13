@@ -36,7 +36,7 @@ class NavigationController: UINavigationController {}
 
 常见的 UINavigationBar 设置项包括：
 
-![1](1.png)
+![0](0.png)
 
 ```swift
 func setupNavigationBar() {
@@ -45,7 +45,7 @@ func setupNavigationBar() {
     // 标题的样式
     navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .medium)]
     // 标题的垂直位置偏移量
-    navigationBar.setTitleVerticalPositionAdjustment(8, for: .default)    
+    navigationBar.setTitleVerticalPositionAdjustment(0, for: .default)    
     // UIBarButtonItem 上的控件颜色，默认为按钮的蓝色
     navigationBar.tintColor = .black    
     // 是否半透明效果
@@ -75,22 +75,28 @@ func hideBottomLine() {
 
 UINavigationItem 其实并不是 UIView，它是一个 NSObject，所以它是一个管理类。
 
-#### 标题
+#### title/prompt
 
 设置标题:
 
 ```swift
 func setupNavigationItem() {
     // 设置标题，等效 self.title
-    navigationItem.title = "😄"
-    title = "title-\(navigationController?.children.count ?? 0)"
-    navigationItem.prompt = "true"
+    navigationItem.title = "title-\(navigationController?.children.count ?? 0)"
+    // 设置提示
+    navigationItem.prompt = "prompt"
 }
 ```
+
+效果如下：
+
+![1](1.png)
 
 #### backBarButtonItem
 
 navigationItem 默认有一个 backBarButtonItem，如下图。![2](2.png)
+
+其文本默认为上一个 ViewController 的标题，如果上一个 ViewController 没有标题，则为 Back（中文环境下为 「返回」）
 
 可以点击回到上一个控制器。可以通过设置 hidesBackButton 隐藏：
 
@@ -114,9 +120,9 @@ func addNavigationItem() {
 
 ![3](3.png)
 
-注意如果设置了 leftBarButtonItem，会使得原本的 backBarButtonItem 失效，并且同时使边缘的返回手势失效。
+注意如果设置了 leftBarButtonItem，会使得原本的 backBarButtonItem 失效，并且同时使边缘的返回手势失效。这个问题可以使用继承或 Runtime 解决，Runtime 可参考：[SwipeBack -OC](https://github.com/devxoul/SwipeBack)
 
-解决方案如下：
+使用继承的解决方案如下：
 
 ```swift
 class NavigationController: UINavigationController {    
@@ -360,7 +366,7 @@ func addNavigationItemByCustomView(){
 
 可以看出视觉效果上看起来对了，但左边边距依然没有消失，而且图片的位置给人一种错觉，认为图片的位置是按钮中心，当用户点击到左边边距区域，就超出了按钮的点击范围。
 
-一个有效的做法是**通过 swizzle 来修改 layoutMargins**, 这个属性是用来设置内边距的。
+其实，一个有效的做法是**通过 swizzle 来修改 layoutMargins**, 这个属性是用来设置内边距的。
 
 ![9](9.png)
 
@@ -417,3 +423,61 @@ extension UIApplication {
 大功告成：
 
 ![10](10.png)
+
+### 全屏手势返回
+
+
+
+### 过渡效果
+
+滑动返回手势在系统的默认效果中，是有一个动画效果的，在切换过程中，会有一个背景颜色、titleView,左右 item 透明度渐变的过程。如下：
+
+![11](11.gif)
+
+然而，出现**有导航栏和没有导航栏之间控制器的切换**(也可以当作透明导航栏和不透明导航栏的切换)时，就会有不自然的过渡效果（不自然指的是没有跟随手势的变化百分比渐变，而是突然消失或出现）：
+
+如下：
+
+```swift
+class HomeViewController: UIViewController, StoryboardBased {
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
+}
+class PushToViewController: UIViewController, StoryboardBased {
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+}
+```
+
+
+
+![12](12.gif)
+
+#### 方案1
+
+第一种解决方案很简单，也是大部分 app 采用的做法，如下：
+
+```swift
+class HomeViewController: UIViewController, StoryboardBased {
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+}
+class PushToViewController: UIViewController, StoryboardBased {
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+}
+```
+
+![13](13.gif)
+
+如果 PushToViewController 需要显示透明的导航栏（上面有返回按钮等但背景是透明的），就再自定义一个 View 代替原先的 NavigationBar，这个方案总体是相对简单并且几乎没有什么 bug。
+
+#### 方案2
+
+方案1 的缺点是过渡效果会比较生硬，与系统的返回效果有差距。QQ 的过渡效果还不错，方案2来研究如何实现。
+
+![14](14.gif)

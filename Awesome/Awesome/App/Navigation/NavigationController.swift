@@ -20,7 +20,7 @@ class NavigationController: UINavigationController {
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-//        setupDefaultBackItem(push: viewController)
+        setupDefaultBackItem(push: viewController)
         super.pushViewController(viewController, animated: animated)
     }
 }
@@ -47,14 +47,6 @@ extension NavigationController: UINavigationControllerDelegate {
 
 // MARK: - UI
 private extension NavigationController {
-    func setupDefaultBackItem(push viewController: UIViewController) {
-        if viewControllers.count > 0 && (viewController.navigationItem.leftBarButtonItem == nil) {
-            viewController.hidesBottomBarWhenPushed = true
-            let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain,
-                                                    target: self, action: #selector(backAction))
-            viewController.navigationItem.leftBarButtonItem = backBarButtonItem
-        }
-    }
     
     func setupNavigationBar() {
         // default: 灰色背景 白色文字 black: 纯黑色背景 白色文字，会被👇的设置项覆盖
@@ -85,9 +77,19 @@ private extension NavigationController {
         // 去掉分割线的另外一种方式（会影响到 statusBar，不建议使用这个属性）
         navigationBar.clipsToBounds = true
     }
+    
+    func setupDefaultBackItem(push viewController: UIViewController) {
+        if viewControllers.count > 0 && (viewController.navigationItem.leftBarButtonItem == nil) {
+            viewController.hidesBottomBarWhenPushed = true
+            let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain,
+                                                    target: self, action: #selector(backAction))
+            viewController.navigationItem.leftBarButtonItem = backBarButtonItem
+        }
+    }
 }
 
 private extension NavigationController {
+    
     @objc func backAction(){
         popViewController(animated: true)
     }
