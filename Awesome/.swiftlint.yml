@@ -1,0 +1,20 @@
+excluded: 
+  - Pods
+
+force_cast: warning
+line_length: 165
+cyclomatic_complexity: 12
+type_body_length:
+  warning: 300
+  error: 400
+file_length:
+  warning: 500
+  error: 650
+type_name:
+  max_length: 
+    warning: 40
+    error: 50
+identifier_name:
+  excluded:
+    - id
+    

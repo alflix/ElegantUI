@@ -7,6 +7,9 @@ target 'Awesome' do
     pod 'SwifterSwift'
     pod 'GestureRecognizerClosures'
     pod 'Reusable'
+
+    # Tool
+    pod 'SwiftLint'
     pod 'FLEX'
-  
+
 end

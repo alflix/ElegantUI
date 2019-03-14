@@ -8,19 +8,19 @@
 
 import UIKit
 
+/// 封装通过 customView 的方式创建 UIBarButtonItem
 final class CustomBarButtonItem: UIBarButtonItem {
-    
     lazy var button = UIButton()
-    
+
     init(image: UIImage?, title: String?) {
         super.init()
         setButton(image: image, title: title)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setButton(image: UIImage?, title: String? = nil) {
         if let image = image {
             button.setImage(image.withRenderingMode(.alwaysTemplate), for: .normal)

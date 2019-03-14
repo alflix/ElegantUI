@@ -11,16 +11,16 @@ import Reusable
 import SwifterSwift
 
 class HomeViewController: UIViewController, StoryboardBased {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "title-\(navigationController?.children.count ?? 0)"
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
+        //过渡效果方案一
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController!.navigationBar.logSubView(1)
@@ -28,7 +28,6 @@ class HomeViewController: UIViewController, StoryboardBased {
 }
 
 extension HomeViewController {
-    
     func setupNavigationItem() {
         // 设置标题，等效 self.title
         navigationItem.title = "title-\(navigationController?.children.count ?? 0)"
@@ -37,7 +36,7 @@ extension HomeViewController {
         // 同时显示 leftItems 和 backItem
         navigationItem.leftItemsSupplementBackButton = true
     }
-    
+
     func addNavigationItem() {
         let backItem = UIBarButtonItem(title: "Left", style: .done, target: self, action: #selector(backAction))
         let shareItem = UIBarButtonItem(image: UIImage(named: "share"), style: .done, target: self, action: #selector(shareAction))
@@ -47,14 +46,12 @@ extension HomeViewController {
 }
 
 extension HomeViewController {
-    
     @objc func backAction() {}
-    
+
     @objc func shareAction() {}
 }
 
 extension HomeViewController {
-    
     @IBAction func pushNewController(_ sender: Any) {
         navigationController?.pushViewController(PushToViewController.instantiate(), animated: true)
     }

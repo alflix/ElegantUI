@@ -23,12 +23,14 @@ PODS:
   - SwifterSwift/SpriteKit (4.6.0)
   - SwifterSwift/SwiftStdlib (4.6.0)
   - SwifterSwift/UIKit (4.6.0)
+  - SwiftLint (0.31.0)
 
 DEPENDENCIES:
   - FLEX
   - GestureRecognizerClosures
   - Reusable
   - SwifterSwift
+  - SwiftLint
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -36,13 +38,15 @@ SPEC REPOS:
     - GestureRecognizerClosures
     - Reusable
     - SwifterSwift
+    - SwiftLint
 
 SPEC CHECKSUMS:
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   GestureRecognizerClosures: e6d9bcec709119720729ac7badd60dc868f1037a
   Reusable: 188be1a54ac0691bc66e5bb24ec6eb91971b315b
   SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
+  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: 748e270a1c1e05dca3f15f6eb72a475ca8abc658
+PODFILE CHECKSUM: 4d57a2809ba568f76d0afb51ca9643f2b6f0aa33
 
 COCOAPODS: 1.6.1

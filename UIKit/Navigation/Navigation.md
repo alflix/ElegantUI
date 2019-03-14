@@ -1,3 +1,5 @@
+本文前半部分主要讲述 UINavigationController/UINavigationBar 一些常用的接口用法以及编程实践。后半部分会分析到 UINavigationItem 的视图层级以及导航栏切换的问题。本文的代码示例 [地址](https://github.com/YodaLuke/awesome-ios/tree/master/Awesome/Awesome/App/Navigation)
+
 ### 概述
 
 UINavigationController，是一个容器类（命名上，UIKit 中容器类一般以 Controller 后缀结束），对 ViewController 进行管理（利用栈的方式）。
