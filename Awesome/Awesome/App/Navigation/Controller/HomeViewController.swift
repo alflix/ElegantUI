@@ -11,19 +11,18 @@ import Reusable
 import SwifterSwift
 
 class HomeViewController: UIViewController, StoryboardBased {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "title-\(navigationController?.children.count ?? 0)"
-    }
-
     override func viewWillAppear(_ animated: Bool) {
-        //过渡效果方案一
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationAppearance.backgroundAlpha = 1
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController!.navigationBar.logSubView(1)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "title-\(navigationController?.children.count ?? 0)"
     }
 }
 
@@ -42,6 +41,11 @@ extension HomeViewController {
         let shareItem = UIBarButtonItem(image: UIImage(named: "share"), style: .done, target: self, action: #selector(shareAction))
         navigationItem.leftBarButtonItem = backItem
         navigationItem.rightBarButtonItem = shareItem
+    }
+
+    func showNavigationBar() {
+        //过渡效果方案一
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 

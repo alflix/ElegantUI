@@ -11,8 +11,7 @@ import Reusable
 
 class PushToViewController: UIViewController, StoryboardBased {
     override func viewWillAppear(_ animated: Bool) {
-        //过渡效果方案一
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationAppearance.backgroundAlpha = 0
     }
 
     override func viewDidLoad() {
@@ -38,6 +37,7 @@ extension PushToViewController {
         addLeftItem(by: backItem, fix: -5)
     }
 
+    // 通过 fixedSpace 修正位置-1
     func addLeftItem(by item: UIBarButtonItem, fix: CGFloat) {
         let fixItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         fixItem.width = fix
@@ -48,6 +48,11 @@ extension PushToViewController {
     func addNavigationItemByCustomView() {
         let backItem = CustomBarButtonItem(image: UIImage(named: "back"), title: nil)
         navigationItem.leftBarButtonItem = backItem
+    }
+
+    func hideNavigationBar() {
+        //过渡效果方案一
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }
 

@@ -64,7 +64,7 @@ private extension NavigationController {
         // 背景颜色(会使 isTranslucent = true 失效)
         navigationBar.barTintColor = .white
         // 设置背景图片(会使 barTintColor，isTranslucent = true 失效)
-        navigationBar.setBackgroundImage(UIImage(named: "trello"), for: .default)
+        navigationBar.setBackgroundImage(UIImage(color: .white, size: CGSize.zero), for: .default)
     }
 
     func hideBottomLine() {

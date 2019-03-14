@@ -18,7 +18,7 @@ extension UIView {
                 blank += " "
             }
             if let className = object_getClass(subView) {
-                print( blank + "\(level): " + "\(className)" + "\(subView.frame)")
+                DPrint( blank + "\(level): " + "\(className)" + "\(subView.frame)")
             }
             subView.logSubView(level + 1)
         }

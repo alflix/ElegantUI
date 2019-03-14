@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		35200168B7105798E99CED51 /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCA585A78A5689FE4C3E0F4 /* Pods_Awesome.framework */; };
+		5286BC6D223A2ABD00616E4A /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC6C223A2ABD00616E4A /* UIApplication+.swift */; };
+		5286BC70223A2AF700616E4A /* GlobalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC6F223A2AF700616E4A /* GlobalFunction.swift */; };
+		5286BC72223A2FEC00616E4A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC71223A2FEC00616E4A /* UIViewController+.swift */; };
 		52EDF7142230D1820070E492 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF7132230D1820070E492 /* Assets.xcassets */; };
 		52EDF7212230D2490070E492 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF71F2230D2490070E492 /* LaunchScreen.storyboard */; };
 		52EDF7222230D2490070E492 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF7202230D2490070E492 /* AppDelegate.swift */; };
@@ -16,12 +19,15 @@
 		52EDF72C2230D49D0070E492 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF72B2230D49D0070E492 /* HomeViewController.swift */; };
 		52EDF72E2236AC650070E492 /* PushToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF72D2236AC650070E492 /* PushToViewController.swift */; };
 		52EDF7302236ACC70070E492 /* PushToViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF72F2236ACC70070E492 /* PushToViewController.storyboard */; };
-		52EDF7322236AD740070E492 /* UINavigationBar+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF7312236AD740070E492 /* UINavigationBar+Addition.swift */; };
-		52EDF7342236ADDF0070E492 /* UIView+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF7332236ADDF0070E492 /* UIView+Addition.swift */; };
+		52EDF7322236AD740070E492 /* UINavigationBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF7312236AD740070E492 /* UINavigationBar+.swift */; };
+		52EDF7342236ADDF0070E492 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF7332236ADDF0070E492 /* UIView+.swift */; };
 		52EDF7362236AE0A0070E492 /* CustomBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF7352236AE0A0070E492 /* CustomBarButtonItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5286BC6C223A2ABD00616E4A /* UIApplication+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
+		5286BC6F223A2AF700616E4A /* GlobalFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunction.swift; sourceTree = "<group>"; };
+		5286BC71223A2FEC00616E4A /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		52EDF7092230D1820070E492 /* Awesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Awesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EDF7132230D1820070E492 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52EDF7182230D1820070E492 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -32,8 +38,8 @@
 		52EDF72B2230D49D0070E492 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		52EDF72D2236AC650070E492 /* PushToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushToViewController.swift; sourceTree = "<group>"; };
 		52EDF72F2236ACC70070E492 /* PushToViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PushToViewController.storyboard; sourceTree = "<group>"; };
-		52EDF7312236AD740070E492 /* UINavigationBar+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Addition.swift"; sourceTree = "<group>"; };
-		52EDF7332236ADDF0070E492 /* UIView+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Addition.swift"; sourceTree = "<group>"; };
+		52EDF7312236AD740070E492 /* UINavigationBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+.swift"; sourceTree = "<group>"; };
+		52EDF7332236ADDF0070E492 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		52EDF7352236AE0A0070E492 /* CustomBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBarButtonItem.swift; sourceTree = "<group>"; };
 		913C1CF7CE750286D642D6C7 /* Pods-Awesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome.debug.xcconfig"; path = "Target Support Files/Pods-Awesome/Pods-Awesome.debug.xcconfig"; sourceTree = "<group>"; };
 		ADCA585A78A5689FE4C3E0F4 /* Pods_Awesome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Awesome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +58,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5286BC6E223A2ADC00616E4A /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				5286BC6F223A2AF700616E4A /* GlobalFunction.swift */,
+			);
+			path = Globals;
+			sourceTree = "<group>";
+		};
+		5286BC75223A477000616E4A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52EDF7352236AE0A0070E492 /* CustomBarButtonItem.swift */,
+				52EDF7292230D3360070E492 /* HomeViewController.storyboard */,
+				52EDF72F2236ACC70070E492 /* PushToViewController.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5286BC76223A478800616E4A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				52EDF7252230D2C20070E492 /* NavigationController.swift */,
+				52EDF72B2230D49D0070E492 /* HomeViewController.swift */,
+				52EDF72D2236AC650070E492 /* PushToViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5286BC77223A479800616E4A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				52EDF7332236ADDF0070E492 /* UIView+.swift */,
+				52EDF7312236AD740070E492 /* UINavigationBar+.swift */,
+				5286BC6C223A2ABD00616E4A /* UIApplication+.swift */,
+				5286BC71223A2FEC00616E4A /* UIViewController+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		52EDF7002230D1820070E492 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				52EDF7232230D2770070E492 /* App */,
+				5286BC6E223A2ADC00616E4A /* Globals */,
 				52EDF71E2230D2490070E492 /* Supporting Files */,
 				52EDF7132230D1820070E492 /* Assets.xcassets */,
 			);
@@ -101,14 +147,9 @@
 		52EDF7272230D3020070E492 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				52EDF7252230D2C20070E492 /* NavigationController.swift */,
-				52EDF72B2230D49D0070E492 /* HomeViewController.swift */,
-				52EDF7292230D3360070E492 /* HomeViewController.storyboard */,
-				52EDF72D2236AC650070E492 /* PushToViewController.swift */,
-				52EDF72F2236ACC70070E492 /* PushToViewController.storyboard */,
-				52EDF7312236AD740070E492 /* UINavigationBar+Addition.swift */,
-				52EDF7332236ADDF0070E492 /* UIView+Addition.swift */,
-				52EDF7352236AE0A0070E492 /* CustomBarButtonItem.swift */,
+				5286BC76223A478800616E4A /* Controller */,
+				5286BC75223A477000616E4A /* View */,
+				5286BC77223A479800616E4A /* Extension */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -277,9 +318,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EDF7362236AE0A0070E492 /* CustomBarButtonItem.swift in Sources */,
-				52EDF7322236AD740070E492 /* UINavigationBar+Addition.swift in Sources */,
+				52EDF7322236AD740070E492 /* UINavigationBar+.swift in Sources */,
+				5286BC72223A2FEC00616E4A /* UIViewController+.swift in Sources */,
 				52EDF7222230D2490070E492 /* AppDelegate.swift in Sources */,
-				52EDF7342236ADDF0070E492 /* UIView+Addition.swift in Sources */,
+				52EDF7342236ADDF0070E492 /* UIView+.swift in Sources */,
+				5286BC70223A2AF700616E4A /* GlobalFunction.swift in Sources */,
+				5286BC6D223A2ABD00616E4A /* UIApplication+.swift in Sources */,
 				52EDF7262230D2C20070E492 /* NavigationController.swift in Sources */,
 				52EDF72C2230D49D0070E492 /* HomeViewController.swift in Sources */,
 				52EDF72E2236AC650070E492 /* PushToViewController.swift in Sources */,
