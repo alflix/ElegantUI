@@ -10,13 +10,10 @@ import UIKit
 import Reusable
 
 class PushToViewController: UIViewController, StoryboardBased {
-    override func viewWillAppear(_ animated: Bool) {
-        navigationAppearance.backgroundAlpha = 0
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "title-\(navigationController?.children.count ?? 0)"
+        navigationAppearance.backgroundAlpha = 0
     }
 }
 

@@ -11,6 +11,9 @@
 		5286BC6D223A2ABD00616E4A /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC6C223A2ABD00616E4A /* UIApplication+.swift */; };
 		5286BC70223A2AF700616E4A /* GlobalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC6F223A2AF700616E4A /* GlobalFunction.swift */; };
 		5286BC72223A2FEC00616E4A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC71223A2FEC00616E4A /* UIViewController+.swift */; };
+		5286BC79223A68BB00616E4A /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC78223A68BB00616E4A /* UINavigationController+.swift */; };
+		5286BC7B223AAF3B00616E4A /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC7A223AAF3B00616E4A /* UIColor+.swift */; };
+		5286BC7D223ABA7600616E4A /* DispatchQueue+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC7C223ABA7600616E4A /* DispatchQueue+.swift */; };
 		52EDF7142230D1820070E492 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF7132230D1820070E492 /* Assets.xcassets */; };
 		52EDF7212230D2490070E492 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF71F2230D2490070E492 /* LaunchScreen.storyboard */; };
 		52EDF7222230D2490070E492 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF7202230D2490070E492 /* AppDelegate.swift */; };
@@ -28,6 +31,9 @@
 		5286BC6C223A2ABD00616E4A /* UIApplication+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		5286BC6F223A2AF700616E4A /* GlobalFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunction.swift; sourceTree = "<group>"; };
 		5286BC71223A2FEC00616E4A /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		5286BC78223A68BB00616E4A /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		5286BC7A223AAF3B00616E4A /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		5286BC7C223ABA7600616E4A /* DispatchQueue+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+.swift"; sourceTree = "<group>"; };
 		52EDF7092230D1820070E492 /* Awesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Awesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EDF7132230D1820070E492 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52EDF7182230D1820070E492 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,8 +97,11 @@
 			children = (
 				52EDF7332236ADDF0070E492 /* UIView+.swift */,
 				52EDF7312236AD740070E492 /* UINavigationBar+.swift */,
-				5286BC6C223A2ABD00616E4A /* UIApplication+.swift */,
 				5286BC71223A2FEC00616E4A /* UIViewController+.swift */,
+				5286BC78223A68BB00616E4A /* UINavigationController+.swift */,
+				5286BC7A223AAF3B00616E4A /* UIColor+.swift */,
+				5286BC6C223A2ABD00616E4A /* UIApplication+.swift */,
+				5286BC7C223ABA7600616E4A /* DispatchQueue+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -317,10 +326,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5286BC7D223ABA7600616E4A /* DispatchQueue+.swift in Sources */,
+				5286BC79223A68BB00616E4A /* UINavigationController+.swift in Sources */,
 				52EDF7362236AE0A0070E492 /* CustomBarButtonItem.swift in Sources */,
 				52EDF7322236AD740070E492 /* UINavigationBar+.swift in Sources */,
 				5286BC72223A2FEC00616E4A /* UIViewController+.swift in Sources */,
 				52EDF7222230D2490070E492 /* AppDelegate.swift in Sources */,
+				5286BC7B223AAF3B00616E4A /* UIColor+.swift in Sources */,
 				52EDF7342236ADDF0070E492 /* UIView+.swift in Sources */,
 				5286BC70223A2AF700616E4A /* GlobalFunction.swift in Sources */,
 				5286BC6D223A2ABD00616E4A /* UIApplication+.swift in Sources */,

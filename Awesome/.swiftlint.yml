@@ -1,6 +1,9 @@
 excluded: 
   - Pods
 
+disabled_rules:
+  - empty_parentheses_with_trailing_closure
+
 force_cast: warning
 line_length: 165
 cyclomatic_complexity: 12

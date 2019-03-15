@@ -10,11 +10,11 @@ import UIKit
 
 extension UINavigationBar {
     /// 通过 runtime 交换 layoutSubviews 方法
-    static func swizzedMethod() {
+    static func swizzle() {
         swizzling(
             UINavigationBar.self,
-            #selector(UINavigationBar.layoutSubviews),
-            #selector(UINavigationBar.swizzle_layoutSubviews))
+            #selector(layoutSubviews),
+            #selector(swizzle_layoutSubviews))
     }
 
     /// 实际的 layoutSubviews 方法

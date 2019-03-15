@@ -41,7 +41,7 @@ open class UINavigationController : UIViewController {
 UINavigationItem 是 UINavigationBar 上显示的具体元素的一个抽象类，通过 ViewController 的拓展添加了一个 navigationItem，把 UINavigationItem 交由 ViewController 管理。
 
 ```swift
-extension UIViewController {    
+extension UIViewController {
     open var navigationItem: UINavigationItem { get }
 }
 ```
@@ -570,10 +570,6 @@ UIBarBackground，UIImageView 都是可以改变透明度的，UIImageView 对�
 // MARK: - Initializers
 public extension UIImage {
     /// SwifterSwift: Create UIImage from color and size.
-    ///
-    /// - Parameters:
-    ///   - color: image fill color.
-    ///   - size: image size.
     public convenience init(color: UIColor, size: CGSize) {
         UIGraphicsBeginImageContextWithOptions(size, false, 1)
         defer {
@@ -639,4 +635,161 @@ class PushToViewController: UIViewController, StoryboardBased {
 }
 ```
 
-第二步，我们需要为这个透明度的变化添加渐变效果。即监控手势的进度实时调节透明度。如下 method swizzling UINavigationController 的 _updateInteractiveTransition: 方法监控返回交互动画的进度。
+第二步，我们需要为这个透明度的变化添加渐变效果。即监控手势的进度实时调节透明度。
+于是 method swizzling UINavigationController 的 _updateInteractiveTransition: 函数，并根据其 percentComplete 参数，改变 Alpha 和 tintColor 。如下：
+
+```swift
+extension UINavigationController {
+    open override func viewDidLoad() {
+        UINavigationController.swizzle()
+        super.viewDidLoad()
+    }
+
+    static func swizzle() {
+        DispatchQueue.once() {
+            let needSwizzleSelectors = [
+                NSSelectorFromString("_updateInteractiveTransition:"),
+                #selector(popToViewController),
+                #selector(popToRootViewController)
+            ]
+            for selector in needSwizzleSelectors {
+                let swizzleSelectorString = ("swizzle_" + selector.description).replacingOccurrences(of: "__", with: "_")
+                swizzling(
+                    UINavigationController.self,
+                    selector,
+                    Selector(swizzleSelectorString))
+            }
+        }
+    }
+
+    @objc func swizzle_updateInteractiveTransition(_ percentComplete: CGFloat) {
+        guard let topViewController = topViewController, let coordinator = topViewController.transitionCoordinator else {
+            swizzle_updateInteractiveTransition(percentComplete)
+            return
+        }
+
+        let fromViewController = coordinator.viewController(forKey: .from)
+        let toViewController = coordinator.viewController(forKey: .to)
+
+        // Alpha
+        let fromAlpha = fromViewController?.navigationAppearance.backgroundAlpha ?? 0
+        let toAlpha = toViewController?.navigationAppearance.backgroundAlpha ?? 0
+        let newAlpha = fromAlpha + (toAlpha - fromAlpha) * percentComplete
+        navigationBar.setBackground(alpha: newAlpha)
+
+        // Tint Color
+        let fromColor = fromViewController?.navigationAppearance.tintColor ?? .blue
+        let toColor = toViewController?.navigationAppearance.tintColor ?? .blue
+        let newColor = UIColor.averageColor(from: fromColor, to: toColor, percent: percentComplete)
+        navigationBar.tintColor = newColor
+        swizzle_updateInteractiveTransition(percentComplete)
+    }
+
+    @objc func swizzle_popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
+        navigationBar.setBackground(alpha: viewController.navigationAppearance.backgroundAlpha)
+        navigationBar.tintColor = viewController.navigationAppearance.tintColor
+        return swizzle_popToViewController(viewController, animated: animated)
+    }
+
+    @objc func swizzle_popToRootViewControllerAnimated(_ animated: Bool) -> [UIViewController]? {
+        navigationBar.setBackground(alpha: viewControllers.first?.navigationAppearance.backgroundAlpha ?? 0)
+        navigationBar.tintColor = viewControllers.first?.navigationAppearance.tintColor
+        return swizzle_popToRootViewControllerAnimated(animated)
+    }
+}
+```
+
+其中 DispatchQueue.once() 封装了 swift 的 Dispatch once 扩展 ，具体可见 [参考](https://juejin.im/post/5a31f000518825585132b566)
+
+这一步的效果：
+
+![15](15.gif)
+
+到这一步基本上可以了，不过还有一些优化的空间。目前要达到这个效果，我们是需要这样子调用的：
+
+```swift
+class HomeViewController: UIViewController, StoryboardBased {
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+}
+class PushToViewController: UIViewController, StoryboardBased {
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+}
+```
+
+这样子不太好，每次 viewWillAppear 的时候调用都会重置这个状态，假设有一个需求是比如 tableView 滚动到某个位置，然后显示导航栏，这个时候如果 push 到其他控制器，再 pop 回来，就会出现问题。我们想达到的调用是这样的，更加符合我们最初的设想：
+
+```swift
+class PushToViewController: UIViewController, StoryboardBased {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationAppearance.backgroundAlpha = 0
+    }
+}
+```
+
+![16](16.gif)
+
+可以看到在手势交互的过程中，透明度的变化跟预期一样跟随手势变化。但一旦松手，系统会自动完成或取消返回操作，在这一过程中，_updateInteractiveTransition 并没有调用，而导致透明度停留在最后的那个状态。
+所以我们还需要在 UINavigationControllerDelegate 的 shouldPush 和 shouldPop 代理中添加响应的处理：
+
+```swift
+extension UINavigationController: UINavigationBarDelegate {
+    public func navigationBar(_ navigationBar: UINavigationBar, shouldPush item: UINavigationItem) -> Bool {
+        navigationBar.setBackground(alpha: topViewController?.navigationAppearance.backgroundAlpha ?? 0)
+        navigationBar.tintColor = topViewController?.navigationAppearance.tintColor
+        return true
+    }
+
+    public func navigationBar(_ navigationBar: UINavigationBar, shouldPop item: UINavigationItem) -> Bool {
+        if let topVC = topViewController, let coor = topVC.transitionCoordinator, coor.initiallyInteractive {
+            if #available(iOS 10.0, *) {
+                coor.notifyWhenInteractionChanges({ (context) in
+                    self.dealInteractionChanges(context)
+                })
+            } else {
+                coor.notifyWhenInteractionEnds({ (context) in
+                    self.dealInteractionChanges(context)
+                })
+            }
+            return true
+        }
+
+        let itemCount = navigationBar.items?.count ?? 0
+        let count = viewControllers.count >= itemCount ? 2 : 1
+        let popToVC = viewControllers[viewControllers.count - count]
+        popToViewController(popToVC, animated: true)
+        return true
+    }
+
+    private func dealInteractionChanges(_ context: UIViewControllerTransitionCoordinatorContext) {
+        let animations: (UITransitionContextViewControllerKey) -> Void = {
+            guard let viewController = context.viewController(forKey: $0) else { return }
+            let curAlpha = viewController.navigationAppearance.backgroundAlpha
+            let curTintColor = viewController.navigationAppearance.tintColor
+            self.navigationBar.setBackground(alpha: curAlpha)
+            self.navigationBar.tintColor = curTintColor
+        }
+        // 完成返回手势的取消事件
+        if context.isCancelled {
+            let cancelDuration: TimeInterval = context.transitionDuration * Double(context.percentComplete)
+            UIView.animate(withDuration: cancelDuration) {
+                animations(.from)
+            }
+        } else {
+            // 完成返回手势的完成事件
+            let finishDuration: TimeInterval = context.transitionDuration * Double(1 - context.percentComplete)
+            UIView.animate(withDuration: finishDuration) {
+                animations(.to)
+            }
+        }
+    }
+}
+```
+
+可以看出现在没有这个问题了。
+
+![17](17.gif)

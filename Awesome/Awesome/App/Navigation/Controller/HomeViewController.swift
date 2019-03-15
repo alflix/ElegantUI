@@ -11,10 +11,6 @@ import Reusable
 import SwifterSwift
 
 class HomeViewController: UIViewController, StoryboardBased {
-    override func viewWillAppear(_ animated: Bool) {
-        navigationAppearance.backgroundAlpha = 1
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController!.navigationBar.logSubView(1)
