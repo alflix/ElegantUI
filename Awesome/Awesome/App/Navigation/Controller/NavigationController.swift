@@ -49,7 +49,7 @@ extension NavigationController: UINavigationControllerDelegate {
 }
 
 // MARK: - UI
-private extension NavigationController {
+private extension UINavigationController {
     func setupNavigationBar() {
         // default: 灰白色背景，白色文字 black: 纯黑色背景，白色文字，会被👇的设置项覆盖
         navigationBar.barStyle = .default
@@ -65,11 +65,12 @@ private extension NavigationController {
         navigationBar.barTintColor = .white
         // 设置背景图片(会使 barTintColor，isTranslucent = true 失效)
         navigationBar.setBackgroundImage(UIImage(color: .white, size: CGSize.zero), for: .default)
+        // 设置底部分割线颜色
+        navigationBar.shadowImage = UIImage(color: .red, size: CGSize(width: navigationBar.width, height: 0.5))
     }
 
     func hideBottomLine() {
-        // 设置底部分割线，如果传入 UIImage() 可以去掉分割线。
-        navigationBar.shadowImage = UIImage(color: .red, size: CGSize(width: navigationBar.width, height: 0.5))
+        // 传入 UIImage() 可以去掉分割线。
         navigationBar.shadowImage = UIImage()
         // 去掉分割线的另外一种方式（会影响到 statusBar，不建议使用这个属性）
         navigationBar.clipsToBounds = true
@@ -84,9 +85,7 @@ private extension NavigationController {
             viewController.navigationItem.leftBarButtonItem = backBarButtonItem
         }
     }
-}
 
-private extension NavigationController {
     @objc func backAction() {
         popViewController(animated: true)
     }

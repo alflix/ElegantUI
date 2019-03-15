@@ -116,15 +116,17 @@ extension UINavigationController {
 // MARK: - UI Update
 extension UINavigationController {
     func updateNavigationBar(from fromVC: UIViewController?, to toVC: UIViewController?, progress: CGFloat) {
+        guard let fromVC = fromVC, let toVC = toVC else { return }
+
         // change tintColor
-        let fromColor = fromVC?.navigationAppearance.tintColor ?? .blue
-        let toColor = toVC?.navigationAppearance.tintColor ?? .blue
+        let fromColor = fromVC.navigationAppearance.tintColor
+        let toColor = toVC.navigationAppearance.tintColor
         let newColor = UIColor.averageColor(from: fromColor, to: toColor, percent: progress)
         navigationBar.tintColor = newColor
 
         // change alpha
-        let fromAlpha = fromVC?.navigationAppearance.backgroundAlpha ?? 0
-        let toAlpha = toVC?.navigationAppearance.backgroundAlpha ?? 0
+        let fromAlpha = fromVC.navigationAppearance.backgroundAlpha
+        let toAlpha = toVC.navigationAppearance.backgroundAlpha
         let newAlpha = fromAlpha + (toAlpha - fromAlpha) * progress
         navigationBar.setBackground(alpha: newAlpha)
     }
