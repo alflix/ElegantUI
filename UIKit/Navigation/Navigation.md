@@ -800,96 +800,96 @@ extension UINavigationController: UINavigationBarDelegate {
 不过，仔细的可能会发现，如果不通过手势 pop 或 push 的话，还是有一个不流畅的效果，虽然没有了手势的影响，看起来不明显，但实际上还是存在的。原因就在上面的代码里面：
 
 ```swift
-    @objc func swizzle_popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
-        navigationBar.setBackground(alpha: viewController.navigationAppearance.backgroundAlpha)
-        navigationBar.tintColor = viewController.navigationAppearance.tintColor
-        return swizzle_popToViewController(viewController, animated: animated)
-    }
+@objc func swizzle_popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
+    navigationBar.setBackground(alpha: viewController.navigationAppearance.backgroundAlpha)
+    navigationBar.tintColor = viewController.navigationAppearance.tintColor
+    return swizzle_popToViewController(viewController, animated: animated)
+}
 
-    @objc func swizzle_popToRootViewControllerAnimated(_ animated: Bool) -> [UIViewController]? {
-        navigationBar.setBackground(alpha: viewControllers.first?.navigationAppearance.backgroundAlpha ?? 0)
-        navigationBar.tintColor = viewControllers.first?.navigationAppearance.tintColor
-        return swizzle_popToRootViewControllerAnimated(animated)
-    }
+@objc func swizzle_popToRootViewControllerAnimated(_ animated: Bool) -> [UIViewController]? {
+    navigationBar.setBackground(alpha: viewControllers.first?.navigationAppearance.backgroundAlpha ?? 0)
+    navigationBar.tintColor = viewControllers.first?.navigationAppearance.tintColor
+    return swizzle_popToRootViewControllerAnimated(animated)
+}
 
-    @objc func swizzle_pushViewController(_ viewController: UIViewController, animated: Bool) {
-        navigationBar.setBackground(alpha: topViewController?.navigationAppearance.backgroundAlpha ?? 0)
-        navigationBar.tintColor = topViewController?.navigationAppearance.tintColor
-         swizzle_pushViewController(viewController, animated: animated)
-    }
+@objc func swizzle_pushViewController(_ viewController: UIViewController, animated: Bool) {
+    navigationBar.setBackground(alpha: topViewController?.navigationAppearance.backgroundAlpha ?? 0)
+    navigationBar.tintColor = topViewController?.navigationAppearance.tintColor
+        swizzle_pushViewController(viewController, animated: animated)
+}
 ```
 
 这里 UI 的变化是突变的，没有动画效果，所以看起来有点突兀，下面我们为其加上动画效果。
 
 ```swift
-    @objc func swizzle_popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
-        return popTransaction() {
-            swizzle_popToViewController(viewController, animated: animated)
-        }
+@objc func swizzle_popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
+    return popTransaction() {
+        swizzle_popToViewController(viewController, animated: animated)
     }
+}
 
-    @objc func swizzle_popToRootViewControllerAnimated(_ animated: Bool) -> [UIViewController]? {
-        return popTransaction() {
-            swizzle_popToRootViewControllerAnimated(animated)
-        }
+@objc func swizzle_popToRootViewControllerAnimated(_ animated: Bool) -> [UIViewController]? {
+    return popTransaction() {
+        swizzle_popToRootViewControllerAnimated(animated)
     }
+}
 
-    @objc func swizzle_pushViewController(_ viewController: UIViewController, animated: Bool) {
-        pushTransaction {
-            swizzle_pushViewController(viewController, animated: animated)
-        }
+@objc func swizzle_pushViewController(_ viewController: UIViewController, animated: Bool) {
+    pushTransaction {
+        swizzle_pushViewController(viewController, animated: animated)
     }
+}
 
-    struct AnimationProperties {
-        static let duration = 0.13
-        static var displayCount = 0
-        static var progress: CGFloat {
-            let all: CGFloat = CGFloat(60.0 * duration)
-            let current = min(all, CGFloat(displayCount))
-            return current / all
-        }
+struct AnimationProperties {
+    static let duration = 0.13
+    static var displayCount = 0
+    static var progress: CGFloat {
+        let all: CGFloat = CGFloat(60.0 * duration)
+        let current = min(all, CGFloat(displayCount))
+        return current / all
     }
+}
 
-    func pushTransaction(block: () -> Void) {
-        var displayLink: CADisplayLink? = CADisplayLink(target: self, selector: #selector(animationDisplay))
-        displayLink?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
-        CATransaction.setCompletionBlock {
-            displayLink?.invalidate()
-            displayLink = nil
-            AnimationProperties.displayCount = 0
-        }
-        CATransaction.setAnimationDuration(AnimationProperties.duration)
-        CATransaction.begin()
-        block()
-        CATransaction.commit()
+func pushTransaction(block: () -> Void) {
+    var displayLink: CADisplayLink? = CADisplayLink(target: self, selector: #selector(animationDisplay))
+    displayLink?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
+    CATransaction.setCompletionBlock {
+        displayLink?.invalidate()
+        displayLink = nil
+        AnimationProperties.displayCount = 0
     }
+    CATransaction.setAnimationDuration(AnimationProperties.duration)
+    CATransaction.begin()
+    block()
+    CATransaction.commit()
+}
 
-    func popTransaction(block: () -> [UIViewController]?) -> [UIViewController]? {
-        var displayLink: CADisplayLink? = CADisplayLink(target: self, selector: #selector(animationDisplay))
-        // UITrackingRunLoopMode: 界面跟踪 Mode，用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其他 Mode 影响
-        displayLink?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
-        CATransaction.setCompletionBlock {
-            displayLink?.invalidate()
-            displayLink = nil
-            AnimationProperties.displayCount = 0
-        }
-        CATransaction.setAnimationDuration(AnimationProperties.duration)
-        CATransaction.begin()
-        let viewControllers = block()
-        CATransaction.commit()
-        return viewControllers
+func popTransaction(block: () -> [UIViewController]?) -> [UIViewController]? {
+    var displayLink: CADisplayLink? = CADisplayLink(target: self, selector: #selector(animationDisplay))
+    // UITrackingRunLoopMode: 界面跟踪 Mode，用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其他 Mode 影响
+    displayLink?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
+    CATransaction.setCompletionBlock {
+        displayLink?.invalidate()
+        displayLink = nil
+        AnimationProperties.displayCount = 0
     }
+    CATransaction.setAnimationDuration(AnimationProperties.duration)
+    CATransaction.begin()
+    let viewControllers = block()
+    CATransaction.commit()
+    return viewControllers
+}
 
-    // change navigationBar barTintColor smooth before pop to current VC finished
-    @objc func animationDisplay() {
-        guard let topVC = topViewController, let coordinator = topVC.transitionCoordinator else { return }
-        AnimationProperties.displayCount += 1
-        let progress = AnimationProperties.progress
-        DPrint("第\(AnimationProperties.displayCount)次pop的进度：\(progress)")
-        let fromVC = coordinator.viewController(forKey: .from)
-        let toVC = coordinator.viewController(forKey: .to)
-        updateNavigationBar(from: fromVC, to: toVC, progress: progress)
-    }
+// change navigationBar barTintColor smooth before pop to current VC finished
+@objc func animationDisplay() {
+    guard let topVC = topViewController, let coordinator = topVC.transitionCoordinator else { return }
+    AnimationProperties.displayCount += 1
+    let progress = AnimationProperties.progress
+    DPrint("第\(AnimationProperties.displayCount)次pop的进度：\(progress)")
+    let fromVC = coordinator.viewController(forKey: .from)
+    let toVC = coordinator.viewController(forKey: .to)
+    updateNavigationBar(from: fromVC, to: toVC, progress: progress)
+}
 ```
 
 再试一下，现在的效果稍微好一点了。
