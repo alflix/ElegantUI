@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		35200168B7105798E99CED51 /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCA585A78A5689FE4C3E0F4 /* Pods_Awesome.framework */; };
+		523116EF223E89A1009DA11E /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523116EE223E89A1009DA11E /* RootViewController.swift */; };
+		523116F1223E89B2009DA11E /* RootViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 523116F0223E89B2009DA11E /* RootViewController.storyboard */; };
 		5286BC6D223A2ABD00616E4A /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC6C223A2ABD00616E4A /* UIApplication+.swift */; };
 		5286BC70223A2AF700616E4A /* GlobalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC6F223A2AF700616E4A /* GlobalFunction.swift */; };
 		5286BC72223A2FEC00616E4A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC71223A2FEC00616E4A /* UIViewController+.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		523116EE223E89A1009DA11E /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		523116F0223E89B2009DA11E /* RootViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RootViewController.storyboard; sourceTree = "<group>"; };
 		5286BC6C223A2ABD00616E4A /* UIApplication+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		5286BC6F223A2AF700616E4A /* GlobalFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunction.swift; sourceTree = "<group>"; };
 		5286BC71223A2FEC00616E4A /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
@@ -64,6 +68,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		523116EC223E8963009DA11E /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		523116ED223E897B009DA11E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				523116EE223E89A1009DA11E /* RootViewController.swift */,
+				523116F0223E89B2009DA11E /* RootViewController.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		5286BC6E223A2ADC00616E4A /* Globals */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +168,8 @@
 		52EDF7232230D2770070E492 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				523116ED223E897B009DA11E /* Main */,
+				523116EC223E8963009DA11E /* Tabbar */,
 				52EDF7272230D3020070E492 /* Navigation */,
 			);
 			path = App;
@@ -244,6 +266,7 @@
 				52EDF7302236ACC70070E492 /* PushToViewController.storyboard in Resources */,
 				52EDF72A2230D3360070E492 /* HomeViewController.storyboard in Resources */,
 				52EDF7142230D1820070E492 /* Assets.xcassets in Resources */,
+				523116F1223E89B2009DA11E /* RootViewController.storyboard in Resources */,
 				52EDF7212230D2490070E492 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +359,7 @@
 				52EDF7342236ADDF0070E492 /* UIView+.swift in Sources */,
 				5286BC70223A2AF700616E4A /* GlobalFunction.swift in Sources */,
 				5286BC6D223A2ABD00616E4A /* UIApplication+.swift in Sources */,
+				523116EF223E89A1009DA11E /* RootViewController.swift in Sources */,
 				52EDF7262230D2C20070E492 /* NavigationController.swift in Sources */,
 				52EDF72C2230D49D0070E492 /* HomeViewController.swift in Sources */,
 				52EDF72E2236AC650070E492 /* PushToViewController.swift in Sources */,

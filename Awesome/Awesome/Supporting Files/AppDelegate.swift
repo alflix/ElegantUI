@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let keyWindow = window else { return false }
         keyWindow.backgroundColor = .white
-        keyWindow.rootViewController = NavigationController(rootViewController: HomeViewController.instantiate())
+        keyWindow.rootViewController = NavigationController(rootViewController: RootViewController.instantiate())
         keyWindow.makeKeyAndVisible()
         addFlexTapGesture()
         return true
