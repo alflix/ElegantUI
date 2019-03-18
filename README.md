@@ -16,7 +16,7 @@ UIKit
 
 Foundation
 
-- [Memory Management](https://github.com/YodaLuke/awesome-ios/blob/master/Foundation/Memory Management/Memory Management.md)
+- [Memory Management](https://github.com/YodaLuke/awesome-ios/blob/master/Foundation/Memory%20Management/Memory%20Management.md)
 - [KVC&KVO](https://github.com/YodaLuke/awesome-ios/blob/master/Foundation/KVC&KVO/KVC&KVO.md)
 - NSNotification
 - Delegate
