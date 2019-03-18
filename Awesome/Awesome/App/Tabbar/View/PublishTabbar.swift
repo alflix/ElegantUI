@@ -21,7 +21,7 @@ class PublishTabbar: UITabBar {
     var tabBarItems = [UIView]()
 
     init() {
-        super.init(frame: CGRect.null)
+        super.init(frame: .null)
         addSubview(publishButton)
     }
 

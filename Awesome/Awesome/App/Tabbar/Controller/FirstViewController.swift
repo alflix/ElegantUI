@@ -11,5 +11,6 @@ import UIKit
 class FirstViewController: StoryboardController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "first"
     }
 }

@@ -11,5 +11,6 @@ import UIKit
 class SecondViewController: StoryboardController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "second"
     }
 }
