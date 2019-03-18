@@ -69,11 +69,10 @@ private extension UINavigationController {
         navigationBar.shadowImage = UIImage(color: .red, size: CGSize(width: navigationBar.width, height: 0.5))
     }
 
-    func hideBottomLine() {
-        // 传入 UIImage() 可以去掉分割线。
+    func removeShadowLine() {
+        // setBackgroundImage, 传入 UIImage() 可以去掉分割线。
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
-        // 去掉分割线的另外一种方式（会影响到 statusBar，不建议使用这个属性）
-        navigationBar.clipsToBounds = true
     }
 
     /// 设置默认的返回按钮

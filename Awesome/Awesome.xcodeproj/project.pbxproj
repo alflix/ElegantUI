@@ -11,11 +11,10 @@
 		523116EF223E89A1009DA11E /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523116EE223E89A1009DA11E /* RootViewController.swift */; };
 		523116F1223E89B2009DA11E /* RootViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 523116F0223E89B2009DA11E /* RootViewController.storyboard */; };
 		523116F5223F496E009DA11E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523116F4223F496E009DA11E /* TabBarController.swift */; };
-		523116F7223F49E8009DA11E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523116F6223F49E8009DA11E /* FirstViewController.swift */; };
-		523116F9223F49F6009DA11E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523116F8223F49F6009DA11E /* SecondViewController.swift */; };
 		523116FB223F4F51009DA11E /* FirstViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 523116FA223F4F51009DA11E /* FirstViewController.storyboard */; };
 		523116FD223F4F65009DA11E /* SecondViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 523116FC223F4F65009DA11E /* SecondViewController.storyboard */; };
 		52311701223F54D1009DA11E /* PublishTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52311700223F54D1009DA11E /* PublishTabbar.swift */; };
+		52311703223F9161009DA11E /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52311702223F9161009DA11E /* ExampleViewController.swift */; };
 		5286BC6D223A2ABD00616E4A /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC6C223A2ABD00616E4A /* UIApplication+.swift */; };
 		5286BC70223A2AF700616E4A /* GlobalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC6F223A2AF700616E4A /* GlobalFunction.swift */; };
 		5286BC72223A2FEC00616E4A /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286BC71223A2FEC00616E4A /* UIViewController+.swift */; };
@@ -39,11 +38,10 @@
 		523116EE223E89A1009DA11E /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		523116F0223E89B2009DA11E /* RootViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RootViewController.storyboard; sourceTree = "<group>"; };
 		523116F4223F496E009DA11E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		523116F6223F49E8009DA11E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		523116F8223F49F6009DA11E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		523116FA223F4F51009DA11E /* FirstViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstViewController.storyboard; sourceTree = "<group>"; };
 		523116FC223F4F65009DA11E /* SecondViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SecondViewController.storyboard; sourceTree = "<group>"; };
 		52311700223F54D1009DA11E /* PublishTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishTabbar.swift; sourceTree = "<group>"; };
+		52311702223F9161009DA11E /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		5286BC6C223A2ABD00616E4A /* UIApplication+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		5286BC6F223A2AF700616E4A /* GlobalFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunction.swift; sourceTree = "<group>"; };
 		5286BC71223A2FEC00616E4A /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
@@ -94,6 +92,7 @@
 			children = (
 				523116EE223E89A1009DA11E /* RootViewController.swift */,
 				523116F0223E89B2009DA11E /* RootViewController.storyboard */,
+				52311702223F9161009DA11E /* ExampleViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -102,8 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				523116F4223F496E009DA11E /* TabBarController.swift */,
-				523116F6223F49E8009DA11E /* FirstViewController.swift */,
-				523116F8223F49F6009DA11E /* SecondViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -340,6 +337,7 @@
 				"${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework",
 				"${BUILT_PRODUCTS_DIR}/GestureRecognizerClosures/GestureRecognizerClosures.framework",
 				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -349,6 +347,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLEX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GestureRecognizerClosures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,10 +385,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5286BC7D223ABA7600616E4A /* DispatchQueue+.swift in Sources */,
-				523116F9223F49F6009DA11E /* SecondViewController.swift in Sources */,
 				5286BC79223A68BB00616E4A /* UINavigationController+.swift in Sources */,
 				52EDF7362236AE0A0070E492 /* CustomBarButtonItem.swift in Sources */,
 				523116F5223F496E009DA11E /* TabBarController.swift in Sources */,
+				52311703223F9161009DA11E /* ExampleViewController.swift in Sources */,
 				52311701223F54D1009DA11E /* PublishTabbar.swift in Sources */,
 				52EDF7322236AD740070E492 /* UINavigationBar+.swift in Sources */,
 				5286BC72223A2FEC00616E4A /* UIViewController+.swift in Sources */,
@@ -398,7 +397,6 @@
 				52EDF7342236ADDF0070E492 /* UIView+.swift in Sources */,
 				5286BC70223A2AF700616E4A /* GlobalFunction.swift in Sources */,
 				5286BC6D223A2ABD00616E4A /* UIApplication+.swift in Sources */,
-				523116F7223F49E8009DA11E /* FirstViewController.swift in Sources */,
 				523116EF223E89A1009DA11E /* RootViewController.swift in Sources */,
 				52EDF7262230D2C20070E492 /* NavigationController.swift in Sources */,
 				52EDF72C2230D49D0070E492 /* HomeViewController.swift in Sources */,

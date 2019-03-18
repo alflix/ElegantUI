@@ -17,8 +17,9 @@ class PublishTabbar: UITabBar {
         return publishButton
     }()
 
-    var itemFrames = [CGRect]()
-    var tabBarItems = [UIView]()
+    private var itemFrames = [CGRect]()
+    private var tabBarItems = [UIView]()
+    var publishHandler: VoidBlock?
 
     init() {
         super.init(frame: .null)
@@ -73,6 +74,6 @@ class PublishTabbar: UITabBar {
     }
 
     @objc private func publishButtonDidClick() {
-
+        publishHandler?()
     }
 }

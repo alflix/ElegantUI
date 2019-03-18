@@ -6,6 +6,7 @@ PODS:
     - Reusable/View (= 4.0.5)
   - Reusable/Storyboard (4.0.5)
   - Reusable/View (4.0.5)
+  - SnapKit (4.2.0)
   - SwifterSwift (4.6.0):
     - SwifterSwift/AppKit (= 4.6.0)
     - SwifterSwift/CoreGraphics (= 4.6.0)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - FLEX
   - GestureRecognizerClosures
   - Reusable
+  - SnapKit
   - SwifterSwift
   - SwiftLint
 
@@ -37,6 +39,7 @@ SPEC REPOS:
     - FLEX
     - GestureRecognizerClosures
     - Reusable
+    - SnapKit
     - SwifterSwift
     - SwiftLint
 
@@ -44,9 +47,10 @@ SPEC CHECKSUMS:
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   GestureRecognizerClosures: e6d9bcec709119720729ac7badd60dc868f1037a
   Reusable: 188be1a54ac0691bc66e5bb24ec6eb91971b315b
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: 4d57a2809ba568f76d0afb51ca9643f2b6f0aa33
+PODFILE CHECKSUM: f7ae596a2f2a95066b647fe44d35cdb891a41a61
 
 COCOAPODS: 1.6.1

@@ -39,3 +39,5 @@ let swizzling: (AnyClass, Selector, Selector) -> Void = { forClass, originalSele
 typealias CollectionViewDelegate = UICollectionViewDataSource & UICollectionViewDelegate & UICollectionViewDelegateFlowLayout
 typealias TableViewDelegate = UITableViewDataSource & UITableViewDelegate
 typealias StoryboardController = UIViewController & StoryboardBased
+
+typealias VoidBlock = () -> Void

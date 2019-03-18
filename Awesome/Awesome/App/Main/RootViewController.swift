@@ -34,11 +34,12 @@ extension RootViewController: TableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         switch dataSource[indexPath.row] {
         case "Navigation":
             present(NavigationController(rootViewController: HomeViewController.instantiate()), animated: true, completion: nil)
         case "Tabbar":
-            present(NavigationController(rootViewController: TabBarController()), animated: true, completion: nil)
+            present(TabBarController(), animated: true, completion: nil)
         default: break
         }
     }

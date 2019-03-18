@@ -60,7 +60,7 @@ class NavigationController: UINavigationController {}
 
 常见的 UINavigationBar 设置项包括：
 
-![0](0.png)
+![0](source/0.png)
 
 ```swift
 func setupNavigationBar() {
@@ -117,12 +117,14 @@ func setupNavigationItem() {
 
 效果如下：
 
-![1](1.png)
+![1](source/1.png)
 
 <a id="markdown-backbarbuttonitem" name="backbarbuttonitem"></a>
 #### backBarButtonItem
 
-navigationItem 默认有一个 backBarButtonItem，如下图。![2](2.png)
+navigationItem 默认有一个 backBarButtonItem，如下图。
+
+![2](source/2.png)
 
 其文本默认为上一个 ViewController 的标题，如果上一个 ViewController 没有标题，则为 Back（中文环境下为 「返回」）
 
@@ -147,7 +149,7 @@ func addNavigationItem() {
 }
 ```
 
-![3](3.png)
+![3](source/3.png)
 
 注意如果设置了 leftBarButtonItem，会使得原本的 backBarButtonItem 失效，并且同时使边缘的返回手势失效。这个问题可以使用继承或 Runtime 解决，Runtime 可参考：[SwipeBack -OC](https://github.com/devxoul/SwipeBack)
 
@@ -206,7 +208,7 @@ extension NavigationController: UINavigationControllerDelegate {
 navigationItem.leftItemsSupplementBackButton = true
 ```
 
-![4](4.png)
+![4](source/4.png)
 
 不过 backBarButtonItem 一般情况下是比较少用到的，因为存在比较难自定义 UI 的问题（图片，文字的修改）。所以通常的做法是在 NavigationController 统一处理返回按钮的 UI，如果存在上一级控制器，就显示 leftBarButtonItem:
 
@@ -327,9 +329,9 @@ iOS 9:
 
 用 Flex 也可以方便查看：
 
-![5](5.png)
+![5](source/5.png)
 
-![6](6.png)
+![6](source/6.png)
 
 可以看出，iOS9-> iOS10 ，UIBarButtonItem 生成了一个 UINavigationButton。在从 title 初始化的时候， origin.x 从 8.0->16.0，从 image  初始化的时候不变。而到了 iOS11/iOS12，直接变成了 UIButtonBarButton，并且成为了 UIButtonBarStackView 的子控件，由 AutoLayout 管理。可以看到 9-12 的版本迭代中，UIBarButtonItem 都产生了变化，特别是 iOS11 采用了自动布局，这也带来了不少坑。
 
@@ -355,7 +357,7 @@ func addLeftItem(by item: UIBarButtonItem, fix: CGFloat) {
 
 结果如下：
 
-![7](7.png)
+![7](source/7.png)
 
 可以发现在 iOS11 中，因为采用了自动布局的缘故，fixedSpace 不再起作用
 
@@ -394,13 +396,13 @@ func addNavigationItemByCustomView(){
 
 结果是这样的：
 
-![8](8.png)
+![8](source/8.png)
 
 可以看出视觉效果上看起来对了，但左边边距依然没有消失，而且图片的位置给人一种错觉，认为图片的位置是按钮中心，当用户点击到左边边距区域，就超出了按钮的点击范围。
 
 其实，一个有效的做法是**通过 swizzle 来修改 layoutMargins**, 这个属性是用来设置内边距的。
 
-![9](9.png)
+![9](source/9.png)
 
 可以看出，UINavigationBarContentView 的 layoutMargins 中左右边距都是 16，所以可以通过 swizzle layoutSubviews 这个方法来修改这个属性。
 
@@ -454,14 +456,14 @@ extension UIApplication {
 
 大功告成：
 
-![10](10.png)
+![10](source/10.png)
 
 <a id="markdown-过渡效果" name="过渡效果"></a>
 ### 过渡效果
 
 滑动返回手势在系统的默认效果中，是有一个动画效果的，在切换过程中，会有一个背景颜色、titleView,左右 item 透明度渐变的过程。如下：
 
-![11](11.gif)
+![11](source/11.gif)
 
 然而，出现**有导航栏和没有导航栏之间控制器的切换**(也可以当作透明导航栏和不透明导航栏的切换)时，就会有不自然的过渡效果（不自然指的是没有跟随手势的变化百分比渐变，而是突然消失或出现）：
 
@@ -480,7 +482,7 @@ class PushToViewController: UIViewController, StoryboardBased {
 }
 ```
 
-![12](12.gif)
+![12](source/12.gif)
 
 <a id="markdown-方案1" name="方案1"></a>
 #### 方案1
@@ -500,7 +502,7 @@ class PushToViewController: UIViewController, StoryboardBased {
 }
 ```
 
-![13](13.gif)
+![13](source/13.gif)
 
 如果 PushToViewController 需要显示透明的导航栏（上面有返回按钮等但背景是透明的），就再自定义一个 View 代替原先的 NavigationBar，这个方案总体是相对简单并且几乎没有什么 bug。
 
@@ -509,7 +511,7 @@ class PushToViewController: UIViewController, StoryboardBased {
 
 方案1 的缺点是过渡效果会比较生硬，与系统的返回效果有差距。QQ 的过渡效果还不错，方案2来研究如何实现。
 
-![14](14.gif)
+![14](source/14.gif)
 
 为了实现这种效果，我们需要使 navigationBar 的背景透明度渐变，navigationItem 的透明度渐变（渐变 tintColor）。即每个 controller 的 navigationBar 的外观都是不同的，然而 navigationBar 都是同一个对象（公用同一个 UINavigationController）。为了到达这个目的，第一步，我们模仿「ViewController 通过拓展添加了一个 navigationItem」的思想也对 ViewController 添加一个拓展: navigationAppearance
 
@@ -710,7 +712,7 @@ extension UINavigationController {
 
 这一步的效果：
 
-![15](15.gif)
+![15](source/15.gif)
 
 到这一步基本上可以了，不过还有一些优化的空间。目前要达到这个效果，我们是需要这样子调用的：
 
@@ -740,7 +742,7 @@ class PushToViewController: UIViewController, StoryboardBased {
 
 改完之后的效果：
 
-![16](16.gif)
+![16](source/16.gif)
 
 可以看到在手势交互的过程中，透明度的变化跟预期一样跟随手势变化。但一旦松手，系统会自动完成或取消返回操作，在这一过程中，_updateInteractiveTransition 并没有调用，而导致透明度停留在最后的那个状态。
 所以我们还需要在 UINavigationControllerDelegate 的 shouldPush 和 shouldPop 代理中添加响应的处理：
@@ -795,7 +797,7 @@ extension UINavigationController: UINavigationBarDelegate {
 
 可以看出现在没有这个问题了。
 
-![17](17.gif)
+![17](source/17.gif)
 
 不过，仔细的可能会发现，如果不通过手势 pop 或 push 的话，还是有一个不流畅的效果，虽然没有了手势的影响，看起来不明显，但实际上还是存在的。原因就在上面的代码里面：
 
