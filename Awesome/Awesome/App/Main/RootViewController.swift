@@ -9,7 +9,7 @@
 import UIKit
 import Reusable
 
-class RootViewController: UIViewController, StoryboardBased {
+class RootViewController: StoryboardController {
     @IBOutlet weak var tableView: UITableView!
     private var dataSource: [String] {
         return ["Navigation", "Tabbar"]
@@ -22,7 +22,7 @@ class RootViewController: UIViewController, StoryboardBased {
     }
 }
 
-extension RootViewController: UITableViewDataSource, UITableViewDelegate {
+extension RootViewController: TableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
@@ -38,7 +38,7 @@ extension RootViewController: UITableViewDataSource, UITableViewDelegate {
         case "Navigation":
             present(NavigationController(rootViewController: HomeViewController.instantiate()), animated: true, completion: nil)
         case "Tabbar":
-            present(NavigationController(rootViewController: HomeViewController.instantiate()), animated: true, completion: nil)
+            present(NavigationController(rootViewController: TabBarController()), animated: true, completion: nil)
         default: break
         }
     }

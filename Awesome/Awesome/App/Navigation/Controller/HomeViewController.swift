@@ -10,7 +10,7 @@ import UIKit
 import Reusable
 import SwifterSwift
 
-class HomeViewController: UIViewController, StoryboardBased {
+class HomeViewController: StoryboardController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController!.navigationBar.logSubView(1)
@@ -34,7 +34,7 @@ extension HomeViewController {
 
     func addNavigationItem() {
         let backItem = UIBarButtonItem(title: "Left", style: .done, target: self, action: #selector(backAction))
-        let shareItem = UIBarButtonItem(image: UIImage(named: "share"), style: .done, target: self, action: #selector(shareAction))
+        let shareItem = UIBarButtonItem(image: UIImage(named: "icon_share"), style: .done, target: self, action: #selector(shareAction))
         navigationItem.leftBarButtonItem = backItem
         navigationItem.rightBarButtonItem = shareItem
     }

@@ -80,7 +80,7 @@ private extension UINavigationController {
     func setupDefaultBackItem(push viewController: UIViewController) {
         if viewControllers.count > 0 && (viewController.navigationItem.leftBarButtonItem == nil) {
             viewController.hidesBottomBarWhenPushed = true
-            let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .plain,
+            let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_back"), style: .plain,
                                                     target: self, action: #selector(backAction))
             viewController.navigationItem.leftBarButtonItem = backBarButtonItem
         }

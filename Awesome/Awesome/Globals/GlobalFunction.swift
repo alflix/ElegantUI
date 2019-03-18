@@ -6,7 +6,8 @@
 //  Copyright © 2019 jieyuanz. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import Reusable
 
 func DPrint<N>(_ message: N, file: String = #file, function: String = #function, line: Int = #line) {
     #if DEBUG
@@ -34,3 +35,7 @@ let swizzling: (AnyClass, Selector, Selector) -> Void = { forClass, originalSele
         else { return }
     method_exchangeImplementations(originalMethod, swizzledMethod)
 }
+
+typealias CollectionViewDelegate = UICollectionViewDataSource & UICollectionViewDelegate & UICollectionViewDelegateFlowLayout
+typealias TableViewDelegate = UITableViewDataSource & UITableViewDelegate
+typealias StoryboardController = UIViewController & StoryboardBased
