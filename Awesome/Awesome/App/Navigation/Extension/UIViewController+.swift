@@ -14,18 +14,18 @@ public struct NavigationAppearance {
 }
 
 extension UIViewController {
-    fileprivate struct AssociatedKeys {
+    fileprivate struct AssociatedKey {
         static var appearanceKey: UInt8 = 0
     }
 
     open var navigationAppearance: NavigationAppearance {
         get {
-            return associatedObject(base: self, key: &AssociatedKeys.appearanceKey) { return NavigationAppearance() }
+            return associatedObject(base: self, key: &AssociatedKey.appearanceKey) { return NavigationAppearance() }
         }
         set {
             navigationController?.navigationBar.tintColor = newValue.tintColor
             navigationController?.navigationBar.setBackground(alpha: newValue.backgroundAlpha)
-            associateObject(base: self, key: &AssociatedKeys.appearanceKey, value: newValue)
+            associateObject(base: self, key: &AssociatedKey.appearanceKey, value: newValue)
         }
     }
 }
