@@ -269,7 +269,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = jieyuanz;
+				ORGANIZATIONNAME = NleFlix;
 				TargetAttributes = {
 					52EDF7082230D1820070E492 = {
 						CreatedOnToolsVersion = 10.1;

@@ -3,7 +3,7 @@
 //  Awesome
 //
 //  Created by John on 2019/3/7.
-//  Copyright © 2019 jieyuanz. All rights reserved.
+//  Copyright © 2019 NleFlix. All rights reserved.
 //
 
 import UIKit
