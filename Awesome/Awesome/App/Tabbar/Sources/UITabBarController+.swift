@@ -45,6 +45,7 @@ public extension UITabBarController {
             guard let selectedImage = UIImage(named: selectImageName) else {
                 fatalError("cant find image by selectImageName!")
             }
+            // 显示原图
             tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
             tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
         } else {

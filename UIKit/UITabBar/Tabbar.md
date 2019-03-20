@@ -1,12 +1,12 @@
 # Tabbar
 
-本文主要基于 UITabBarController/UITabBar 讲述一些常用的接口用法，在此基础上会实现一些常见的自定义 UI 。本文的代码示例 [地址](https://github.com/YodaLuke/awesome-ios/tree/master/Awesome/Awesome/App/Tabbar)
+本文主要基于 UITabBarController/UITabBar 讲述一些常用的接口用法，在此基础上会实现一些常见的自定义 UI 。本文的代码示例 [地址](https://github.com/alflix/awesome-ios/tree/master/Awesome/Awesome/App/Tabbar)
 
 ## 概述
 
 ### UITabBarController
 
-UITabBarController，和 [UINavigationController](https://github.com/YodaLuke/awesome-ios/blob/master/UIKit/UINavigation/UINavigation.md#%E6%A6%82%E8%BF%B0) 一样是容器类（Container），利用集合的方式对 ViewController 进行管理。大部分情况下，UITabBarController 通常作为 app 的 rootViewController：
+UITabBarController，和 [UINavigationController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/UINavigation.md#%E6%A6%82%E8%BF%B0) 一样是容器类（Container），利用集合的方式对 ViewController 进行管理。大部分情况下，UITabBarController 通常作为 app 的 rootViewController：
 
 ```swift
 @UIApplicationMain

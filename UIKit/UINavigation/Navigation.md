@@ -1,23 +1,25 @@
+<a id="markdown-navigation" name="navigation"></a>
 # Navigation
 
-本文前半部分主要讲述 UINavigationController/UINavigationBar 一些常用的接口用法以及编程实践。后半部分会分析到 UINavigationItem 的视图层级以及导航栏切换的问题。本文的代码示例 [地址](https://github.com/YodaLuke/awesome-ios/tree/master/Awesome/Awesome/App/Navigation)
+本文前半部分主要讲述 UINavigationController/UINavigationBar 一些常用的接口用法以及编程实践。后半部分会分析到 UINavigationItem 的视图层级以及导航栏切换的问题。本文的代码示例 [地址](https://github.com/alflix/awesome-ios/tree/master/Awesome/Awesome/App/Navigation)
 
 <!-- TOC -->
 
-- [概述](#概述)
-- [UINavigationBar](#uinavigationbar)
-    - [设置](#设置)
-    - [分割线](#分割线)
-- [UINavigationItem](#uinavigationitem)
-    - [title/prompt](#titleprompt)
-    - [backBarButtonItem](#backbarbuttonitem)
-    - [BarButtonItem](#barbuttonitem)
-    - [BarButtonItems](#barbuttonitems)
-    - [视图层级](#视图层级)
-    - [边距问题](#边距问题)
-- [过渡效果](#过渡效果)
-    - [方案1](#方案1)
-    - [方案2](#方案2)
+- [Navigation](#navigation)
+        - [概述](#概述)
+        - [UINavigationBar](#uinavigationbar)
+            - [设置](#设置)
+            - [分割线](#分割线)
+        - [UINavigationItem](#uinavigationitem)
+            - [title/prompt](#titleprompt)
+            - [backBarButtonItem](#backbarbuttonitem)
+            - [BarButtonItem](#barbuttonitem)
+            - [BarButtonItems](#barbuttonitems)
+            - [视图层级](#视图层级)
+            - [边距问题](#边距问题)
+        - [过渡效果](#过渡效果)
+            - [方案1](#方案1)
+            - [方案2](#方案2)
 
 <!-- /TOC -->
 
