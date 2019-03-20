@@ -4,8 +4,8 @@ a guide of iOS that cover form beginning to advance content
 
 ## UIKit
 
-- [UITabBarController]((https://github.com/alflix/awesome-ios/blob/master/UIKit/Navigation/TabBar.md))
-- [UINavigationController](https://github.com/alflix/awesome-ios/blob/master/UIKit/Navigation/Navigation.md)
+- [UITabBarController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UITabBar/Tabbar.md)
+- [UINavigationController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/Navigation.md)
 - UIViewController
 - UIScrollowView
 - UITableView
