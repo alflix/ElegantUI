@@ -37,7 +37,7 @@ extension RootViewController: TableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         switch dataSource[indexPath.row] {
         case "Navigation":
-            present(NavigationController(rootViewController: HomeViewController.instantiate()), animated: true, completion: nil)
+            present(NavigationController(rootViewController: HomeViewController()), animated: true, completion: nil)
         case "Tabbar":
             present(TabBarController(), animated: true, completion: nil)
         default: break

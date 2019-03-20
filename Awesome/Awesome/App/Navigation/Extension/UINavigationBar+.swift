@@ -56,4 +56,10 @@ extension UINavigationBar {
             barBackgroundView.alpha = alpha
         }
     }
+
+    func removeShadowLine() {
+        // setBackgroundImage, 传入 UIImage() 可以去掉分割线。
+        setBackgroundImage(UIImage(), for: .default)
+        shadowImage = UIImage()
+    }
 }
