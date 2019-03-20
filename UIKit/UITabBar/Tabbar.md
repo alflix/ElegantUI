@@ -6,14 +6,12 @@
 
 ### UITabBarController
 
-UITabBarController，和 [UINavigationController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/UINavigation.md#%E6%A6%82%E8%BF%B0) 一样是容器类（Container），利用集合的方式对 ViewController 进行管理。大部分情况下，UITabBarController 通常作为 app 的 rootViewController：
+UITabBarController，和 [UINavigationController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/UINavigation.md#%E6%A6%82%E8%BF%B0) 一样是容器类（Container），利用集合的方式对 ViewController 进行管理。大部分情况下，UITabBarController 都会作为 app 的 rootViewController：
 
 ```swift
 @UIApplicationMain
-
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let keyWindow = window else { return false }
@@ -35,13 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 └──────── SubviewControllers
 ```
 
-所以上面的改为：
+即 rootViewController 的实现改为：
 
 ```swift
 keyWindow.rootViewController = UINavigationController(rootViewController: TabBarController())
 ```
 
-第二种：
+第二种则是：
 
 ```swift
 ├── UITabBarController
@@ -50,13 +48,13 @@ keyWindow.rootViewController = UINavigationController(rootViewController: TabBar
 └──────── SubviewControllers
 ```
 
-需要注意的是，第一种情况，UINavigationBar 的 title 将由 UITabBarController 管理，对 UIViewController 设置 self.title 将不起作用。
+有两个地方需要注意，第一种情况，UINavigationBar 的 title 将由 UITabBarController 管理，对 UIViewController 设置 self.title 将不起作用。
 
-而第二种情况在 viewController push 子视图的时候需要设置  hidesBottomBarWhenPushed = true , 第一种则不需要。
+而第二种情况在 viewController push 子视图的时候需要设置 hidesBottomBarWhenPushed = true, 第一种则不需要。
 
 个人倾向于使用第二种方式。
 
-基于容器类的思想，UITabBarController 通过 ViewController 的拓展添加了 tabBarController，使其暴露出 tabBarController 属性 交由 ViewController 管理。
+基于容器类的思想，UITabBarController 通过 ViewController 的拓展添加了 tabBarController，使其暴露出 tabBarController 属性交由 ViewController 管理。
 
 ```swift
 extension UIViewController {
@@ -90,7 +88,7 @@ navigationItem.title = "title"
 
 ### UITabBar
 
-UITabBar，是 UITabBarController 顶部的导航栏，主要负责 UI 的展示。UITabBar 有以下常见的设置：
+UITabBar，是 UITabBarController 底部的显示区域，主要负责 UI 的展示。UITabBar 有以下常见的设置：
 
 ```swift
 func setupUI() {
@@ -109,7 +107,7 @@ func setupUI() {
 
 其中 unselectedTintColor 是拓展的属性，因为 unselectedItemTintColor 只支持 iOS10 以上。( associatedObject 方法见[此处](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/Navigation.md#%E6%96%B9%E6%A1%882))
 
-removeShadowLine 实现如下，和 [navigationBar 移除分割线](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/Navigation.md#%E5%88%86%E5%89%B2%E7%BA%BF)很类似。
+removeShadowLine 的实现和 [navigationBar 移除分割线](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/Navigation.md#%E5%88%86%E5%89%B2%E7%BA%BF)类似。
 
 ```swift
 extension UITabBar {
