@@ -3,11 +3,10 @@
 //  Awesome
 //
 //  Created by John on 2019/3/18.
-//  Copyright © 2019 NleFlix. All rights reserved.
+//  Copyright © 2019 alflix. All rights reserved.
 //
 
 import UIKit
-import SwifterSwift
 
 class TabBarController: UITabBarController {
     override func viewDidLoad() {
@@ -17,7 +16,19 @@ class TabBarController: UITabBarController {
     }
 
     private func addChilds() {
-        add(child: ExampleViewController(title: "Home"), imageName: "icon_home")
+        // 通过封装好的方法设置 title，image，selectedImage 等元素
+        add(child: ExampleViewController(title: "Home"), imageName: "icon_home", navigationClass: NavigationController.self) { (item) in
+            // 支持设置 UITabBarItem 的其他属性
+            // 文字位置调整
+            item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0)
+            // 角标背景颜色，文字颜色调整，只支持 iOS 10.0 以上
+            if #available(iOS 10.0, *) {
+                item.badgeColor = .green
+                item.setBadgeTextAttributes([.foregroundColor: UIColor.black], for: .normal)
+            }
+            // 角标显示的文字
+            item.badgeValue = "2"
+        }
         add(child: ExampleViewController(title: "Me"), imageName: "icon_me")
     }
 }
@@ -51,9 +62,5 @@ private extension TabBarController {
         tabBar.itemWidth = 44
         // item 的间距（itemPositioning = .centered 时有效）
         tabBar.itemSpacing = 88
-    }
-
-    func setupCustomTabBar() {
-        setValue(PublishTabbar(), forKey: "tabBar")
     }
 }

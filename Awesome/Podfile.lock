@@ -1,7 +1,10 @@
 PODS:
   - ActionKit (2.5.1)
+  - FBRetainCycleDetector (0.1.4)
   - FLEX (2.4.0)
   - GestureRecognizerClosures (4.1.0)
+  - MLeaksFinder (1.0.0):
+    - FBRetainCycleDetector
   - Reusable (4.0.5):
     - Reusable/Storyboard (= 4.0.5)
     - Reusable/View (= 4.0.5)
@@ -31,6 +34,7 @@ DEPENDENCIES:
   - ActionKit
   - FLEX
   - GestureRecognizerClosures
+  - MLeaksFinder
   - Reusable
   - SnapKit
   - SwifterSwift
@@ -39,8 +43,10 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ActionKit
+    - FBRetainCycleDetector
     - FLEX
     - GestureRecognizerClosures
+    - MLeaksFinder
     - Reusable
     - SnapKit
     - SwifterSwift
@@ -48,13 +54,15 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   ActionKit: 6f4f5fbab3a76aa05e8df8d66145db4fe9e9b8df
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   GestureRecognizerClosures: e6d9bcec709119720729ac7badd60dc868f1037a
+  MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   Reusable: 188be1a54ac0691bc66e5bb24ec6eb91971b315b
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwifterSwift: 812ffec6f301922f5430e75be3f2939ea3a80024
   SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
 
-PODFILE CHECKSUM: 85931f46ea1100aac7357a3b26f1dccaf5add4b6
+PODFILE CHECKSUM: 22bed3439be8a652de7b8d689347a47d84c7f302
 
 COCOAPODS: 1.6.1
