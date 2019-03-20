@@ -100,6 +100,44 @@ func setupUI() {
     tabBar.tintColor = .black
     // 是否毛玻璃效果
     tabBar.isTranslucent = true
+    // 拓展方法：移除顶部的分割线
+    tabBar.removeShadowLine()
+    // 拓展方法：设置未选中状态的控件颜色
+    tabBar.unselectedTintColor = .gray
+}
+```
+
+其中 unselectedTintColor 是拓展的属性，因为 unselectedItemTintColor 只支持 iOS10 以上。( associatedObject 方法见[此处](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/Navigation.md#%E6%96%B9%E6%A1%882))
+
+removeShadowLine 实现如下，和 [navigationBar 移除分割线](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/Navigation.md#%E5%88%86%E5%89%B2%E7%BA%BF)很类似。
+
+```swift
+extension UITabBar {
+    fileprivate struct AssociatedKey {
+        static var unselectedTintColor: UInt8 = 0
+    }
+
+    /// 未选中状态的控件颜色
+    open var unselectedTintColor: UIColor? {
+        get {
+            if #available(iOS 10.0, *) {
+                return unselectedItemTintColor
+            }
+            return associatedObject(base: self, key: &AssociatedKey.unselectedTintColor) { return tintColor }
+        }
+        set {
+            if #available(iOS 10.0, *) {
+                unselectedItemTintColor = unselectedTintColor
+            }
+            associateObject(base: self, key: &AssociatedKey.unselectedTintColor, value: newValue)
+        }
+    }
+
+    /// 移除顶部的分割线
+    open func removeShadowLine() {
+        backgroundImage = UIImage()
+        shadowImage = UIImage()
+    }
 }
 ```
 
@@ -122,15 +160,6 @@ func setupAdditionUI() {
 }
 ```
 
-移除顶部的分割线可以使用：
-
-```swift
-func removeShadowLine() {
-    tabBar.backgroundImage = UIImage()
-    tabBar.shadowImage = UIImage()
-}
-```
-
 ### UITabBarItem
 
 UITabBar 包含 UITabBarItem ，同样通过 ViewController 的拓展添加了 tabBarItem。
@@ -141,4 +170,77 @@ open class UINavigationController : UIViewController {
 }
 ```
 
-UITabBarItem 是一个抽象类，继承至 UIBarItem-NSObject，
+UITabBarItem 是一个抽象类，继承至 UIBarItem-NSObject，可以设置 title，image，selectedImage 等元素。而设置这些元素一般在设置子控制器的过程中。我们下面通过一个方法封装来处理这个过程：
+
+```swift
+public extension UITabBarController {
+    /// 添加子控制器
+    ///
+    /// - Parameters:
+    ///   - controller: 子控制器
+    ///   - imageName: 图标, 选中/未选中图标根据 tintColor/unselectedTintColor 而定
+    ///   - title: 文字
+    public func add(child controller: UIViewController, imageName: String, title: String? = nil) {
+        add(child: controller, imageName: imageName, selectImageName: nil,
+            title: title, navigationClass: UINavigationController.self)
+    }
+
+    /// 添加子控制器
+    ///
+    /// - Parameters:
+    ///   - controller: 子控制器
+    ///   - imageName: 图标
+    ///   - selectImageName: 选中的图标
+    ///     - 不为空时，imageName 对应未选中的图标，selectImageName 对应选中的图标
+    ///     - 为空时，选中/未选中图标根据 imageName 以及 tintColor/unselectedTintColor 而定
+    ///   - title: 文字
+    ///   - name: 可传入继承自 UINavigationController 的 class
+    ///   - handler: 暴露出 UITabBarItem，可以设置额外的属性
+    public func add<T: UINavigationController>(child controller: UIViewController,
+                                               imageName: String,
+                                               selectImageName: String? = nil,
+                                               title: String? = nil,
+                                               navigationClass name: T.Type,
+                                               tabBarItemUpdate: ((UITabBarItem) -> Void)? = nil) {
+        guard let image = UIImage(named: imageName) else {
+            fatalError("cant find image by imageName!")
+        }
+        let tabBarItem = UITabBarItem(title: title)
+        if let selectImageName = selectImageName {
+            guard let selectedImage = UIImage(named: selectImageName) else {
+                fatalError("cant find image by selectImageName!")
+            }
+            // 显示原图
+            tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
+            tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
+        } else {
+            if #available(iOS 10.0, *) {
+                tabBarItem.image = image
+            } else {
+                let unselectedTintColor: UIColor! = tabBar.unselectedTintColor ?? tabBar.tintColor
+                // 未选中状态下的图片
+                let unselectImage = image.tint(unselectedTintColor, blendMode: .destinationIn)
+                tabBarItem.image = unselectImage
+                // 选中状态下的图片
+                let selectImage = image.withRenderingMode(.alwaysTemplate)
+                tabBarItem.selectedImage = selectImage
+
+                // 未选中状态下的文字属性, 这个属性会使得 self.tabBar.tintColor 对文字的设置不再生效，所以需要重新设置选中状态下的文字属性
+                let textAttrs: [NSAttributedString.Key: Any] = [.foregroundColor: unselectedTintColor]
+                tabBarItem.setTitleTextAttributes(textAttrs, for: .normal)
+                // 选中状态下的文字属性
+                let selectedTextAttrs: [NSAttributedString.Key: Any] = [.foregroundColor: tabBar.tintColor]
+                tabBarItem.setTitleTextAttributes(selectedTextAttrs, for: .selected)
+            }
+        }
+        controller.tabBarItem = tabBarItem
+        tabBarItemUpdate?(tabBarItem)
+        let navigationController = T(rootViewController: controller)
+        addChild(navigationController)
+    }
+}
+```
+
+基本思想是我们需要定义一个基本的设置方法，其中只需要传入子控制器、tabbar显示的图片、文字，这个方法帮我们处理好选中/未选中图片、文字的颜色问题（iOS 10 以下需要手动设置所有属性）。
+
+同时，定义一个支持更多属性的方法
