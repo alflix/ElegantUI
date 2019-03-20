@@ -12,13 +12,13 @@ import SnapKit
 class ExampleViewController: UIViewController {
     private var customTitle: String?
 
-    lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 22, weight: .medium)
         return label
     }()
 
-    lazy var backButton: UIButton = {
+    private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setTitle("  Click to pop or dismiss  ", for: .normal)
         button.backgroundColor = self.view.backgroundColor
@@ -62,4 +62,6 @@ class ExampleViewController: UIViewController {
         }
         dismiss(animated: true, completion: nil)
     }
+
+    @objc public func otherAction() {}
 }

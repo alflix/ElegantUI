@@ -8,6 +8,7 @@
 
 import UIKit
 import SwifterSwift
+import ActionKit
 
 class NavigationController: UINavigationController {
     /// 是否允许手势返回
@@ -67,25 +68,17 @@ private extension UINavigationController {
         navigationBar.setBackgroundImage(UIImage(color: .white, size: CGSize.zero), for: .default)
         // 设置底部分割线颜色
         navigationBar.shadowImage = UIImage(color: .red, size: CGSize(width: navigationBar.width, height: 0.5))
-    }
-
-    func removeShadowLine() {
-        // setBackgroundImage, 传入 UIImage() 可以去掉分割线。
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
+        navigationBar.removeShadowLine()
     }
 
     /// 设置默认的返回按钮
     func setupDefaultBackItem(push viewController: UIViewController) {
         if viewControllers.count > 0 && (viewController.navigationItem.leftBarButtonItem == nil) {
             viewController.hidesBottomBarWhenPushed = true
-            let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_back"), style: .plain,
-                                                    target: self, action: #selector(backAction))
+            let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_back")!) { (_)  in
+                self.popViewController(animated: true)
+            }
             viewController.navigationItem.leftBarButtonItem = backBarButtonItem
         }
-    }
-
-    @objc func backAction() {
-        popViewController(animated: true)
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 import Reusable
 
-class PushToViewController: StoryboardController {
+class PushToViewController: ExampleViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "title-\(navigationController?.children.count ?? 0)"
@@ -22,7 +22,7 @@ extension PushToViewController {
     func addNavigationItem() {
         //let backItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(backAction))
         let backItem = UIBarButtonItem(image: UIImage(named: "icon_back"), style: .done, target: self, action: #selector(backAction))
-        let shareItem = UIBarButtonItem(image: UIImage(named: "icon_share"), style: .done, target: self, action: #selector(shareAction))
+        let shareItem = UIBarButtonItem(image: UIImage(named: "icon_share"), style: .done, target: self, action: #selector(otherAction))
         navigationItem.leftBarButtonItem = backItem
         navigationItem.rightBarButtonItem = shareItem
     }
@@ -30,7 +30,7 @@ extension PushToViewController {
     // 通过 fixedSpace 修正位置
     func addFixedNavigationItem() {
         //let backItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(backAction))
-        let backItem = UIBarButtonItem(image: UIImage(named: "icon_back"), style: .done, target: self, action: #selector(shareAction))
+        let backItem = UIBarButtonItem(image: UIImage(named: "icon_back"), style: .done, target: self, action: #selector(otherAction))
         addLeftItem(by: backItem, fix: -5)
     }
 
@@ -51,10 +51,4 @@ extension PushToViewController {
         //过渡效果方案一
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
-}
-
-extension PushToViewController {
-    @objc func backAction() {}
-
-    @objc func shareAction() {}
 }

@@ -9,14 +9,13 @@
 import UIKit
 
 extension UITabBarController {
-
     /// 添加子控制器
     ///
     /// - Parameters:
     ///   - controller: 子控制器
     ///   - imageName: 图标, 选中/未选中图标根据 tintColor/unselectedTintColor 而定
     ///   - title: 文字
-    func add(child controller: UIViewController, imageName: String, title: String? = nil) {
+    open func add(child controller: UIViewController, imageName: String, title: String? = nil) {
         add(child: controller, imageName: imageName, selectImageName: nil,
             title: title, withNavigationClass: UINavigationController.self)
     }
@@ -30,12 +29,12 @@ extension UITabBarController {
     ///   - title: 文字
     ///   - name: UINavigationController class 的名称
     ///   - handler: 暴露出 UITabBarItem，可以设置额外的属性
-    func add<T: UINavigationController>(child controller: UIViewController,
+    open func add<T: UINavigationController>(child controller: UIViewController,
                                         imageName: String,
                                         selectImageName: String?,
                                         title: String? = nil,
                                         withNavigationClass name: T.Type,
-                                        handler: ((UITabBarItem) -> Void)? = nil) {
+                                        tabBarItemUpdate: ((UITabBarItem) -> Void)? = nil) {
         guard let image = UIImage(named: imageName) else {
             fatalError("cant find image by imageName!")
         }
@@ -66,7 +65,7 @@ extension UITabBarController {
             tabBarItem.setTitleTextAttributes(selectedTextAttrs, for: .selected)
         }
         controller.tabBarItem = tabBarItem
-        handler?(tabBarItem)
+        tabBarItemUpdate?(tabBarItem)
         let navigationController = T(rootViewController: controller)
         addChild(navigationController)
     }

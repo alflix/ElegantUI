@@ -30,7 +30,7 @@ extension UITabBar {
     }
 
     /// 移除顶部的分割线
-    func removeShadowLine() {
+    open func removeShadowLine() {
         backgroundImage = UIImage()
         shadowImage = UIImage()
     }

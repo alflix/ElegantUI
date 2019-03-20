@@ -11,8 +11,6 @@
 		523116EF223E89A1009DA11E /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523116EE223E89A1009DA11E /* RootViewController.swift */; };
 		523116F1223E89B2009DA11E /* RootViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 523116F0223E89B2009DA11E /* RootViewController.storyboard */; };
 		523116F5223F496E009DA11E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523116F4223F496E009DA11E /* TabBarController.swift */; };
-		523116FB223F4F51009DA11E /* FirstViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 523116FA223F4F51009DA11E /* FirstViewController.storyboard */; };
-		523116FD223F4F65009DA11E /* SecondViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 523116FC223F4F65009DA11E /* SecondViewController.storyboard */; };
 		52311701223F54D1009DA11E /* PublishTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52311700223F54D1009DA11E /* PublishTabbar.swift */; };
 		52311703223F9161009DA11E /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52311702223F9161009DA11E /* ExampleViewController.swift */; };
 		523117062240C38A009DA11E /* UITabBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523117052240C38A009DA11E /* UITabBar+.swift */; };
@@ -28,10 +26,8 @@
 		52EDF7212230D2490070E492 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF71F2230D2490070E492 /* LaunchScreen.storyboard */; };
 		52EDF7222230D2490070E492 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF7202230D2490070E492 /* AppDelegate.swift */; };
 		52EDF7262230D2C20070E492 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF7252230D2C20070E492 /* NavigationController.swift */; };
-		52EDF72A2230D3360070E492 /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF7292230D3360070E492 /* HomeViewController.storyboard */; };
 		52EDF72C2230D49D0070E492 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF72B2230D49D0070E492 /* HomeViewController.swift */; };
 		52EDF72E2236AC650070E492 /* PushToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF72D2236AC650070E492 /* PushToViewController.swift */; };
-		52EDF7302236ACC70070E492 /* PushToViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EDF72F2236ACC70070E492 /* PushToViewController.storyboard */; };
 		52EDF7322236AD740070E492 /* UINavigationBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF7312236AD740070E492 /* UINavigationBar+.swift */; };
 		52EDF7342236ADDF0070E492 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF7332236ADDF0070E492 /* UIView+.swift */; };
 		52EDF7362236AE0A0070E492 /* CustomBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EDF7352236AE0A0070E492 /* CustomBarButtonItem.swift */; };
@@ -41,8 +37,6 @@
 		523116EE223E89A1009DA11E /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		523116F0223E89B2009DA11E /* RootViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RootViewController.storyboard; sourceTree = "<group>"; };
 		523116F4223F496E009DA11E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		523116FA223F4F51009DA11E /* FirstViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstViewController.storyboard; sourceTree = "<group>"; };
-		523116FC223F4F65009DA11E /* SecondViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SecondViewController.storyboard; sourceTree = "<group>"; };
 		52311700223F54D1009DA11E /* PublishTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishTabbar.swift; sourceTree = "<group>"; };
 		52311702223F9161009DA11E /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		523117052240C38A009DA11E /* UITabBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+.swift"; sourceTree = "<group>"; };
@@ -60,10 +54,8 @@
 		52EDF71F2230D2490070E492 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52EDF7202230D2490070E492 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52EDF7252230D2C20070E492 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
-		52EDF7292230D3360070E492 /* HomeViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeViewController.storyboard; sourceTree = "<group>"; };
 		52EDF72B2230D49D0070E492 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		52EDF72D2236AC650070E492 /* PushToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushToViewController.swift; sourceTree = "<group>"; };
-		52EDF72F2236ACC70070E492 /* PushToViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PushToViewController.storyboard; sourceTree = "<group>"; };
 		52EDF7312236AD740070E492 /* UINavigationBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+.swift"; sourceTree = "<group>"; };
 		52EDF7332236ADDF0070E492 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		52EDF7352236AE0A0070E492 /* CustomBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBarButtonItem.swift; sourceTree = "<group>"; };
@@ -115,8 +107,6 @@
 		523116F3223F4952009DA11E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				523116FA223F4F51009DA11E /* FirstViewController.storyboard */,
-				523116FC223F4F65009DA11E /* SecondViewController.storyboard */,
 				52311700223F54D1009DA11E /* PublishTabbar.swift */,
 			);
 			path = View;
@@ -144,8 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				52EDF7352236AE0A0070E492 /* CustomBarButtonItem.swift */,
-				52EDF7292230D3360070E492 /* HomeViewController.storyboard */,
-				52EDF72F2236ACC70070E492 /* PushToViewController.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -311,12 +299,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				523116FB223F4F51009DA11E /* FirstViewController.storyboard in Resources */,
-				52EDF7302236ACC70070E492 /* PushToViewController.storyboard in Resources */,
-				52EDF72A2230D3360070E492 /* HomeViewController.storyboard in Resources */,
 				52EDF7142230D1820070E492 /* Assets.xcassets in Resources */,
 				523116F1223E89B2009DA11E /* RootViewController.storyboard in Resources */,
-				523116FD223F4F65009DA11E /* SecondViewController.storyboard in Resources */,
 				52EDF7212230D2490070E492 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +335,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Awesome/Pods-Awesome-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ActionKit/ActionKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework",
 				"${BUILT_PRODUCTS_DIR}/GestureRecognizerClosures/GestureRecognizerClosures.framework",
 				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
@@ -361,6 +346,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLEX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GestureRecognizerClosures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",

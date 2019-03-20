@@ -8,7 +8,8 @@ target 'Awesome' do
     pod 'GestureRecognizerClosures'
     pod 'Reusable'
     pod 'SnapKit'
-
+    pod 'ActionKit'
+    
     # Tool
     pod 'SwiftLint'
     pod 'FLEX'
