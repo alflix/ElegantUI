@@ -33,7 +33,7 @@ extension HomeViewController {
     }
 
     func addNavigationItem() {
-        let backItem = UIBarButtonItem(title: "Left", style: .done, target: self, action: #selector(backAction))
+        let backItem = UIBarButtonItem(title: "Left") { self.backAction() }
         let shareItem = UIBarButtonItem(image: UIImage(named: "icon_share")!) {
             self.navigationController?.pushViewController(PushToViewController(), animated: true)
         }

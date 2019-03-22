@@ -8,17 +8,18 @@
 
 import UIKit
 import SnapKit
+import ActionKit
 
 class ExampleViewController: UIViewController {
     private var customTitle: String?
 
-    private lazy var titleLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 22, weight: .medium)
         return label
     }()
 
-    private lazy var backButton: UIButton = {
+    lazy var backButton: UIButton = {
         let button = UIButton()
         button.setTitle("  Click to pop or dismiss  ", for: .normal)
         button.backgroundColor = self.view.backgroundColor
@@ -26,7 +27,9 @@ class ExampleViewController: UIViewController {
         button.layer.borderColor = UIColor(white: 100.0 / 255.0, alpha: 1.0).cgColor
         button.layer.cornerRadius = 16.0
         button.setTitleColor(UIColor(white: 100.0 / 255.0, alpha: 1.0), for: .normal)
-        button.addTarget(self, action: #selector(backAction), for: .touchUpInside)
+        button.addControlEvent(.touchUpInside, {
+            self.backAction()
+        })
         return button
     }()
 
@@ -55,7 +58,7 @@ class ExampleViewController: UIViewController {
         }
     }
 
-    @objc public func backAction() {
+    public func backAction() {
         if let navigationController = navigationController, navigationController.viewControllers.count > 1 {
             navigationController.popViewController(animated: true)
             return
@@ -63,5 +66,5 @@ class ExampleViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    @objc public func otherAction() {}
+    public func otherAction() {}
 }

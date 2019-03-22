@@ -8,6 +8,7 @@
 
 import UIKit
 import FLEX
+import ActionKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,14 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func addFlexTapGesture() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapFlex))
-        tap.numberOfTouchesRequired = 2
-        window?.addGestureRecognizer(tap)
-    }
-
-    @objc private func didTapFlex(tap: UITapGestureRecognizer) {
-        if tap.state == .recognized {
+        let tap = UITapGestureRecognizer { (tap) in
+            guard tap.state == .recognized else { return }
             FLEXManager.shared().showExplorer()
         }
+        tap.numberOfTouchesRequired = 2
+        window?.addGestureRecognizer(tap)
     }
 }

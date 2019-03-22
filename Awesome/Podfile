@@ -5,7 +5,6 @@ use_frameworks!
 target 'Awesome' do
     
     pod 'SwifterSwift'
-    pod 'GestureRecognizerClosures'
     pod 'Reusable'
     pod 'SnapKit'
     pod 'ActionKit'

@@ -16,7 +16,7 @@ class TabBarController: UITabBarController {
     }
 
     private func addChilds() {
-        // 通过封装好的方法设置 title，image，selectedImage 等元素
+        // 通过封装好的方法设置 title，image，selectedImage 等元素（此处只是示例调用）
         add(child: ExampleViewController(title: "Home"), imageName: "icon_home", navigationClass: NavigationController.self) { (item) in
             // 支持设置 UITabBarItem 的其他属性
             // 文字位置调整

@@ -8,6 +8,7 @@
 
 import UIKit
 import Reusable
+import ActionKit
 
 class PushToViewController: ExampleViewController {
     override func viewDidLoad() {
@@ -21,8 +22,8 @@ extension PushToViewController {
     // 添加 leftBarButtonItem，rightBarButtonItem
     func addNavigationItem() {
         //let backItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(backAction))
-        let backItem = UIBarButtonItem(image: UIImage(named: "icon_back"), style: .done, target: self, action: #selector(backAction))
-        let shareItem = UIBarButtonItem(image: UIImage(named: "icon_share"), style: .done, target: self, action: #selector(otherAction))
+        let backItem = UIBarButtonItem(title: "Left") { self.backAction() }
+        let shareItem = UIBarButtonItem(image: UIImage(named: "icon_share")!) { self.otherAction() }
         navigationItem.leftBarButtonItem = backItem
         navigationItem.rightBarButtonItem = shareItem
     }
@@ -30,7 +31,7 @@ extension PushToViewController {
     // 通过 fixedSpace 修正位置
     func addFixedNavigationItem() {
         //let backItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(backAction))
-        let backItem = UIBarButtonItem(image: UIImage(named: "icon_back"), style: .done, target: self, action: #selector(otherAction))
+        let backItem = UIBarButtonItem(title: "Left") { self.backAction() }
         addLeftItem(by: backItem, fix: -5)
     }
 
