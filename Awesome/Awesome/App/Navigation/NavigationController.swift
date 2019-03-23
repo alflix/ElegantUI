@@ -68,6 +68,7 @@ private extension UINavigationController {
         navigationBar.setBackgroundImage(UIImage(color: .white, size: CGSize.zero), for: .default)
         // 设置底部分割线颜色
         navigationBar.shadowImage = UIImage(color: .red, size: CGSize(width: navigationBar.width, height: 0.5))
+        // 移除分割线
         navigationBar.removeShadowLine()
     }
 
