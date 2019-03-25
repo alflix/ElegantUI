@@ -105,7 +105,7 @@ func setupUI() {
 }
 ```
 
-其中 unselectedTintColor 是拓展的属性，因为 unselectedItemTintColor 只支持 iOS10 以上。( associatedObject 方法见[此处](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/Navigation.md#%E6%96%B9%E6%A1%882))
+其中 unselectedTintColor 是拓展的属性，因为 unselectedItemTintColor 只支持 iOS10 以上，所以可以利用 runtime 的方法为 tabbar 添加拓展的新属性。( associatedObject 方法见[此处](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/Navigation.md#%E6%96%B9%E6%A1%882))
 
 removeShadowLine 的实现和 [navigationBar 移除分割线](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/Navigation.md#%E5%88%86%E5%89%B2%E7%BA%BF)类似。
 
@@ -168,11 +168,11 @@ open class UINavigationController : UIViewController {
 }
 ```
 
-UITabBarItem 是一个抽象类，继承至 UIBarItem-NSObject，可以设置 title，image，selectedImage 等元素。而设置这些元素一般在设置子控制器的过程中。我们下面通过一个方法封装来处理这个过程：
+UITabBarItem 是一个抽象类，继承至 UIBarItem-NSObject，可以设置 title，image，selectedImage 等元素。通常配置这些元素都是在设置子控制器的过程中。所以我们可以通过一个方法来封装这个过程：
 
 ```swift
 public extension UITabBarController {
-    /// 添加子控制器
+    /// 1.添加子控制器
     ///
     /// - Parameters:
     ///   - controller: 子控制器
@@ -183,7 +183,7 @@ public extension UITabBarController {
             title: title, navigationClass: UINavigationController.self)
     }
 
-    /// 添加子控制器
+    /// 2.添加子控制器
     ///
     /// - Parameters:
     ///   - controller: 子控制器
@@ -239,6 +239,29 @@ public extension UITabBarController {
 }
 ```
 
-基本思想是我们需要定义一个基本的设置方法，其中只需要传入子控制器、tabbar显示的图片、文字，这个方法帮我们处理好选中/未选中图片、文字的颜色问题（iOS 10 以下需要手动设置所有属性）。
+基本思想是我们需要定义一个基本的设置方法（1.添加子控制器），其中只需要传入子控制器、tabbar显示的图片、文字，这个方法帮我们处理好选中/未选中图片、文字的颜色问题（iOS 10 以下需要手动设置所有属性）。
 
-同时，定义一个支持更多属性的方法
+同时，定义一个支持更多属性的方法（2.添加子控制器），包括支持继承 UINavigationController 的类传入（利用范型），通过 block 支持 UITabBarItem 的额外设置。
+
+如下，可以这么调用：
+
+```swift
+private func addChilds() {
+    // 通过封装好的方法设置 title，image，selectedImage 等元素（此处只是示例调用）
+    add(child: ExampleViewController(title: "Home"), imageName: "icon_home", navigationClass: NavigationController.self) { (item) in
+        // 支持设置 UITabBarItem 的其他属性
+        // 文字位置调整
+        item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0)
+        // 角标背景颜色，文字颜色调整，只支持 iOS 10.0 以上
+        if #available(iOS 10.0, *) {
+            item.badgeColor = .green
+            item.setBadgeTextAttributes([.foregroundColor: UIColor.black], for: .normal)
+        }
+        // 角标显示的文字
+        item.badgeValue = "2"
+    }
+    add(child: ExampleViewController(title: "Me"), imageName: "icon_me")
+}
+```
+
+第一个方法演示了其他属性的设置，titlePositionAdjustment，badgeColor，badgeValue 等

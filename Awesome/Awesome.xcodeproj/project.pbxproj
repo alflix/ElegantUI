@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35200168B7105798E99CED51 /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCA585A78A5689FE4C3E0F4 /* Pods_Awesome.framework */; };
+		5229DE4222487F7E0055BC2B /* BulgeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229DE4122487F7E0055BC2B /* BulgeTabBar.swift */; };
 		523116EF223E89A1009DA11E /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523116EE223E89A1009DA11E /* RootViewController.swift */; };
 		523116F1223E89B2009DA11E /* RootViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 523116F0223E89B2009DA11E /* RootViewController.storyboard */; };
 		523116F5223F496E009DA11E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523116F4223F496E009DA11E /* TabBarController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5229DE4122487F7E0055BC2B /* BulgeTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulgeTabBar.swift; sourceTree = "<group>"; };
 		523116EE223E89A1009DA11E /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		523116F0223E89B2009DA11E /* RootViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RootViewController.storyboard; sourceTree = "<group>"; };
 		523116F4223F496E009DA11E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				523117C62242431D009DA11E /* UITabBar+.swift */,
 				523117C52242431D009DA11E /* UITabBarController+.swift */,
 				523117C72242431D009DA11E /* UITabBarItem+.swift */,
+				5229DE4122487F7E0055BC2B /* BulgeTabBar.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				5286BC6D223A2ABD00616E4A /* UIApplication+.swift in Sources */,
 				523116EF223E89A1009DA11E /* RootViewController.swift in Sources */,
 				52EDF7262230D2C20070E492 /* NavigationController.swift in Sources */,
+				5229DE4222487F7E0055BC2B /* BulgeTabBar.swift in Sources */,
 				52EDF72C2230D49D0070E492 /* HomeViewController.swift in Sources */,
 				52EDF72E2236AC650070E492 /* PushToViewController.swift in Sources */,
 			);
