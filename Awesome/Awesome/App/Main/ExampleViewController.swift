@@ -27,8 +27,8 @@ class ExampleViewController: UIViewController {
         button.layer.borderColor = UIColor(white: 100.0 / 255.0, alpha: 1.0).cgColor
         button.layer.cornerRadius = 16.0
         button.setTitleColor(UIColor(white: 100.0 / 255.0, alpha: 1.0), for: .normal)
-        button.addControlEvent(.touchUpInside, {
-            self.backAction()
+        button.addControlEvent(.touchUpInside, { [weak self] in
+            self?.backAction()
         })
         return button
     }()

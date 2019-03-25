@@ -76,8 +76,8 @@ private extension UINavigationController {
     func setupDefaultBackItem(push viewController: UIViewController) {
         if viewControllers.count > 0 && (viewController.navigationItem.leftBarButtonItem == nil) {
             viewController.hidesBottomBarWhenPushed = true
-            let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_back")!) { (_)  in
-                self.popViewController(animated: true)
+            let backBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_back")!) { [weak self] (_)  in
+                self?.popViewController(animated: true)
             }
             viewController.navigationItem.leftBarButtonItem = backBarButtonItem
         }
