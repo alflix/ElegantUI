@@ -8,7 +8,14 @@
 
 import UIKit
 
-public extension UITabBarController {
+extension UITabBarController {
+    override open func viewDidLoad() {
+        let customTabBar = BulgeTabBar()
+        customTabBar.offsetY = 8
+        setValue(customTabBar, forKeyPath: "tabBar")
+        super.viewDidLoad()
+    }
+
     /// 添加子控制器
     ///
     /// - Parameters:
@@ -35,6 +42,7 @@ public extension UITabBarController {
                                                imageName: String,
                                                selectImageName: String? = nil,
                                                title: String? = nil,
+                                               isBulge: Bool = false,
                                                navigationClass name: T.Type,
                                                tabBarItemUpdate: ((UITabBarItem) -> Void)? = nil) {
         guard let image = UIImage(named: imageName) else {
@@ -70,6 +78,13 @@ public extension UITabBarController {
         }
         controller.tabBarItem = tabBarItem
         tabBarItemUpdate?(tabBarItem)
+
+        if isBulge, let bulgeTabBar: BulgeTabBar = tabBar as? BulgeTabBar {
+            tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
+            tabBarItem.selectedImage = nil
+            bulgeTabBar.addBulgeIndexs(index: children.count)
+        }
+
         let navigationController = T(rootViewController: controller)
         addChild(navigationController)
     }

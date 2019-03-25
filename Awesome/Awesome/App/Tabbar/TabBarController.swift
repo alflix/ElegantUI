@@ -29,6 +29,7 @@ class TabBarController: UITabBarController {
             // 角标显示的文字
             item.badgeValue = "2"
         }
+        add(child: UIViewController(), imageName: "icon_publish", isBulge: true, navigationClass: NavigationController.self)
         add(child: ExampleViewController(title: "Me"), imageName: "icon_me")
     }
 }

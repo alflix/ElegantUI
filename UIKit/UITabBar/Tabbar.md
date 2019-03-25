@@ -264,4 +264,4 @@ private func addChilds() {
 }
 ```
 
-第一个方法演示了其他属性的设置，titlePositionAdjustment，badgeColor，badgeValue 等
+第一个方法演示了其他属性的设置，titlePositionAdjustment，badgeColor，badgeValue 等。
