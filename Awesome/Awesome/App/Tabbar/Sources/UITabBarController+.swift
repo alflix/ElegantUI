@@ -9,9 +9,26 @@
 import UIKit
 
 extension UITabBarController {
+    fileprivate struct AssociatedKey {
+        static var bulgeOffsetY: UInt8 = 0
+    }
+
+    /// 中间有凸起的 TabBar，其往上移动的偏移量
+    open var bulgeOffsetY: CGFloat {
+        get {
+            return associatedObject(base: self, key: &AssociatedKey.bulgeOffsetY) { return 0 }
+        }
+        set {
+            associateObject(base: self, key: &AssociatedKey.bulgeOffsetY, value: newValue)
+            if let tabBar = value(forKeyPath: "tabBar") as? BulgeTabBar {
+                tabBar.offsetY = newValue
+            }
+        }
+    }
+
     override open func viewDidLoad() {
         let customTabBar = BulgeTabBar()
-        customTabBar.offsetY = 8
+        customTabBar.offsetY = bulgeOffsetY
         setValue(customTabBar, forKeyPath: "tabBar")
         super.viewDidLoad()
     }
@@ -76,15 +93,19 @@ extension UITabBarController {
                 tabBarItem.setTitleTextAttributes(selectedTextAttrs, for: .selected)
             }
         }
-        controller.tabBarItem = tabBarItem
-        tabBarItemUpdate?(tabBarItem)
 
         if isBulge, let bulgeTabBar: BulgeTabBar = tabBar as? BulgeTabBar {
+            // 原先的 controller.tabBarItem 设一个空的占位，然后添加一个 UIButton 进去，selectedImage 作为 UIButton 的 hightlighted 状态显示
             tabBarItem.image = image.withRenderingMode(.alwaysOriginal)
-            tabBarItem.selectedImage = nil
-            bulgeTabBar.addBulgeIndexs(index: children.count)
+            if let selectImageName = selectImageName, let selectedImage = UIImage(named: selectImageName) {
+                tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
+            }
+            bulgeTabBar.addBulgeIndexs(index: children.count, tabBarItem: tabBarItem)
+            controller.tabBarItem = UITabBarItem()
+        } else {
+            controller.tabBarItem = tabBarItem
         }
-
+        tabBarItemUpdate?(tabBarItem)
         let navigationController = T(rootViewController: controller)
         addChild(navigationController)
     }
