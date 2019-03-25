@@ -18,7 +18,10 @@ class TabBarController: UITabBarController {
     private func addChilds() {
         self.bulgeOffsetY = 8
         // 通过封装好的方法设置 title，image，selectedImage 等元素（此处只是示例调用）
-        add(child: ExampleViewController(title: "Home"), imageName: "icon_home", navigationClass: NavigationController.self) { (item) in
+        add(child: ExampleViewController(title: "Home"),
+            imageName: "icon_home",
+            navigationClass: NavigationController.self,
+            tabBarItemUpdate: { (item) in
             // 支持设置 UITabBarItem 的其他属性
             // 文字位置调整
             item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0)
@@ -29,9 +32,15 @@ class TabBarController: UITabBarController {
             }
             // 角标显示的文字
             item.badgeValue = "2"
+        }, closure: nil)
+        add(child: ExampleViewController(title: "Me"), imageName: "icon_me")
+        add(child: UIViewController(),
+            imageName: "icon_publish",
+            selectImageName: "icon_publish_hl",
+            isBulge: true,
+            navigationClass: NavigationController.self) {
+            print("😄")
         }
-        add(child: UIViewController(), imageName: "icon_publish", selectImageName: "icon_publish_hl",
-            isBulge: true, navigationClass: NavigationController.self)
         add(child: ExampleViewController(title: "Me"), imageName: "icon_me")
     }
 }

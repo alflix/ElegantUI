@@ -40,4 +40,4 @@ typealias CollectionViewDelegate = UICollectionViewDataSource & UICollectionView
 typealias TableViewDelegate = UITableViewDataSource & UITableViewDelegate
 typealias StoryboardController = UIViewController & StoryboardBased
 
-typealias VoidBlock = () -> Void
+public typealias VoidBlock = () -> Void

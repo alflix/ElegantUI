@@ -61,7 +61,8 @@ extension UITabBarController {
                                                title: String? = nil,
                                                isBulge: Bool = false,
                                                navigationClass name: T.Type,
-                                               tabBarItemUpdate: ((UITabBarItem) -> Void)? = nil) {
+                                               tabBarItemUpdate: ((UITabBarItem) -> Void)? = nil,
+                                               closure: VoidBlock? = nil) {
         guard let image = UIImage(named: imageName) else {
             fatalError("cant find image by imageName!")
         }
@@ -100,7 +101,9 @@ extension UITabBarController {
             if let selectImageName = selectImageName, let selectedImage = UIImage(named: selectImageName) {
                 tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
             }
-            bulgeTabBar.addBulgeIndexs(index: children.count, tabBarItem: tabBarItem)
+            bulgeTabBar.addBulgeIndexs(index: children.count, tabBarItem: tabBarItem) {
+                closure?()
+            }
             controller.tabBarItem = UITabBarItem()
         } else {
             controller.tabBarItem = tabBarItem

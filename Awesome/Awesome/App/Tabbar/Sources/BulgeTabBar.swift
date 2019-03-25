@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActionKit
 
 class BulgeTabBar: UITabBar {
     /// 往上移动的偏移量
@@ -51,13 +52,16 @@ class BulgeTabBar: UITabBar {
         return super.hitTest(point, with: event)
     }
 
-    func addBulgeIndexs(index: Int, tabBarItem: UITabBarItem) {
+    func addBulgeIndexs(index: Int, tabBarItem: UITabBarItem, _ closure: VoidBlock?) {
         /// 之所以用 Button，而不是调整原先的 UITabBarButton，是因为 highlighted 状态的显示
         let button = UIButton()
         button.setImage(tabBarItem.image, for: .normal)
         button.setImage(tabBarItem.selectedImage, for: .highlighted)
         button.imageView?.contentMode = .scaleAspectFill
         button.imageView?.clipsToBounds = false
+        button.addControlEvent(.touchUpInside) {
+            closure?()
+        }
         indexToButton[index] = button
         bulgeIndexs.append(index)
     }
