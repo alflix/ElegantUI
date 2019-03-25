@@ -1,5 +1,17 @@
 # Tabbar
 
+<!-- TOC -->
+
+- [Tabbar](#tabbar)
+    - [概述](#概述)
+        - [UITabBarController](#uitabbarcontroller)
+        - [关于 self.title](#关于-selftitle)
+        - [UITabBar](#uitabbar)
+        - [UITabBarItem](#uitabbaritem)
+        - [仿闲鱼自定义 TabBar](#仿闲鱼自定义-tabbar)
+
+<!-- /TOC -->
+
 本文主要基于 UITabBarController/UITabBar 讲述一些常用的接口用法，在此基础上会实现一些常见的自定义 UI 。本文的代码示例 [地址](https://github.com/alflix/awesome-ios/tree/master/Awesome/Awesome/App/Tabbar)
 
 ## 概述
@@ -265,3 +277,109 @@ private func addChilds() {
 ```
 
 第一个方法演示了其他属性的设置，titlePositionAdjustment，badgeColor，badgeValue 等。
+
+结果如下：
+
+![1](resources/1.png)
+
+### 仿闲鱼自定义 TabBar
+
+闲鱼 TabBar 的样式，一个重要的特征就是中间有个凸起的 Item。
+
+为了达到这个效果，需要利用 KVC，设置一个继承自 UITabBar 的类，如下：
+
+```swift
+setValue(customTabBar, forKeyPath: "tabBar")
+```
+
+customTabBar，我们定义一个命名为 BulgeTabBar 的类，如下：
+
+```swift
+import UIKit
+import ActionKit
+
+class BulgeTabBar: UITabBar {
+    /// 往上移动的偏移量
+    var offsetY: CGFloat = 0
+    private var bulgeIndexs: [Int] = []
+    private var indexToButton: [Int: UIButton] = [:]
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func setItems(_ items: [UITabBarItem]?, animated: Bool) {
+        super.setItems(items, animated: animated)
+        var tabBarButtonIndex = -1
+        for subview in subviews where NSStringFromClass(type(of: subview)) == "UITabBarButton" {
+            tabBarButtonIndex += 1
+            if bulgeIndexs.contains(tabBarButtonIndex) {
+                if let button = indexToButton[tabBarButtonIndex] {
+                    button.frame = subview.frame
+                    button.frame.origin.y -= offsetY
+                    addSubview(button)
+                }
+            }
+        }
+        layoutSubviews()
+    }
+
+    /// - Parameters:
+    ///   - index: 凸起 item 的位置
+    ///   - tabBarItem: 支持 image，selectedImage（实际是用于 highlighted）的设置
+    ///   - closure: 点击回调
+    func addBulgeIndexs(index: Int, tabBarItem: UITabBarItem, _ closure: VoidBlock?) {
+        /// 之所以用 Button，而不是调整原先的 UITabBarButton，是因为 highlighted 状态的显示
+        let button = UIButton()
+        button.setImage(tabBarItem.image, for: .normal)
+        button.setImage(tabBarItem.selectedImage, for: .highlighted)
+        button.imageView?.contentMode = .scaleAspectFill
+        button.imageView?.clipsToBounds = false
+        button.addControlEvent(.touchUpInside) {
+            closure?()
+        }
+        indexToButton[index] = button
+        bulgeIndexs.append(index)
+    }
+}
+
+```
+
+其中核心是这个方法：
+
+```swift
+func addBulgeIndexs(index: Int, tabBarItem: UITabBarItem, _ closure: VoidBlock?)
+```
+
+index，即这个凸起 item 的位置，方便自定义位置，而不是仅仅支持中间凸起。为了支持这个特性，我们需要用一个 [Int: UIButton] 将其关联起来。
+
+tabBarItem，这里利用 UITabBarItem 的属性来设置这个凸起的 item，不管它具体的实现是什么，符合 UITabBar 的正常用法。
+
+closure，即把点击事件暴露出来，满足点击这个 item 之后的进一步动作。
+
+然后，我们重载 func setItems(_ items: [UITabBarItem]?, animated: Bool) 这个方法，这个方法中，我们找到原先的 UITabBarButton 的位置，然后赋值给新的 UIButton，设置 button.frame.origin.y -= offsetY(offsetY 是我们开放的属性)，最后 addSubview(button)，这样就完成了整个操作。（思考下为什么不调整原来的 UITabBarButton 即可？）
+
+最后一个容易漏掉的问题，即这个 凸起 item 超出了点击区域，超出部分是无法响应点击区域的，所以需要加上：
+
+```swift
+// 处理超出区域点击无效的问题
+override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    if !self.isHidden {
+        for subview in subviews where NSStringFromClass(type(of: subview)) == "UIButton" {
+            let tempPoint = subview.convert(point, from: self)
+            if subview.bounds.contains(tempPoint) {
+                return subview
+            }
+        }
+    }
+    return super.hitTest(point, with: event)
+}
+```
+
+结果如下：
+
+![1](resources/2.png)

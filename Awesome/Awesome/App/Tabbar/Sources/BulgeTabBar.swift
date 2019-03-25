@@ -31,7 +31,7 @@ class BulgeTabBar: UITabBar {
             if bulgeIndexs.contains(tabBarButtonIndex) {
                 if let button = indexToButton[tabBarButtonIndex] {
                     button.frame = subview.frame
-                    button.y -= offsetY
+                    button.frame.origin.y -= offsetY
                     addSubview(button)
                 }
             }
@@ -52,6 +52,10 @@ class BulgeTabBar: UITabBar {
         return super.hitTest(point, with: event)
     }
 
+    /// - Parameters:
+    ///   - index: 凸起 item 的位置
+    ///   - tabBarItem: 支持 image，selectedImage（实际是用于 highlighted）的设置
+    ///   - closure: 点击回调
     func addBulgeIndexs(index: Int, tabBarItem: UITabBarItem, _ closure: VoidBlock?) {
         /// 之所以用 Button，而不是调整原先的 UITabBarButton，是因为 highlighted 状态的显示
         let button = UIButton()
