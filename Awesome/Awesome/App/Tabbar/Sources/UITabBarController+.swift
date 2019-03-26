@@ -101,7 +101,7 @@ extension UITabBarController {
             if let selectImageName = selectImageName, let selectedImage = UIImage(named: selectImageName) {
                 tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
             }
-            bulgeTabBar.addBulgeIndexs(index: children.count, tabBarItem: tabBarItem) {
+            bulgeTabBar.addBulgeItem(at: children.count, tabBarItem: tabBarItem) {
                 closure?()
             }
             controller.tabBarItem = UITabBarItem()

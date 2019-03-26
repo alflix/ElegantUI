@@ -56,7 +56,7 @@ class BulgeTabBar: UITabBar {
     ///   - index: 凸起 item 的位置
     ///   - tabBarItem: 支持 image，selectedImage（实际是用于 highlighted）的设置
     ///   - closure: 点击回调
-    func addBulgeIndexs(index: Int, tabBarItem: UITabBarItem, _ closure: VoidBlock?) {
+    func addBulgeItem(at index: Int, tabBarItem: UITabBarItem, _ clickHandle: VoidBlock?) {
         /// 之所以用 Button，而不是调整原先的 UITabBarButton，是因为 highlighted 状态的显示
         let button = UIButton()
         button.setImage(tabBarItem.image, for: .normal)
@@ -64,7 +64,7 @@ class BulgeTabBar: UITabBar {
         button.imageView?.contentMode = .scaleAspectFill
         button.imageView?.clipsToBounds = false
         button.addControlEvent(.touchUpInside) {
-            closure?()
+            clickHandle?()
         }
         indexToButton[index] = button
         bulgeIndexs.append(index)
