@@ -4,19 +4,19 @@
 
 - [Tabbar](#tabbar)
     - [概述](#概述)
-        - [UITabBarController](#uitabbarcontroller)
-        - [关于 self.title](#关于-selftitle)
-        - [UITabBar](#uitabbar)
-        - [UITabBarItem](#uitabbaritem)
-        - [仿闲鱼自定义 TabBar](#仿闲鱼自定义-tabbar)
+    - [UITabBarController](#uitabbarcontroller)
+    - [关于 self.title](#关于-selftitle)
+    - [UITabBar](#uitabbar)
+    - [UITabBarItem](#uitabbaritem)
+    - [仿闲鱼自定义 TabBar](#仿闲鱼自定义-tabbar)
 
 <!-- /TOC -->
 
-本文主要基于 UITabBarController/UITabBar 讲述一些常用的接口用法，在此基础上会实现一些常见的自定义 UI 。本文的代码示例 [地址](https://github.com/alflix/awesome-ios/tree/master/Awesome/Awesome/App/Tabbar)
-
 ## 概述
 
-### UITabBarController
+本文主要基于 UITabBarController/UITabBar 讲述一些常用的接口用法，在此基础上会实现一些常见的自定义 UI 。本文的代码示例 [地址](https://github.com/alflix/awesome-ios/tree/master/Awesome/Awesome/App/Tabbar)
+
+## UITabBarController
 
 UITabBarController，和 [UINavigationController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/UINavigation.md#%E6%A6%82%E8%BF%B0) 一样是容器类（Container），利用集合的方式对 ViewController 进行管理。大部分情况下，UITabBarController 都会作为 app 的 rootViewController：
 
@@ -74,7 +74,7 @@ extension UIViewController {
 }
 ```
 
-### 关于 self.title
+## 关于 self.title
 
 设置一个 ViewController 的标题时，我们通常这样：
 
@@ -98,7 +98,7 @@ navigationItem.title = "title"
 
 - self.title: 同时修改上述两处的标题
 
-### UITabBar
+## UITabBar
 
 UITabBar，是 UITabBarController 底部的显示区域，主要负责 UI 的展示。UITabBar 有以下常见的设置：
 
@@ -170,7 +170,7 @@ func setupAdditionUI() {
 }
 ```
 
-### UITabBarItem
+## UITabBarItem
 
 UITabBar 包含 UITabBarItem ，同样通过 ViewController 的拓展添加了 tabBarItem。
 
@@ -282,7 +282,7 @@ private func addChilds() {
 
 ![1](resources/1.png)
 
-### 仿闲鱼自定义 TabBar
+## 仿闲鱼自定义 TabBar
 
 闲鱼 TabBar 的样式，一个重要的特征就是中间有个凸起的 Item。
 
