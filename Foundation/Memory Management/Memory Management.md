@@ -1,16 +1,63 @@
-这篇文章的示例代码你可以在 [这里](https://github.com/jieyuanz/ios_demo/blob/master/iosLearningDemo/iosLearningDemo/Memory/JJMemoryViewController.m) 找到。
+# 内存管理
 
-在讲内存管理之前，我们需要先理解 heap 和 stack 的概念。
+<!-- TOC -->
+
+- [内存管理](#内存管理)
+    - [指针](#指针)
+        - [位，字节](#位字节)
+        - [为什么需要指针](#为什么需要指针)
+    - [内存区域](#内存区域)
+    - [为什么是 Stack 和 Heap？](#为什么是-stack-和-heap)
+    - [stack 和 heap 的工作原理](#stack-和-heap-的工作原理)
+    - [理解引用计数机制](#理解引用计数机制)
+        - [retain 和  release](#retain-和--release)
+    - [属性存取方法中的内存管理](#属性存取方法中的内存管理)
+        - [autorelease](#autorelease)
+        - [理解命名规则](#理解命名规则)
+    - [ARC](#arc)
+        - [__strong 修饰符:](#__strong-修饰符)
+        - [__weak 修饰符:](#__weak-修饰符)
+        - [__unsafe_unretained 修饰符](#__unsafe_unretained-修饰符)
+        - [__autoreleasing 修饰符](#__autoreleasing-修饰符)
+    - [属性声明](#属性声明)
+        - [内存管理](#内存管理-1)
+        - [存取器控制](#存取器控制)
+        - [原子性](#原子性)
+    - [总结](#总结)
+    - [内存泄漏场景](#内存泄漏场景)
+        - [两个类循环引用](#两个类循环引用)
+        - [delegate 循环引用问题](#delegate-循环引用问题)
+        - [Block](#block)
+        - [performSelector](#performselector)
+        - [NSNotificationcenter](#nsnotificationcenter)
+        - [NSTimer](#nstimer)
+        - [非 OC 对象内存处理](#非-oc-对象内存处理)
+        - [代理未清空引起野指针](#代理未清空引起野指针)
+        - [检测内存泄漏](#检测内存泄漏)
+        - [借助 Xcode 自带的 Instruments 工具（选取真机测试）](#借助-xcode-自带的-instruments-工具选取真机测试)
+        - [重写 dealloc 方法](#重写-dealloc-方法)
+        - [使用 微信阅读开源的 MLeaksFinder](#使用-微信阅读开源的-mleaksfinder)
+        - [Facebook 开源 的 FBRetainCycleDetector 。](#facebook-开源-的-fbretaincycledetector-)
+        - [留意内存警告](#留意内存警告)
+        - [使用 autoreleasepool 降低内存峰值](#使用-autoreleasepool-降低内存峰值)
+        - [关于 autorelease](#关于-autorelease)
+        - [autoreleasepool](#autoreleasepool)
+        - [使用 autoreleasepool 避免内存峰值](#使用-autoreleasepool-避免内存峰值)
+        - [MRC 下的 autoreleasepool](#mrc-下的-autoreleasepool)
+        - [autoreleasepool 的其他 tips：](#autoreleasepool-的其他-tips)
+        - [autoreleasepool 的原理](#autoreleasepool-的原理)
+    - [图片的读取问题](#图片的读取问题)
+    - [NSData 的读取问题](#nsdata-的读取问题)
+
+<!-- /TOC -->
 
 在理解 heap 和 stack 的概念之前，我们需要先理解指针的概念。
 
-<!--more-->
-
-### 指针
+## 指针
 
 指针最早是在 C 语言中出现的，指针可以简单地理解为内存的地址。后来众多面向对象的语言例如 Java，Objective-C 也包含了这个概念，但 Java，Objective-C 上的指针实际上是受限制的指针，之所以说“受限制”，是因为不能进行指针运算（比如 p + 1 指向下一个元素之类的）。虽然缺少了灵活性，但却大大减少了程序出错的概率。你可以把 Java，Objective-C 上的指针理解为“引用”。不过，在下面的讨论，我们仍然以指针这个名称来说明。
 
-#### 位，字节......
+### 位，字节
 
 在讲指针之前，先普及一些小的知识点，比如位，字节，变量类型等。
 
@@ -34,7 +81,7 @@
 
 因此， C 语言中定义了一种类型，char 类型，置占一个字节。
 
-#### 为什么需要指针
+### 为什么需要指针
 
 想象一下如果没有指针，我们的程序应该怎么写？
 
@@ -68,7 +115,7 @@ char *p = new char[3]; //堆上分配，将地址赋给了p;
 最后再把在堆上分配的字符数组的首地址赋给p.，这个时候，大家已经清楚了，p中现在存放的是在堆中申请的字符数组的首地址，
 也就是在堆中申请的数组的地址现在被赋给了在栈上申请的指针变量p
 
-### 内存区域
+## 内存区域
 
 heap 和 stack 是内存管理的两个概念。这里指的不是数据结构上面的堆与栈，这里指的是内存的分配的两个区域：堆区和栈区。（不过这两者之间确实是有相似之处）。
 
@@ -94,7 +141,7 @@ NSString *pointerVariable = @"someString";
 
 pointerVariable 作为一个局部变量，它是栈上的一个指针变量，@"someString" 是堆上的内存对象，pointerVariable 变量内存放着堆上对象的内存地址。
 
-### 为什么是 Stack 和 Heap？
+## 为什么是 Stack 和 Heap？
 
 首先所有的 Objective-C 对象都是分配在 heap 的。在 OC 最典型的内存分配与初始化就是这样的。
 
@@ -109,15 +156,14 @@ stack 对象通常有速度的优势，而且不会发生内存泄露问题。�
 - stack 对象的生命周期所导致的问题。例如一旦函数返回，则所在的 stack frame 就会被摧毁。那么此时返回的对象也会一并摧毁。这个时候我们去 retain 这个对象是无效的。因为整个 stack frame 都已经被摧毁了。简单而言，就是 stack 对象的生命周期不适合 Objective-C 的引用计数内存管理方法。
 - stack 对象不够灵活（LIFO），不具备足够的扩展性。创建时长度已经是固定的 , 而 stack 对象的拥有者也就是所在的 stack frame.
 
-### stack 和 heap 的工作原理
+## stack 和 heap 的工作原理
 
 栈区（stack）：栈区就是函数运行时的内存，栈区中的变量由编译器负责分配和释放，内存随着函数的运行分配，随着函数的结束而释放，由系统自动完成。只要栈的剩余空间大于所申请空间，系统将为程序提供内存，否则将报异常提示栈溢出。有 2 种分配方式：静态分配和动态分配。静态分配是编译器完成的，比如局部变量的分配。动态分配由 alloc 函数进行分配，但是栈的动态分配和堆是不同的，他的动态分配是由编译器进行释放，无需我们手工实现。
 
 堆区（heap）：系统使用一个链表来维护所有已经分配的内存空间，当系统收到程序的申请时，会遍历该链表，寻找第一个空间大于所申请空间的堆结点，然后将该结点从空闲结点链表中删除，并将该结点的空间分配给程序，另外，对于大多数系统，会在这块内存空间中的首地址处记录本次分配的大小，这样，代码中的 delete 语句才能正确的释放本内存空间。另外，由于找到的堆结点的大小不一定正好等于申请的大小，系统会自动的将多余的那部分重新放入空闲链表中。
 
 
-
-### 理解引用计数机制
+## 理解引用计数机制
 
 iOS 中的内存管理，是通过一种“引用计数”的机制来管理的。
 
@@ -131,7 +177,7 @@ NSObject 协议声明了三个方法用于操作计数器：
 
 <!--more-->
 
-#### retain 和  release
+### retain 和  release
 
 ```
 NSNumber *number = @1;//number 引用计数递增 1
@@ -158,7 +204,7 @@ number = nil;
 
 我们知道，程序在生命期间会创建很多对象，这些对象都相互联系着。所以，这些相互联系的对象就构成一个对象树，这个对象树的根节点是 UIApplocation 对象，它是程序启动时创建的单例。
 
-#### 属性存取方法中的内存管理
+## 属性存取方法中的内存管理
 
 设置方法将保留新值，释放旧值，然后更新变量。如下：(该例子是针对 strong 声明的属性)
 
@@ -170,7 +216,7 @@ number = nil;
 }
 ```
 
-#### autorelease
+### autorelease
 
 ```
 - (NSString *)temp{
@@ -198,7 +244,7 @@ _instance = [[self temp] retain];
 [_instance release];
 ```
 
-#### 理解命名规则
+### 理解命名规则
 
 使用以下名称开头的方法意味着，使用这个方法生成的对象，自己会持有该对象，也就是说会自动 retain。
 
@@ -237,7 +283,7 @@ _object = [NSMutableArray array];
 }
 ```
 
-### ARC
+## ARC
 
 使用 ARC 时，引用计数还是会执行的，只不过是 ARC 为你自动添加的，即上面所说的 retain／release／ autorelease 方法。在对象被创建时 retain count +1，在对象被 release 时 retain count -1. 当 retain count 为 0 时，销毁对象。 程序中加入 autoreleasepool 的对象会由系统自动加上 autorelease 方法，如果该对象引用计数为 0，则销毁。 因为 ARC 会自动执行这些方法，所以在 ARC 下调用这些方法是非法的，会产生编译错误。
 
@@ -250,7 +296,7 @@ __unsafe_unretained 修饰符
 __autoreleasing 修饰符
 ```
 
-#### __strong 修饰符:
+### __strong 修饰符:
 
 __strong 修饰符 id 类型和对象类型默认的所有权修饰符。
 
@@ -272,7 +318,7 @@ id object = [[NSObject alloc]init];// alloc 会有一次 retain
 
 > cheers！🍻
 
-#### __weak 修饰符:
+### __weak 修饰符:
 
 然而，不要高兴的太早，仅仅通过 __strong 修饰符是不够的，因为对象之间可能会存在循环引用的问题。如下：
 
@@ -304,7 +350,7 @@ id A = [[NSObject alloc]init];//引用计数为 1
 id __weak B = [[NSObject alloc]init];//引用计数为 0
 ```
 
-#### __unsafe_unretained 修饰符
+### __unsafe_unretained 修饰符
 
 unsafe_unretained 修饰符是 iOS5 以下不支持 __weak 修饰符而使用来取代 __weak 修饰符的，正如其名，它是不安全的。因为在对象超出作用域的时刻不会将其设置为 nil，如果访问该对象，就有可能 crash。
 
@@ -313,7 +359,7 @@ unsafe_unretained 修饰符是 iOS5 以下不支持 __weak 修饰符而使用来
 id __unsafe_unretained object = [[NSObject alloc]init];
 ```
 
-#### __autoreleasing 修饰符
+### __autoreleasing 修饰符
 
 对象赋值给附有 __autoreleasing 修饰符的变量等价于在 MRC 下调用对象的 autorelease 方法，即使用 __autoreleasing 修饰符的对象会被自动注册到 autoreleasepool 中，如下：
 
@@ -372,7 +418,7 @@ error = tmp;
 
 相当于在方法外面注册到 autoreleasepool中。Bingo！
 
-### 属性声明
+## 属性声明
 
 @Property 是声明属性的语法，它可以快速方便的为实例变量创建存取器，并允许我们通过点语法使用存取器。
 
@@ -405,7 +451,7 @@ m文件中会自动生成以下代码，@synthesize 声明语句和存取方法
 
 我们可以注意到 @property 中有一些关键字，它们都是有特殊作用的，比如上述代码中的 nonatomic，strong。它们分为三类，分别是：原子性，存取器控制，内存管理它就是我们说的属性声明。 先讲内存管理。
 
-#### 内存管理
+### 内存管理
 
 理解了上面的修饰符，内存管理属性声明就很好理解了，只要理清它们的对应关系。
 
@@ -434,7 +480,7 @@ weak：
 
 weak 此特质表明该属性定义了一种“非拥有关系” (nonowning relationship)。为这种属性设置新值时，设置方法既不保留新值，也不释放旧值。此特质同 assign 类似， 然而在属性所指的对象遭到摧毁时，属性值也会清空 (nil out)。 。
 
-#### 存取器控制
+### 存取器控制
 
 readwrite：
 
@@ -447,7 +493,7 @@ readwrite：
 readonly：
 只读特性，只会生成 getter 方法，不会生成 setter 方法，不希望属性在类外改变。
 
-#### 原子性
+### 原子性
 
 nonatomic：
 
@@ -457,7 +503,7 @@ atomic：
 
 原子操作，与 nonatomic 相反，系统会为 setter 方法加锁。 具体使用 @synchronized(self){//code } 。它是线程安全，需要消耗大量系统资源来为属性加锁 。（实际上并没有 atomic，只不过当没有 nonatomic 时就是 atomic，不过你要是写上去编译器也不会报错）。
 
-### 总结
+## 总结
 MRC 下内存管理的缺点： 
 
 1. 当我们要释放一个堆内存时，首先要确定指向这个堆空间的指针都被 release 了。（避免提前释放） 
@@ -469,9 +515,9 @@ MRC 下内存管理的缺点：
 
 即便有了 ARC，如果不注意使用的话，也是有可能导致内存泄露的。内存泄漏问题一直是项目开发中的一大问题，下面我们列举出几种常见的内存泄漏场景和解决方案。
 
-### 内存泄漏场景
+## 内存泄漏场景
 
-#### 两个类循环引用
+### 两个类循环引用
 
 JJMemoryObject.h:
 
@@ -510,7 +556,7 @@ JJMemoryViewController.m
 }
 ```
 
-#### delegate 循环引用问题
+### delegate 循环引用问题
 
 delegate 循环引用问题比较基础，原理和两个类循环引用一样，这里特地拿出来讲是因为 delegate 比较常用。具体可看下面的示例图。只需注意将代理属性修饰为 weak 即可。
 
@@ -526,7 +572,7 @@ delegate 循环引用问题比较基础，原理和两个类循环引用一样�
 
 weak 在这里还可以表达一种非拥有关系，即 delegate 属性并不是创建它的类所拥有的，而是实现 delegate 协议的类所拥有的。
 
-#### Block
+### Block
 
 我们从一个例子开始讲起。
 有这样一个场景：在类 JJMemoryObject 中有一个获取 data 的回调 Block：
@@ -623,8 +669,6 @@ JJMemoryObject.m
 //        _completion = nil;
     }
 }
-
-
 ```
 
 2:将强引用转换成弱引用，打破循环引用。
@@ -637,7 +681,6 @@ JJMemoryObject.m
         strongSelf->_loadData = data;
     }];
 }
-
 ```
 
 如上的代码，我们先创建一个由  __weak  修饰符修饰的局部变量，这里变量指向当前的 self。 其中的 typeof(self) 使用 typeof() 这个方法拿到 self 的类类型。（这里直接写 JJMemoryObject 也 OK）。weakSelf 的  __weak  修饰符表示变量被 block 引用之后会作为 block 的局部变量从栈中复制到堆中，ARC 会管理这个 block 中所有局部变量的内存释放问题。而  __weak 代表一种非拥有关系，weakSelf 和 _loadData 之间不会形成相互引用。
@@ -701,7 +744,7 @@ JJMemoryObject.m
 而如果具有 strongSelf，会使 B 界面所对应的 self 引用计数+1，即使 10 秒内返回 A 界面， B 界面也不会立刻释放。并且 strongSelf 属于局部变量，存在与栈中，会随着 Block 的执行而销毁。
 总之 strongSelf 就是为了保证 Block 中的事件执行正确。
 
-#### performSelector
+### performSelector
 
 performSelector 有以下的 API：
 
@@ -838,7 +881,7 @@ _object = [_object performSelector:selector withObject:number];
 
 如上面的代码，，即在方法返回对象时就可能将其持有，从而可能导致内存泄露。
 
-#### NSNotificationcenter
+### NSNotificationcenter
 
 NSNotificationcenter 其实不会有循环引用的问题，例如我们这里写：
 
@@ -890,7 +933,7 @@ NSNotificationcenter 需要注意的是解除监听的问题：
 
 viewWillDisappear 也不会调用，所以你想当然的想在 viewWillDisappear 中调用 removeObserver 也没什么卵用。所以我们必须确保 removeObserver 这个操作会真的执行。
 
-#### NSTimer
+### NSTimer
 
 在使用 NSTimer addtarget 时，为了防止 target 被释放而导致的程序异常，timer 会持有 self，所以这也是一处内存泄露的隐患。
 
@@ -1016,7 +1059,7 @@ _timer = [NSTimer jj_scheduledTimerWithTimeInterval:1 block:^{
 基于 GCD 的，并且不受 runLoop 的影响，对 target 是 weak 引用，不会引起循环引用的问题，总是在主线程调用。
 具体可以参考 [YYTimer](https://github.com/ibireme/YYKit/blob/master/YYKit/Utility/YYTimer.m>)
 
-#### 非 OC 对象内存处理
+### 非 OC 对象内存处理
 
 对于一些非 OC 对象，使用完毕后其内存仍需要我们手动释放。举个例子，比如常用的滤镜操作调节图片亮度：
 
@@ -1041,7 +1084,7 @@ CGImageRelease(ref);// 非 OC 对象需要手动内存释放
 
 在如上代码中的 CGImageRef 类型变量非 OC 对象，其需要手动执行释放操作 CGImageRelease(ref)，否则会造成大量的内存泄漏导致程序崩溃。其他的对于 CoreFoundation 框架下的某些对象或变量需要手动释放、C 语言代码中的 malloc 等需要对应 free 等都需要注意。
 
-#### 代理未清空引起野指针
+### 代理未清空引起野指针
 
 iOS 的某些 API，或者你使用一些年代比较久远的第三方库，其 delegate 声明为 assign 的，(__weak 在 iOS5 之后才出现)。这样就会引起野指针的问题，可能会引起一些莫名其妙的 crash。当一个对象被回收时，对应的 delegate 实体也就被回收，但是 delegate 的指针确没有被 nil，从而就变成了游荡的野指针了。所以在 delloc 方法中要将对应的 assign 代理设置为 nil，如：
 
@@ -1054,7 +1097,7 @@ iOS 的某些 API，或者你使用一些年代比较久远的第三方库，其
 
 ### 检测内存泄漏
 
-#### 借助 Xcode 自带的 Instruments 工具（选取真机测试）
+### 借助 Xcode 自带的 Instruments 工具（选取真机测试）
 
 ![](https://ws1.sinaimg.cn/large/006tNc79gy1fj7jq7zf43j30yg0i7wfq.jpg)
 
@@ -1068,7 +1111,7 @@ iOS 的某些 API，或者你使用一些年代比较久远的第三方库，其
 
   所以通常我都不会使用，所以具体就不展开。
 
-#### 重写 dealloc 方法
+### 重写 dealloc 方法
 
 简单暴力的重写 dealloc 方法，加入断点或打印判断某类是否正常释放。
 
@@ -1079,11 +1122,11 @@ dealloc 调用方式如下： 如果 a 持有对象 b ，b 持有 c， c 持有 
 
 因此 单纯以一个 delloc 来确定我整个类释放了是不准确的，你要保证你这个对象所有所持有的对象（系统对象应该不与考虑，即使你考虑了 系统控件／对象造成的对象你也解决不了）都执行了 delloc 方法，你才可以保证的说：没有内存泄漏了。
 
-#### 使用 微信阅读开源的 MLeaksFinder
+### 使用 微信阅读开源的 MLeaksFinder
 
 具体介绍可看 [MLeaksFinder](https://wereadteam.github.io/2016/02/22/MLeaksFinder/)
 
-#### Facebook 开源 的 FBRetainCycleDetector 。
+### Facebook 开源 的 FBRetainCycleDetector 。
 
 <https://github.com/facebook/FBRetainCycleDetector>
 
@@ -1143,7 +1186,7 @@ dealloc 调用方式如下： 如果 a 持有对象 b ，b 持有 c， c 持有 
 
 ### 使用 autoreleasepool 降低内存峰值
 
-#### 关于 autorelease
+### 关于 autorelease
 
 在前面的《内存管理-什么是ARC?》一文中，我们讲过 autorelease 这个概念。
 
@@ -1157,7 +1200,7 @@ dealloc 调用方式如下： 如果 a 持有对象 b ，b 持有 c， c 持有 
 字面上理解：自动释放。那么这个自动的时机是什么时候呢？首先，肯定不是 temp 函数调用结束的时候释放，这样 autorelease 就没有意义了。
 答案是：tmp 对象在出了作用域之后，会被添加到最近一次创建的 autoreleasepool 即自动释放池中，并会在当前的 runloop 迭代结束时释放。
 
-#### autoreleasepool
+### autoreleasepool
 
 这个 autoreleasepool 的创建方法如下：
 
@@ -1190,7 +1233,7 @@ int main(int argc, char * argv[]) {
 
 </div>
 
-#### 使用 autoreleasepool 避免内存峰值
+### 使用 autoreleasepool 避免内存峰值
 
 那么为什么在 ARC 时代还需要使用自动释放池呢？其中一个原因就是为了避免内存峰值，比如说，我有一个很大的For 循环，里面不断读入较大的文件。其实每迭代一次，资源都已经用完了（就是说我用好了，还你），不需要再用了，这个时候就可以释放了，但是自动释放池要等线程执行下一次事件循环时才会清空，所以，在这个 for 循环期间，程序所占的内存就会持续上涨，这就增大了内存的峰值。
 
@@ -1220,7 +1263,7 @@ for (int i = 0; i < 100000; i++) {
 
 每执行一次 for 循环，都会清空 for 循环中产生的临时变量，而不是等到某个事件循环时才清空，所以可以有效避免内存峰值。
 
-#### MRC 下的 autoreleasepool
+### MRC 下的 autoreleasepool
 
 MRC 下 autoreleasepool 是这么写的，权当了解一些。
 
@@ -1230,7 +1273,7 @@ NSString* str = [[[NSString alloc] initWithString:@"tutuge"] autorelease];
 [pool drain];
 ```
 
-#### autoreleasepool 的其他 tips：
+### autoreleasepool 的其他 tips：
 
 使用容器的 block 版本的枚举器时，内部会自动添加一个 AutoreleasePool：
 
@@ -1241,7 +1284,7 @@ NSString* str = [[[NSString alloc] initWithString:@"tutuge"] autorelease];
 
 ```
 
-#### autoreleasepool 的原理
+### autoreleasepool 的原理
 
 autoreleasepool 以一个队列数组的形式实现,主要通过下列三个函数完成:
 
@@ -1251,7 +1294,7 @@ autoreleasepool 以一个队列数组的形式实现,主要通过下列三个函
 
 看函数名就可以知道，对 autorelease 分别执行 push，和 pop 操作。销毁对象时执行release操作。
 
-### 图片的读取问题
+## 图片的读取问题
 
 ```
 UIImage *image1 = [UIImage imageNamed:@"smallImage"];
@@ -1273,7 +1316,6 @@ UIImage *image2 = [UIImage imageWithContentsOfFile:@"bigImage"];
 
 ```
 NSString *path =  [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"bigImage.png"];
-
 ```
 
 如果是下面这么写也是可以的，但是就没办法适配 2x 和 3x 的图片了。
@@ -1283,7 +1325,7 @@ NSString *path = [[NSBundle mainBundle]pathForResource:@"bigImage@2x" ofType:"pn
 
 ```
 
-### NSData 的读取问题
+## NSData 的读取问题
 
 取一个几十 M 的大数据文件，如果采用 NSData 的 dataWithContentsOfFile: 方法，将会耗尽 iOS 的内存。其实这个是可以改善的。
 NSData 还有一个API：
@@ -1299,10 +1341,8 @@ NSData 还有一个API：
     NSString *path = @"test";
     NSError *error = nil;
     NSData *data1 = [[NSData alloc] initWithContentsOfFile:path options:NSDataReadingMappedIfSafe error:&error];
-
 ```
 
 对于体积很大文件，使用内存映射方式读取将会减少大量内存占用。什么是文件内存映射呢？
 
 文件内存映射是指把一个文件的内容映射到进程的内存虚拟地址空间中，这个实际上并没有为文件内容分配物理内存。实际上就相当于将内存地址值指向文件的磁盘地址。如果对这些内存进行读写，实际上就是对文件在磁盘上内容进行读写。
-
