@@ -16,7 +16,7 @@
         - [理解命名规则](#理解命名规则)
     - [ARC](#arc)
         - [__strong 修饰符:](#__strong-修饰符)
-        - [__weak 修饰符:](#__weak-修饰符)
+        - [__weak 修饰符](#__weak-修饰符)
         - [__unsafe_unretained 修饰符](#__unsafe_unretained-修饰符)
         - [__autoreleasing 修饰符](#__autoreleasing-修饰符)
     - [属性声明](#属性声明)
@@ -145,7 +145,7 @@ pointerVariable 作为一个局部变量，它是栈上的一个指针变量，@
 
 首先所有的 Objective-C 对象都是分配在 heap 的。在 OC 最典型的内存分配与初始化就是这样的。
 
-```
+```objective-c
 NSObject *obj = [[NSObject alloc] init];
 ```
 
@@ -179,14 +179,14 @@ NSObject 协议声明了三个方法用于操作计数器：
 
 ### retain 和  release
 
-```
+```objective-c
 NSNumber *number = @1;//number 引用计数递增 1
 [array addObject:number];//number 引用计数递增 1
 ```
 
 对象 A 通过以 alloc，copy，mutableCopy，new 开头的方法被创建出来时，会自动执行 retain ，引用计数递增。当对象 B 引用了对象 A 时，被引用者对象 A 递增。当对象 A 的引用计数为 0 时，对象会被系统回收。
 
-```
+```objective-c
 NSMutableArray *object = [NSMutableArray array];// 计数为 0
 [object retain];// 计数为 1,注意这里需要调用 retain ，因为 object 的初始化方法为 array。而不是以 alloc，copy，mutableCopy，new 开头的方法。
 
@@ -198,7 +198,7 @@ NSNumber *number = [[NSNumber alloc]initWithInt:1];// number 计数为 1
 
 如上，如果我们不需要对象了，就对它调用 release ，然而，此时 number 的计数仍然为 1，number 对象仍然存活。为了避免不经意间使用了无效指针，调用完 release 我们可以手动清空指针。（通常都是针对局部变量）
 
-```
+```objective-c
 number = nil;
 ```
 
@@ -208,7 +208,7 @@ number = nil;
 
 设置方法将保留新值，释放旧值，然后更新变量。如下：(该例子是针对 strong 声明的属性)
 
-```
+```objective-c
 - (void)setFoo:(id)foo{
 	[foo retain];
 	[_foo release];
@@ -218,7 +218,7 @@ number = nil;
 
 ### autorelease
 
-```
+```objective-c
 - (NSString *)temp{
 	NSString *tmp = @"A";// 计数为 1
 	return tmp;
@@ -229,7 +229,7 @@ number = nil;
 
 所以这里我们使用 autorelease，它会在稍后释放对象，从而给调用者留下足够的时间，又不会因为没有释放而造成内存泄露。具体时间是当前线程的下一次时间循环。
 
-```
+```objective-c
 - (NSString *)temp{
 	NSString *tmp = @"A";// 计数为 1
 	return [tmp autorelease];
@@ -238,7 +238,7 @@ number = nil;
 
 当然，如果要持有这个 temp 对象的话，比如说设置给实例变量，那就需要 retain 操作：
 
-```
+```objective-c
 _instance = [[self temp] retain];
 /...
 [_instance release];
@@ -255,20 +255,20 @@ _instance = [[self temp] retain];
 
 例如上面说的：
 
-```
+```objective-c
 NSNumber *number = [[NSNumber alloc]initWithInt:1];// 计数为 1
 ```
 
 而像 [NSMutableArray array] 这种初始化对象的方法则不会自动 retain，我们需要自己 retain 一下：（注意，这里讨论的是 MRC 环境下）
 
-```
+```objective-c
 _object = [NSMutableArray array];
 [object retain];//
 ```
 
 如果是我们自己写的初始化方法，也是同样如此：
 
-```
+```objective-c
 //以 alloc 开头
 - (id)allocObject{
 	id object = [NSObject alloc] init];
@@ -289,7 +289,7 @@ _object = [NSMutableArray array];
 
 使用 ARC 时，创建对象必须附加所有权修饰符，一共有4种：
 
-```
+```objective-c
 __strong 修饰符
 __weak 修饰符
 __unsafe_unretained 修饰符
@@ -300,7 +300,7 @@ __autoreleasing 修饰符
 
 __strong 修饰符 id 类型和对象类型默认的所有权修饰符。
 
-```
+```objective-c
 id __strong object = [[NSObject alloc]init];
 //等价
 //id object = [[NSObject alloc]init];
@@ -308,21 +308,22 @@ id __strong object = [[NSObject alloc]init];
 
 为了理解 __strong 的作用，我们先看下 MRC 如何写的：
 
-```
+```objective-c
 id object = [[NSObject alloc]init];// alloc 会有一次 retain
 [object release];//即将离开作用域时，对其进行 release
 ```
+
 可以看出，使用 __strong 修饰符的对象会在对象离开作用域时被 release。它表示对对象的“强引用”，持有强引用的变量在超出作用域时被废弃。
 
 同时，对于使用非 alloc，copy，mutableCopy，new 开头的方法初始化的对象，ARC 会自动对其进行一次 retain 操作。就像我们前面说的 NSMutableArray array。也就是说，通过 __strong 修饰符，我们再也不用使用 retain 和 release 了。
 
 > cheers！🍻
 
-### __weak 修饰符:
+### __weak 修饰符
 
 然而，不要高兴的太早，仅仅通过 __strong 修饰符是不够的，因为对象之间可能会存在循环引用的问题。如下：
 
-```
+```objective-c
 id A = [[NSObject alloc]init];//引用计数为 1
 id B = [[NSObject alloc]init];//引用计数为 1
 [A setObject: B];B 引用计数为 2
@@ -336,16 +337,17 @@ id B = [[NSObject alloc]init];//引用计数为 1
 
 __weak 修饰符的作用就是在对象超出作用域的时刻将其设置为 nil，这样就不会有内存泄漏的问题了。
 
-```
+```objective-c
 id __weak object = [[NSObject alloc]init];
 ```
+
 既不 retain, 也不 release。但出了作用域 set nil。所以你这么写的话会看到编译器发出警告：
 
 ![](https://ws3.sinaimg.cn/large/006tNbRwgy1fggj1pmrhjj30le02hq2t.jpg)
 
 使用 __weak 修饰的对象在 setter 方法中，需要对传入的对象不进行引用计数加1的操作。简单来说，就是对传入的对象没有所有权。
 
-```
+```objective-c
 id A = [[NSObject alloc]init];//引用计数为 1
 id __weak B = [[NSObject alloc]init];//引用计数为 0
 ```
@@ -354,7 +356,7 @@ id __weak B = [[NSObject alloc]init];//引用计数为 0
 
 unsafe_unretained 修饰符是 iOS5 以下不支持 __weak 修饰符而使用来取代 __weak 修饰符的，正如其名，它是不安全的。因为在对象超出作用域的时刻不会将其设置为 nil，如果访问该对象，就有可能 crash。
 
-```
+```objective-c
 //既不 retain, 出了作用域也不 release。也不会 set nil。
 id __unsafe_unretained object = [[NSObject alloc]init];
 ```
@@ -363,28 +365,30 @@ id __unsafe_unretained object = [[NSObject alloc]init];
 
 对象赋值给附有 __autoreleasing 修饰符的变量等价于在 MRC 下调用对象的 autorelease 方法，即使用 __autoreleasing 修饰符的对象会被自动注册到 autoreleasepool 中，如下：
 
-```
+```objective-c
 @autoreleasepool {
         id __autoreleasing object = [[NSObject alloc]init];
 }
 ```
+
 当@autoreleasepool 清空时，__autoreleasing 修饰的对象会被设置为 nil。
 
 实际上，使用 __autoreleasing 修饰符修饰的对象很罕见，因为如果一个对象作为函数的返回值的话，编译器是会自动将其注册到 autoreleasepool 中的。如下：
 
-```
+```objective-c
 + (id)array{
     id object = [[NSMutableArray alloc]init];
     return object;
 }
 ```
+
 object 会被自动注册到 autoreleasepool 中。这时候使用 __autoreleasing 修饰符没有意义，这种情况下，使用 __strong 修饰符也是可以起到同样的作用的。
 
 而使用 __weak 修饰符修饰的对象也会被自动注册到 autoreleasepool 中，因为 __weak 修饰符只有对象的弱引用，在访问对象的过程中，该对象可能被废弃，所以它会自动注册到 autoreleasepool 中以防止访问带废弃的对象。
 
 那 __autoreleasing 修饰符是用来干什么的呢？通常它是用来修饰 id 的指针：id *obj，例如 AFNetworking 中的一个方法，progress 作为一个 id 指针使用了 __autoreleasing 修饰符：
 
-```
+```objective-c
 - (void)loadRequest:(NSURLRequest *)request
            progress:(NSProgress * __autoreleasing *)progress
             success:(nullable NSString * (^)(NSHTTPURLResponse *response, NSString *HTML))success
@@ -393,23 +397,23 @@ object 会被自动注册到 autoreleasepool 中。这时候使用 __autoreleasi
 
 或者我们常见的 NSError ** 指针：
 
-```
+```objective-c
 - (BOOL)performOperationWithError:(NSError *__autoreleasing *)error{
-	*error = [NSError errorWithDomain:MyAppDomain code:errorCode userInfo:nil];
-	return NO;
+    *error = [NSError errorWithDomain:MyAppDomain code:errorCode userInfo:nil];
+    return NO;
 }
 ```
 
 这种修饰符是默认的，你也可以不显式写出来。那么，问题来了，为什么对象指针就要使用 __autoreleasing 呢？ 首先，上面的方法我们是这么用的：
 
-```
+```objective-c
 NSError *error = nil;
 BOOL result = [obj performOperationWithError:&error];
 ```
 
 如上，error 对象作为一个指针传入 execute 方法中，也就是说 error 其实离开了 performOperationWithError 的作用域后仍然存在，而按照内存管理的命名方式，即我们前面讲的，使用 alloc，copy，mutableCopy，new 开头的方法可以自己生成并持有对象，其他方法并不可以。而 performOperationWithError 并不是使用 alloc，copy，mutableCopy，new 开头的，所以它不能持有对象。（命名方法并不是无所谓的，使用 alloc，copy，mutableCopy，new 开头的方法编译器才会自动帮你调用 release 方法）。因此，它必须使用 __autoreleasing 修饰符，于是，上面的代码编译器会自动处理为如下：
 
-```
+```objective-c
 NSError *error = nil;
 NSError __autoreleasing *tmp = error;
 BOOL result = [obj performOperationWithError:&tmp];
@@ -425,16 +429,16 @@ error = tmp;
 >存取器（accessor）：指用于获取和设置实例变量的方法。用于获取实例变量值的存取器是 getter，用于设置实例变量值的存取器是 setter。
 
 如下：
-```
+
+```objective-c
 @interface Car : NSObject
-
 @property(nonatomic,strong) NSString *carName;
-
 @end
+```
 
-```
 m文件中会自动生成以下代码，@synthesize 声明语句和存取方法
-```
+
+```objective-c
 @synthesize carName = _carName;//可以自己显式指定其他名称
 @implementation Car
 
@@ -486,7 +490,7 @@ readwrite：
 
 可读可写特性，需要生成 getter 方法和 setter 方法时使用。有时候为了语意更明确可能需要自定义访问器的名字：
 
-```
+```objective-c
 @property (nonatomic,getter = isHidden ) BOOL hidden;
 ```
 
@@ -521,7 +525,7 @@ MRC 下内存管理的缺点：
 
 JJMemoryObject.h:
 
-```
+```objective-c
 @class JJMemoryViewController;
 @interface JJMemoryObject : NSObject<NSCopying>
 @property (nonatomic, strong) JJMemoryViewController *vc;
@@ -530,7 +534,7 @@ JJMemoryObject.h:
 
 JJMemoryViewController.m
 
-```
+```objective-c
 #import "JJMemoryViewController.h"
 #import "JJMemoryObject.h"
 
@@ -543,13 +547,13 @@ JJMemoryViewController.m
 
 可以把其中一个 strong 修改为 weak:
 
-```
+```objective-c
 @property (nonatomic, weak) JJMemoryViewController *vc;
 ```
 
 或者在其中一个类中的 dealloc 做以下操作：
 
-```
+```objective-c
 - (void)dealloc{
     _object = nil;
     NSLog(@"JJMemoryViewController dealloc");
@@ -560,7 +564,7 @@ JJMemoryViewController.m
 
 delegate 循环引用问题比较基础，原理和两个类循环引用一样，这里特地拿出来讲是因为 delegate 比较常用。具体可看下面的示例图。只需注意将代理属性修饰为 weak 即可。
 
-```
+```objective-c
 @protocol JJMemoryObjectDelegate <NSObject>
 @end
 
@@ -579,7 +583,7 @@ weak 在这里还可以表达一种非拥有关系，即 delegate 属性并不�
 
 JJMemoryObject.h:
 
-```
+```objective-c
 typedef void(^JJMemoryObjectCompletionHandler)(NSData *data);
 @interface JJMemoryObject : NSObject<NSCopying>
 - (void)loadDataWithCompletionHandler:(JJMemoryObjectCompletionHandler)completion;
@@ -588,7 +592,7 @@ typedef void(^JJMemoryObjectCompletionHandler)(NSData *data);
 
 JJMemoryObject.m:
 
-```
+```objective-c
 #import "JJMemoryObject.h"
 @interface JJMemoryObject ()
 @property (nonatomic, copy) JJMemoryObjectCompletionHandler completion;
@@ -608,7 +612,7 @@ JJMemoryObject.m:
 
 某个类中使用网络工具类发送请求并处理回调,JJMemoryViewController.m
 
-```
+```objective-c
 @implementation JJMemoryViewController{
     JJMemoryObject *_object;
     NSData *_loadData;
@@ -627,7 +631,7 @@ JJMemoryObject.m:
 
 JJMemoryObject.m
 
-```
+```objective-c
 + (id)shareInstance{
     static dispatch_once_t onceToken;
     static JJMemoryObject *object = nil;
@@ -641,12 +645,11 @@ JJMemoryObject.m
     JJMemoryObject *object = [JJMemoryObject shareInstance];
     object.completion = completion;//_object 持有 block
 }
-
 ```
 
 JJMemoryViewController.m
 
-```
+```objective-c
 - (void)easyDownloadData{
     [JJMemoryObject easyLoadDataWithCompletionHandler:^(NSData *data) {
         _loadData = data;//block 持有 self
@@ -661,7 +664,7 @@ JJMemoryViewController.m
 
 JJMemoryObject.m
 
-```
+```objective-c
 - (void)p_requestCompleted{
     if (_completion) {
         NSData *data = nil;
@@ -673,7 +676,7 @@ JJMemoryObject.m
 
 2:将强引用转换成弱引用，打破循环引用。
 
-```
+```objective-c
 - (void)downloadData{
     __weak typeof(self) weakSelf = self;
     [_object loadDataWithCompletionHandler:^(NSData *data) {
@@ -701,7 +704,7 @@ JJMemoryObject.m
 
 我们举个例子来说明为什么 self 可能会被释放。假设 JJMemoryViewController push 到 JJTestMemoryViewController，JJTestMemoryViewController 执行 Block 如下：
 
-```
+```objective-c
 #import "JJTestMemoryViewController.h"
 @interface JJTestMemoryViewController ()
 @property (nonatomic, copy) void(^block)();
@@ -720,13 +723,12 @@ JJMemoryObject.m
     self.block();
 }
 @end
-
 ```
 
 如果 JJTestMemoryViewController 10 秒之后返回, JJMemoryViewController 界面会正常打印 weakSelf.title.
 但如果 JJTestMemoryViewController 10 秒之内返回 JJTestMemoryViewController 则会打印 null，因为 10 秒之内返回，JJTestMemoryViewController 界面执行 dealloc 销毁，内存提前销毁，JJTestMemoryViewController 界面对应的 self 不存在，因此也不可能执行关于 self 的事项。所以需要使用 strongSelf 。
 
-```
+```objective-c
 - (void)viewDidLoad{
     self.title = @"B 界面 ";
     __weak typeof(self) weakSelf = self;
@@ -738,7 +740,6 @@ JJMemoryObject.m
     };
     self.block();
 }
-
 ```
 
 而如果具有 strongSelf，会使 B 界面所对应的 self 引用计数+1，即使 10 秒内返回 A 界面， B 界面也不会立刻释放。并且 strongSelf 属于局部变量，存在与栈中，会随着 Block 的执行而销毁。
@@ -748,24 +749,22 @@ JJMemoryObject.m
 
 performSelector 有以下的 API：
 
-```
+```objective-c
 - (id)performSelector:(SEL)aSelector;
 - (id)performSelector:(SEL)aSelector withObject:(id)object;
 - (id)performSelector:(SEL)aSelector withObject:(id)object1 withObject:(id)object2;
-
 ```
 
 它的用法其实就是一个对象调用一个方法（Objective-C 中方法被定义为 SEL 类型），例如下面的两种写法是等价的：
 
-```
+```objective-c
 [object methodName];
 [object performSelector:@selector(methodName)];
-
 ```
 
 因为这两种写法是等效的关系，我们通常不会用 performSelector 来取代普通的方法调用。performSelector 的好处是可以在运行时决定调用的 SEL，同时，SEL 是由一个 NSString 初始化的，甚至，对象也可以用 NSString 初始化而成。所以，利用这种特性，我们可以做一些对象和方法的动态转发，例如下面的例子：
 
-```
+```objective-c
 - (id)performTarget:(NSString *)targetName action:(NSString *)actionName params:(NSDictionary *)params{
     NSString *targetClassString = [NSString stringWithFormat:@"Target_%@", targetName];
     NSString *actionString = [NSString stringWithFormat:@"Action_%@:", actionName];
@@ -799,7 +798,7 @@ performSelector 有以下的 API：
 
 你会发现上面的代码中有这样一个东西：
 
-```
+```objective-c
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             //XXXXX
@@ -815,19 +814,18 @@ performSelector 有以下的 API：
 
 JJMemoryObject.h
 
-```
+```objective-c
 @interface JJMemoryObject : NSObject<NSCopying>
 
 - (NSNumber *)copyOne:(NSNumber *)number;
 - (NSNumber *)addOne:(NSNumber *)number;
 
 @end
-
 ```
 
 JJMemoryObject.m
 
-```
+```objective-c
 - (NSNumber *)copyOne:(NSNumber *)number{
     NSNumber *returnNumber = [number copy];
     return returnNumber;
@@ -840,7 +838,7 @@ JJMemoryObject.m
 
 ```
 
-```
+```objective-c
 #import "JJMemoryViewController.h"
 #import "JJMemoryObject.h"
 
@@ -885,7 +883,7 @@ _object = [_object performSelector:selector withObject:number];
 
 NSNotificationcenter 其实不会有循环引用的问题，例如我们这里写：
 
-```
+```objective-c
 - (void)registNotification{
     [[NSNotificationCenter defaultCenter] addObserverForName:@"JJMemoryViewControllerNotification"
                                                       object:nil
@@ -901,7 +899,7 @@ NSNotificationcenter 其实不会有循环引用的问题，例如我们这里�
 
 只有这么写才会有循环引用的问题：
 
-```
+```objective-c
 __weak __typeof__(self) weakSelf = self;
  _observer = [[NSNotificationCenter defaultCenter] addObserverForName:@"testKey"
                                                                object:nil
@@ -915,9 +913,8 @@ __weak __typeof__(self) weakSelf = self;
 
 NSNotificationcenter 需要注意的是解除监听的问题：
 
-```
+```objective-c
 [[NSNotificationCenter defaultCenter] removeObserver:self];
-
 ```
 
 这个比较常见，如果你在 viewWillAppear 中监听了一个 NSNotificationcenter，记得在 viewWillDisappear 中调用 removeObserver。同样的，如果你在 viewDidLoad 监听了一个 NSNotificationcenter，记得在 dealloc 中调用 removeObserver。 
@@ -926,9 +923,8 @@ NSNotificationcenter 需要注意的是解除监听的问题：
 
 又或者，当你使用以下方法进行控制器的切换时：
 
-```
+```objective-c
 + (void)transitionWithView:(UIView *)view duration:(NSTimeInterval)duration options:(UIViewAnimationOptions)options animations:(void (^)(void))animations completion:(void (^)(BOOL finished))completion;
-
 ```
 
 viewWillDisappear 也不会调用，所以你想当然的想在 viewWillDisappear 中调用 removeObserver 也没什么卵用。所以我们必须确保 removeObserver 这个操作会真的执行。
@@ -939,7 +935,7 @@ viewWillDisappear 也不会调用，所以你想当然的想在 viewWillDisappea
 
 看下面的例子：
 
-```
+```objective-c
 @implementation JJMemoryViewController{
     NSTimer *_timer;
 }
@@ -958,17 +954,15 @@ viewWillDisappear 也不会调用，所以你想当然的想在 viewWillDisappea
     NSLog(@"\n A 界面");
 }
 @end
-
 ```
 
 上面代码的引用关系为 self 强引用 _timer,  _timer 强引用 self（其中的 selector）。所以会造成内存泄漏，为了防止内存泄漏，我们在 可能会想到在 delloc 方法中调用 cleanTimer。
 
-```
+```objective-c
 - (void)dealloc{
-	[_timer invalidate];
+    [_timer invalidate];
     NSLog(@"JJMemoryViewController dealloc");
 }
-
 ```
 
 然而这并没有什么作用，因为 _timer 对象并没有正常释放，所以 delloc 无法执行，定时器仍然在无限的执行下去。当前类销毁执行 dealloc 的前提是定时器需要停止并滞空，而定时器停止并滞空的时机在当前类调用 dealloc 方法时，这样就造成了互相等待的场景，从而内存一直无法释放。
@@ -977,11 +971,10 @@ viewWillDisappear 也不会调用，所以你想当然的想在 viewWillDisappea
 
 如果将 _timer 设置为 weak 可以解决吗？
 
-```
+```objective-c
 @implementation JJMemoryViewController{
     NSTimer __weak *_timer;
 }
-
 ```
 
 不可以。因为这个 _timer 实际上是由 RunLoop 持有的，我们上面说的 “self 强引用 _timer,  _timer 强引用 self” 并不准确。所以将 _timer 设置为 weak 并不能解决问题。
@@ -999,28 +992,26 @@ viewWillDisappear 也不会调用，所以你想当然的想在 viewWillDisappea
 
 方案1: 可以在 `viewDidDisappear` 或 `viewWillDisappear` 做如下操作：
 
-```
+```objective-c
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_timer invalidate];
 }
-
 ```
 
 或者 cleanTimer 方法外漏，在外部调用。
 
-```
+```objective-c
 - (void)cleanTime{
     [_timer invalidate];
 }
-
 ```
 
 可是并不是特别优雅，要是其他开发者忘记调用 cleanTimer，或者 `viewDidDisappear` 或 `viewWillDisappear` 没有被正确调用到， 这个类就会一直存在内存泄漏，然后定时器也不会停止。
 
 方案2: 将 _timer 对 selector 的强引用转移到 block:
 
-```
+```objective-c
 + (NSTimer *)jj_scheduledTimerWithTimeInterval:(NSTimeInterval)inTimeInterval block:(void (^)())inBlock repeats:(BOOL)inRepeats{
     void (^block)() = [inBlock copy];
     NSTimer * timer = [self scheduledTimerWithTimeInterval:inTimeInterval target:self selector:@selector(__executeTimerBlock:) userInfo:block repeats:inRepeats];
@@ -1039,17 +1030,15 @@ viewWillDisappear 也不会调用，所以你想当然的想在 viewWillDisappea
         block();
     }
 }
-
 ```
 
 调用：
 
-```
+```objective-c
 _timer = [NSTimer jj_scheduledTimerWithTimeInterval:1 block:^{
         NSLog(@"\n A 界面");
     } repeats:YES];
 [_timer fire];
-
 ```
 
 这样的话 _timer 和 self 之间就没有了强引用，（因为没有 targer 了，targer 被转移到 NSTimer 身上了）问题解决。对 block 执行 copy 是因为防止等下执行的时候，block 无效了。
@@ -1063,7 +1052,7 @@ _timer = [NSTimer jj_scheduledTimerWithTimeInterval:1 block:^{
 
 对于一些非 OC 对象，使用完毕后其内存仍需要我们手动释放。举个例子，比如常用的滤镜操作调节图片亮度：
 
-```
+```objective-c
 CIImage *beginImage = [[CIImage alloc]initWithImage:[UIImage imageNamed:@"yourname.jpg"]];
 CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"];
 [filter setValue:beginImage forKey:kCIInputImageKey];
@@ -1079,7 +1068,6 @@ CGImageRef ref = [context createCGImage:outputImage fromRect:outputImage.extent]
 UIImage *endImg = [UIImage imageWithCGImage:ref];
 _imageView.image = endImg;
 CGImageRelease(ref);// 非 OC 对象需要手动内存释放
-
 ```
 
 在如上代码中的 CGImageRef 类型变量非 OC 对象，其需要手动执行释放操作 CGImageRelease(ref)，否则会造成大量的内存泄漏导致程序崩溃。其他的对于 CoreFoundation 框架下的某些对象或变量需要手动释放、C 语言代码中的 malloc 等需要对应 free 等都需要注意。
@@ -1092,7 +1080,6 @@ iOS 的某些 API，或者你使用一些年代比较久远的第三方库，其
 - (void)dealloc{
 	self.XXX.delegate = nil;
 }
-
 ```
 
 ### 检测内存泄漏
@@ -1130,13 +1117,9 @@ dealloc 调用方式如下： 如果 a 持有对象 b ，b 持有 c， c 持有 
 
 <https://github.com/facebook/FBRetainCycleDetector>
 
-
-
 前面的文章讲述了 ARC 以及 ARC 下内存泄漏问题，通常呢，前面讲到的那些点都做到了，一般不会有什么内存泄漏的问题。
 
 不过，另外一个问题是，没有内存泄漏问题了，那内存占用过多如何解决和避免呢？要知道，如果 App 占用了系统过多的使用内存，系统会根据情况把 App 直接 kill，所以，内存占用问题也是一个需要关心的点。下面我们总结一些内存优化的小技巧。
-
-<!--more-->
 
 ### 留意内存警告
 
@@ -1148,7 +1131,7 @@ dealloc 调用方式如下： 如果 a 持有对象 b ，b 持有 c， c 持有 
 
 不过，当收到内存警告的时候：我们还是应该释放一些资源，尤其是图片等占用内存多的资源，等需要的时候再进行重建。不过，你要确保释放的资源必须对当前类没有造成太大的影响。例如，你可以使用 Lazy Allocation（懒加载）模式调用对象，这样我们把对象直接 set nil 即可。
 
-```
+```objective-c
 - (void)didReceiveMemoryWarning{
     self.imageArray = nil;
 }
@@ -1165,7 +1148,7 @@ dealloc 调用方式如下： 如果 a 持有对象 b ，b 持有 c， c 持有 
 
 例如，我们看 SDImageCache 在收到内存警告时的处理 ，它也会把对象清除掉。下次从网络或文件中读取即可。
 
-```
+```objective-c
 @interface AutoPurgeCache : NSCache
 @end
 
@@ -1190,7 +1173,7 @@ dealloc 调用方式如下： 如果 a 持有对象 b ，b 持有 c， c 持有 
 
 在前面的《内存管理-什么是ARC?》一文中，我们讲过 autorelease 这个概念。
 
-```
+```objective-c
 - (NSString *)temp{
 	NSString *tmp = @"A";// 计数为 1
 	return [tmp autorelease];
@@ -1204,7 +1187,7 @@ dealloc 调用方式如下： 如果 a 持有对象 b ，b 持有 c， c 持有 
 
 这个 autoreleasepool 的创建方法如下：
 
-```
+```objective-c
 @autoreleasepool{
 	//注意，可以嵌套使用。
 }
@@ -1214,7 +1197,7 @@ dealloc 调用方式如下： 如果 a 持有对象 b ，b 持有 c， c 持有 
 
 我们知道 main.m 中有一个 autoreleasepool ，那么 tmp 对象是被放到这个自动释放池吗？
 
-```
+```objective-c
 int main(int argc, char * argv[]) {
 @autoreleasepool {
     return UIApplicationMain(argc, argv, nil∂ç
@@ -1239,7 +1222,7 @@ int main(int argc, char * argv[]) {
 
 例如下面这个例子，每次 for 循环产生临时变量，占用的内存空间是十分可观的：
 
-```
+```objective-c
 for (int i = 0; i < 100000; i++) {
     NSNumber *num = [NSNumber numberWithInt:i];
     NSString *str = [NSString stringWithFormat:@"%d ", i];
@@ -1250,7 +1233,7 @@ for (int i = 0; i < 100000; i++) {
 
 所以我们可以通过下面这种方案来解决：
 
-```
+```objective-c
 for (int i = 0; i < 100000; i++) {
     @autoreleasepool {
         NSNumber *num = [NSNumber numberWithInt:i];
@@ -1267,7 +1250,7 @@ for (int i = 0; i < 100000; i++) {
 
 MRC 下 autoreleasepool 是这么写的，权当了解一些。
 
-```
+```objective-c
 NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 NSString* str = [[[NSString alloc] initWithString:@"tutuge"] autorelease];
 [pool drain];
@@ -1277,7 +1260,7 @@ NSString* str = [[[NSString alloc] initWithString:@"tutuge"] autorelease];
 
 使用容器的 block 版本的枚举器时，内部会自动添加一个 AutoreleasePool：
 
-```
+```objective-c
 [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     // 这里被一个局部 autoreleasepool包围着
 }];
@@ -1296,11 +1279,10 @@ autoreleasepool 以一个队列数组的形式实现,主要通过下列三个函
 
 ## 图片的读取问题
 
-```
+```objective-c
 UIImage *image1 = [UIImage imageNamed:@"smallImage"];
 NSString *path =  [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"bigImage.png"];
 UIImage *image2 = [UIImage imageWithContentsOfFile:@"bigImage"];
-
 ```
 
 上面这两种写法有什么区别吗？[UIImage imageNamed:] 只适合与 UI 界面中小的贴图的读取，而一些比较大的资源文件应该尽量避免使用这个接口。直接读取文件路径 [UIImage imageWithContentsOfFile] 来解决图片的读取问题
@@ -1314,15 +1296,14 @@ UIImage *image2 = [UIImage imageWithContentsOfFile:@"bigImage"];
 
 留意下获取 path 的方法:
 
-```
+```objective-c
 NSString *path =  [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"bigImage.png"];
 ```
 
 如果是下面这么写也是可以的，但是就没办法适配 2x 和 3x 的图片了。
 
-```
+```objective-c
 NSString *path = [[NSBundle mainBundle]pathForResource:@"bigImage@2x" ofType:"png"];
-
 ```
 
 ## NSData 的读取问题
@@ -1330,14 +1311,13 @@ NSString *path = [[NSBundle mainBundle]pathForResource:@"bigImage@2x" ofType:"pn
 取一个几十 M 的大数据文件，如果采用 NSData 的 dataWithContentsOfFile: 方法，将会耗尽 iOS 的内存。其实这个是可以改善的。
 NSData 还有一个API：
 
-```
+```objective-c
 + (id)dataWithContentsOfFile:(NSString *)path options:(NSDataReadingOptions)readOptionsMask error:(NSError **)errorPtr;
-
 ```
 
 其中 NSDataReadingOptions 可以附加一个参数 NSDataReadingMappedIfSafe 参数。使用这个参数后，iOS 就不会把整个文件全部读取的内存了，而是将文件映射到进程的地址空间中，这么做并不会占用实际内存。这样就可以解决内存满的问题。
 
-```
+```objective-c
     NSString *path = @"test";
     NSError *error = nil;
     NSData *data1 = [[NSData alloc] initWithContentsOfFile:path options:NSDataReadingMappedIfSafe error:&error];
