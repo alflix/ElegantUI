@@ -5,14 +5,32 @@ a guide of iOS that cover form beginning to advance content
 ## UIKit
 
 - [UITabBarController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UITabBar/Tabbar.md)
+
 - [UINavigationController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/Navigation.md)
+
 - UIViewController
+
 - UIScrollowView
+
 - UITableView
+
 - UICollectionView
+
 - UIPageView
+
 - UIView
-          - UIStatusBar
+
+     - UIButton
+     - UIImageView
+
+        - UIStatusBar
+        - LineView
+
+- NSAttributedString
+
+- UIColor
+
+- 
 
 ## Foundation
 
@@ -21,4 +39,6 @@ a guide of iOS that cover form beginning to advance content
 - [NSNotification](https://github.com/alflix/awesome-ios/blob/master/Foundation/NSNotification/NSNotification.md)
 - [Delegate](https://github.com/alflix/awesome-ios/blob/master/Foundation/Delegate/Delegate.md)
 - [Block](https://github.com/alflix/awesome-ios/blob/master/Foundation/Block/Block.md)
+- Date
+- 
 
