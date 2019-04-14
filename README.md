@@ -30,6 +30,8 @@ a guide of iOS that cover form beginning to advance content
 
 - UIColor
 
+- UIStackView
+
 ## Foundation
 
 - [Memory Management](https://github.com/alflix/awesome-ios/blob/master/Foundation/Memory%20Management/Memory%20Management.md)
