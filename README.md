@@ -22,9 +22,9 @@ a guide of iOS that cover form beginning to advance content
 
      - UIButton
      - UIImageView
-
         - UIStatusBar
         - LineView
+- UIVisualEffectView
 
 - NSAttributedString
 
