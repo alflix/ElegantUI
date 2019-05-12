@@ -5,19 +5,12 @@ a guide of iOS that cover form beginning to advance content
 ## UIKit
 
 - [UITabBarController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UITabBar/Tabbar.md)
-
 - [UINavigationController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/Navigation.md)
-
 - [UIViewController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UIViewController/UIViewController.md)
-
 - UIScrollowView
-
 - UITableView
-
 - UICollectionView
-
 - UIPageView
-
 - UIView
 
      - UIButton
@@ -25,14 +18,11 @@ a guide of iOS that cover form beginning to advance content
         - UIStatusBar
         - LineView
 - UIVisualEffectView
-
 - NSAttributedString
-
 - UIColor
-
 - UIStackView
-
 - WebView
+- [AutoLayout](<https://github.com/alflix/awesome-ios/blob/master/UIKit/AutoLayout/AutoLayout.md>)
 
 ## Foundation
 
