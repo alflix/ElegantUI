@@ -32,5 +32,5 @@ a guide of iOS that cover form beginning to advance content
 - [Delegate](https://github.com/alflix/awesome-ios/blob/master/Foundation/Delegate/Delegate.md)
 - [Block](https://github.com/alflix/awesome-ios/blob/master/Foundation/Block/Block.md)
 - Date
-- 范型
-- IAP
+- 范型.md)
+- [IAP](https://github.com/alflix/awesome-ios/blob/master/Foundation/IAP/IAP.md)
