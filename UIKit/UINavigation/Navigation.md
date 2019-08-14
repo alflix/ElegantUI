@@ -596,33 +596,28 @@ UIBarBackground 是私有属性，可以通过 `let barBackgroundView = subviews
 但是这两个属性设置之后都会影响自带的模糊效果，经实践，改变 UIVisualEffectView 是最好的选择，不会影响模糊效果。最后 setBackground 的实现如下：
 
 ```swift
-extension UINavigationBar {
-    /// 改变背景 alpha
-    func setBackground(alpha: CGFloat) {
-        if let barBackgroundView = subviews.first {
-            let valueForKey = barBackgroundView.value(forKey:)
-            if let shadowView = valueForKey("_shadowView") as? UIView {
-                shadowView.alpha = alpha
-                shadowView.isHidden = alpha == 0
-            }
-            if isTranslucent {
-                if #available(iOS 10.0, *) {
-                    if let backgroundEffectView = valueForKey("_backgroundEffectView") as? UIView,
-                        backgroundImage(for: .default) == nil {
-                        backgroundEffectView.alpha = alpha
-                        return
-                    }
-                } else {
-                    if let adaptiveBackdrop = valueForKey("_adaptiveBackdrop") as? UIView,
-                        let backdropEffectView = adaptiveBackdrop.value(forKey: "_backdropEffectView") as? UIView {
-                        backdropEffectView.alpha = alpha
-                        return
-                    }
-                }
-            }
-            barBackgroundView.alpha = alpha
+func setBackground(alpha: CGFloat) {
+    guard let barBackgroundView = subviews.first else { return }
+    let valueForKey = barBackgroundView.value(forKey:)
+    /// MARK: 尝试过修改 _backgroundImageView，效果不好，修改 alpha 无效，修改 isHidden 会导致 push/pop 的时候出问题
+    /// MARK: 因为直接修改 barBackgroundView 会影响毛玻璃效果
+    if !isTranslucent {
+        barBackgroundView.alpha = alpha
+        return
+    }        
+    if #available(iOS 10.0, *) {
+        if let backgroundEffectView = valueForKey("_backgroundEffectView") as? UIView,
+            backgroundImage(for: .default) == nil {
+            backgroundEffectView.alpha = alpha
+            return
         }
-    }
+    } else {
+        if let adaptiveBackdrop = valueForKey("_adaptiveBackdrop") as? UIView,
+            let backdropEffectView = adaptiveBackdrop.value(forKey: "_backdropEffectView") as? UIView {
+            backdropEffectView.alpha = alpha
+            return
+        }
+    }                
 }
 ```
 
