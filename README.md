@@ -1,6 +1,6 @@
 # awesome-ios
 
-a guide of iOS that cover form beginning to advance content
+a guide of iOS that cover form beginning to advance contents
 
 ## UIKit
 
