@@ -1,0 +1,26 @@
+//
+//  Localize.strings
+//  GGUI
+//
+//  Created by John on 2018/10/25.
+//  Copyright © 2018年 Ganguo. All rights reserved.
+//
+
+systemMap = "地图";
+googleMap = "Google 地图";
+gaodeMap = "高德地图";
+baiduMap = "百度地图";
+tencentMap = "腾讯地图";
+mylocation = "我的位置";
+cancel = "取消";
+done = "完成";
+
+pullDownToRefresh = "下拉可以刷新";
+releaseToRefresh = "松开立即刷新";
+refreshSuccess = "刷新成功";
+refreshFailure = "刷新失败";
+refreshing = "正在刷新数据中...";
+pullUpToRefresh = "上拉加载更多数据";
+noMoreData = "数据加载完毕";
+tapToRefresh = "点击加载更多";
+scrollAndTapToRefresh = "上拉或点击加载更多";

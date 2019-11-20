@@ -1,36 +1,50 @@
-# awesome-ios
+<img src="./Doc/logo.png">
 
-a guide of iOS that cover form beginning to advance contents
+[![Version](https://img.shields.io/cocoapods/v/GGUI.svg?style=flat)](http://cocoapods.org/pods/GGUI)
+[![License](https://img.shields.io/cocoapods/l/GGUI.svg?style=flat)](http://cocoapods.org/pods/GGUI)
+[![Platform](https://img.shields.io/cocoapods/p/GGUI.svg?style=flat)](http://cocoapods.org/pods/GGUI)
+![Swift](https://img.shields.io/badge/%20in-swift%205.0-orange.svg)
 
-## UIKit
+## Written in Swift 5.1
 
-- [UITabBarController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UITabBar/Tabbar.md)
-- [UINavigationController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UINavigation/Navigation.md)
-- [UIViewController](https://github.com/alflix/awesome-ios/blob/master/UIKit/UIViewController/UIViewController.md)
-- UIScrollowView
-- UITableView
-- UICollectionView
-- UIPageView
-- UIView
+GGUI enables application to use WKWebView easily, in UIViewController or UITableViewCell.
 
-     - UIButton
-     - UIImageView
-        - UIStatusBar
-        - LineView
-- UIVisualEffectView
-- NSAttributedString
-- UIColor
-- UIStackView
-- WebView
-- [AutoLayout](<https://github.com/alflix/awesome-ios/blob/master/UIKit/AutoLayout/AutoLayout.md>)
+## Features
 
-## Foundation
 
-- [Memory Management](https://github.com/alflix/awesome-ios/blob/master/Foundation/Memory%20Management/Memory%20Management.md)
-- [KVC&KVO](https://github.com/alflix/awesome-ios/blob/master/Foundation/KVC&KVO/KVC&KVO.md)
-- [NSNotification](https://github.com/alflix/awesome-ios/blob/master/Foundation/NSNotification/NSNotification.md)
-- [Delegate](https://github.com/alflix/awesome-ios/blob/master/Foundation/Delegate/Delegate.md)
-- [Block](https://github.com/alflix/awesome-ios/blob/master/Foundation/Block/Block.md)
-- Date
-- 泛型
-- [IAP](https://github.com/alflix/awesome-ios/blob/master/Foundation/IAP/IAP.md)
+## Installation 
+
+### Requirements 
+
+- Swift 4.2 ( Swift 4.2 -> use 'version 1.0.0' )
+- iOS 8.0 (for use WKWebView)
+
+### Cocoapods
+
+GGUI is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+
+```ruby
+platform :ios, '8.0'
+pod "GGUI"
+```
+
+> If you want to load http, Don't forget the Privacy Description in `info.plist`.
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
+```
+
+## Usage 
+
+
+## Author
+
+Does your organization or project use GGUI? Please let me know by email. John, jieyuanz24k@gmail.com
+
+## License 
+
+GGUI is available under the MIT license.
