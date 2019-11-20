@@ -1,5 +1,5 @@
 //
-//  Date+.swift
+//  Date+Formatter.swift
 //  GGUI
 //
 //  Created by John on 2019/4/9.

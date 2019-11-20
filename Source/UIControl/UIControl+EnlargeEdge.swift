@@ -11,13 +11,13 @@ import Foundation
 
 public extension UIControl {
     fileprivate struct AssociatedKeys {
-        static var topKey: String = "com.ganguo.button.topKey"
-        static var bottomKey: String = "com.ganguo.button.bottomKey"
-        static var leftKey: String = "com.ganguo.button.leftKey"
-        static var rightKey: String = "com.ganguo.button.rightKey"
+        static var topKey: String = "com.button.topKey"
+        static var bottomKey: String = "com.button.bottomKey"
+        static var leftKey: String = "com.button.leftKey"
+        static var rightKey: String = "com.button.rightKey"
     }
 
-    var largeTop: NSNumber {
+    @IBInspectable var largeTop: NSNumber {
         get {
             if let value = associatedObject(forKey: &AssociatedKeys.topKey) as? NSNumber { return value }
             return 0
@@ -27,7 +27,7 @@ public extension UIControl {
         }
     }
 
-    var largeBottom: NSNumber {
+    @IBInspectable var largeBottom: NSNumber {
         get {
             if let value = associatedObject(forKey: &AssociatedKeys.bottomKey) as? NSNumber { return value }
             return 0
@@ -37,7 +37,7 @@ public extension UIControl {
         }
     }
 
-    var largeLeft: NSNumber {
+    @IBInspectable var largeLeft: NSNumber {
         get {
             if let value = associatedObject(forKey: &AssociatedKeys.leftKey) as? NSNumber { return value }
             return 0
@@ -47,7 +47,7 @@ public extension UIControl {
         }
     }
 
-    var largeRight: NSNumber {
+    @IBInspectable var largeRight: NSNumber {
         get {
             if let value = associatedObject(forKey: &AssociatedKeys.rightKey) as? NSNumber { return value }
             return 0

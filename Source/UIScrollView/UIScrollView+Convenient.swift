@@ -1,5 +1,5 @@
 //
-//  UIScrollView+Addition.swift
+//  UIScrollView+Convenient.swift
 //  GGUI
 //
 //  Created by John on 2019/7/19.

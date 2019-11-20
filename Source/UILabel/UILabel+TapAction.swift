@@ -1,5 +1,5 @@
 //
-//  UILabel+Extension.swift
+//  UILabel+TapAction.swift
 //  GGUI
 //
 //  Created by John on 2019/2/18.

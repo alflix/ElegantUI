@@ -1,5 +1,5 @@
 //
-//  UITableView+.swift
+//  UITableView+Convenient.swift
 //  GGUI
 //
 //  Created by John on 2018/11/20.

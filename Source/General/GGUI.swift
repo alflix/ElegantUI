@@ -40,7 +40,7 @@ public struct Config {
     }
 
     /// 对 Label 设置上下左右边距的 UILabel 的默认值
-    public enum InsetLabelConfig {
+    public enum InsetLabel {
         public static var defaultInset: CGFloat = 16
     }
 

@@ -12,12 +12,12 @@ import UIKit
 @IBDesignable
 open class CustomButton: UIButton {
     /// 置灰时的 alpha
-    open var disableAlpha: CGFloat = GGUI.Config.CustomButton.disableAlpha
+    @IBInspectable open var disableAlpha: CGFloat = Config.CustomButton.disableAlpha {
+        didSet { layoutSubviews() }
+    }
     /// 文字的行数
-    @IBInspectable open dynamic var numberOfLines: Int = 1 {
-        didSet {
-            self.titleLabel?.numberOfLines = numberOfLines
-        }
+    @IBInspectable open var numberOfLines: Int = 1 {
+        didSet { layoutSubviews() }
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -28,9 +28,16 @@ open class CustomButton: UIButton {
         super.init(frame: frame)
     }
 
-    override open dynamic var isEnabled: Bool {
+    override open var isEnabled: Bool {
         didSet {
-            alpha = isEnabled ? 1.0 : disableAlpha
+            super.isEnabled = isEnabled
+            layoutSubviews()
         }
+    }
+
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        alpha = isEnabled ? 1.0 : disableAlpha
+        titleLabel?.numberOfLines = numberOfLines
     }
 }

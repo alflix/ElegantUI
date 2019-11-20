@@ -1,5 +1,5 @@
 //
-//  UIViewController+.swift
+//  UIViewController+Find.swift
 //  GGUI
 //
 //  Created by John on 2018/12/29.
@@ -49,32 +49,6 @@ public extension UIViewController {
         return tabBarController
     }
 
-    /// 检查是否是 present 出来的
-    var isModal: Bool {
-        let presentingIsModal = presentingViewController != nil
-        let presentingIsNavigation = navigationController?.presentingViewController?.presentedViewController == navigationController
-        let presentingIsTabBar = tabBarController?.presentingViewController is UITabBarController
-        return presentingIsModal || presentingIsNavigation || presentingIsTabBar
-    }
-
-    /// dismiss/popToRootViewController 取决于是否是 present 出来的
-    func popToRootOrDismiss() {
-        if isModal {
-            dismiss(animated: true, completion: nil)
-        } else {
-            navigationController?.popToRootViewController(animated: true)
-        }
-    }
-
-    /// dismiss/popToRootViewController 取决于是否是 present 出来的
-    @objc func popBackOrDismiss() {
-        if isModal {
-            dismiss(animated: true, completion: nil)
-        } else {
-            navigationController?.popViewController(animated: true)
-        }
-    }
-
     /// 寻找目标控制器（需要从前往后找，rootViewController 或 navigationController）
     ///
     /// - Parameter name: 控制器名称
@@ -92,14 +66,6 @@ public extension UIViewController {
         return targetViewController
     }
 
-    /// 全屏 present 方法（以兼容 iOS 13）
-    func fullPresent(_ viewControllerToPresent: UIViewController) {
-        viewControllerToPresent.modalPresentationStyle = .fullScreen
-        present(viewControllerToPresent, animated: true, completion: nil)
-    }
-}
-
-extension UIViewController {
     /// 寻找当前 presented 的 UINavigationController 控制器
     var presentedNavigationController: UINavigationController? {
         let target = presentedViewController

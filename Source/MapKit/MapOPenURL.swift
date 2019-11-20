@@ -26,7 +26,11 @@ public extension UIApplication {
         let phoneScheme = "tel:\(number)"
         guard let url = URL(string: phoneScheme) else { return }
         guard UIApplication.shared.canOpenURL(url) else { return }
-        UIApplication.shared.open(url, options: [:]) { (_) in }
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:]) { (_) in }
+        } else {
+            UIApplication.shared.openURL(url)
+        }
     }
 
     /// 显示 actionSheet 的 AlertController 打开地图 app，支持 系统地图，Google 地图，高德地图，百度地图，腾讯地图
@@ -46,7 +50,11 @@ public extension UIApplication {
             var allowedCharacters = CharacterSet.alphanumerics
             allowedCharacters.insert(charactersIn: ".:/,&?=")
             if let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: allowedCharacters), let openURL = URL(string: encodedUrl) {
-                UIApplication.shared.open(openURL, options: [:], completionHandler: nil)
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(openURL, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(openURL)
+                }
             }
         }
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

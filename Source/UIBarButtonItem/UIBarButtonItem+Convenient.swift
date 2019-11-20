@@ -1,6 +1,6 @@
 //
-//  UIBarButtonItem+Extension.swift
-//  Matters
+//  UIBarButtonItem+Convenient.swift
+//  GGUI
 //
 //  Created by John on 2018/11/22.
 //  Copyright © 2018 Ganguo. All rights reserved.

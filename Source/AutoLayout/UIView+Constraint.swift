@@ -19,9 +19,8 @@ public extension UIView {
         get {
             if let value = objc_getAssociatedObject(self, &topConstraintKey) as? NSLayoutConstraint {
                 return value
-            } else {
-                return nil
             }
+            return nil
         }
         set {
             topConstraint?.isActive = false
@@ -36,9 +35,8 @@ public extension UIView {
         get {
             if let value = objc_getAssociatedObject(self, &bottomConstraintKey) as? NSLayoutConstraint {
                 return value
-            } else {
-                return nil
             }
+            return nil
         }
         set {
             bottomConstraint?.isActive = false
@@ -53,9 +51,8 @@ public extension UIView {
         get {
             if let value = objc_getAssociatedObject(self, &leadingConstraintKey) as? NSLayoutConstraint {
                 return value
-            } else {
-                return nil
             }
+            return nil
         }
         set {
             leadingConstraint?.isActive = false
@@ -70,9 +67,8 @@ public extension UIView {
         get {
             if let value = objc_getAssociatedObject(self, &trailingConstraintKey) as? NSLayoutConstraint {
                 return value
-            } else {
-                return nil
             }
+            return nil
         }
         set {
             trailingConstraint?.isActive = false
@@ -87,9 +83,8 @@ public extension UIView {
         get {
             if let value = objc_getAssociatedObject(self, &widthConstraintKey) as? NSLayoutConstraint {
                 return value
-            } else {
-                return nil
             }
+            return nil
         }
         set {
             widthConstraint?.isActive = false
@@ -104,9 +99,8 @@ public extension UIView {
         get {
             if let value = objc_getAssociatedObject(self, &heightConstraintKey) as? NSLayoutConstraint {
                 return value
-            } else {
-                return nil
             }
+            return nil
         }
         set {
             heightConstraint?.isActive = false

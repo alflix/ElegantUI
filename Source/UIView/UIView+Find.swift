@@ -1,5 +1,5 @@
 //
-//  UIView+Extension.swift
+//  UIView+Find.swift
 //  GGUI
 //
 //  Created by John on 2019/7/25.
@@ -30,13 +30,11 @@ public extension UIView {
         for view in subviews {
             if view.isKind(of: NSClassFromString(name)!) {
                 return view
-                break
             }
         }
         for view in subviews {
             if let tempView = view.recursiveFindSubview(of: name) {
                 return tempView
-                break
             }
         }
         return nil
@@ -66,16 +64,5 @@ public extension UIView {
         }
         getSubview(view: self)
         return all
-    }
-
-    /// removeFromSuperview 之前增加 superview == nil 的判断
-    func safeRemoveFromSuperview() {
-        if superview == nil { return }
-        removeFromSuperview()
-    }
-
-    public convenience init(backgroundColor: UIColor?) {
-        self.init()
-        self.backgroundColor = backgroundColor
     }
 }

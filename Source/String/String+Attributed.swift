@@ -16,8 +16,8 @@ public extension String {
     ///   - font: 字体 默认 .systemFont(ofSize: 14)
     ///   - color: 文字颜色，默认 .black
     /// - Returns: NSAttributedString
-    func attributedString(font: UIFont = GGUI.Config.AttributedString.defaultFont,
-                          color: UIColor = GGUI.Config.AttributedString.defaultColor) -> NSAttributedString {
+    func attributedString(font: UIFont = Config.AttributedString.defaultFont,
+                          color: UIColor = Config.AttributedString.defaultColor) -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: color, .font: font]
         let attributedString = NSAttributedString(string: self, attributes: attributes)
         return attributedString
@@ -34,8 +34,8 @@ public extension String {
     ///   - baselineOffset: 基准线 offset，默认不设置
     ///   - addition: 一个包含 NSMutableAttributedString 的 Block，可以设置额外的 Attributed 属性
     /// - Returns: NSAttributedString
-    func attributedString(font: UIFont = GGUI.Config.AttributedString.defaultFont,
-                          color: UIColor = GGUI.Config.AttributedString.defaultColor,
+    func attributedString(font: UIFont = Config.AttributedString.defaultFont,
+                          color: UIColor = Config.AttributedString.defaultColor,
                           lineSpacing: CGFloat? = nil,
                           alignment: NSTextAlignment = .left,
                           minimumLineHeight: CGFloat = 0,
@@ -68,10 +68,10 @@ public extension String {
     ///   - addition: 一个包含 NSMutableAttributedString 的 Block，可以设置额外的 Attributed 属性
     /// - Returns: NSAttributedString
     func attributedString(highlight: [String]? = [],
-                          font: UIFont = GGUI.Config.AttributedString.defaultFont,
+                          font: UIFont = Config.AttributedString.defaultFont,
                           highlightFont: UIFont? = nil,
-                          color: UIColor = GGUI.Config.AttributedString.defaultColor,
-                          highlightColor: UIColor = GGUI.Config.AttributedString.defaultColor,
+                          color: UIColor = Config.AttributedString.defaultColor,
+                          highlightColor: UIColor = Config.AttributedString.defaultColor,
                           lineSpacing: CGFloat? = nil,
                           alignment: NSTextAlignment = .left,
                           minimumLineHeight: CGFloat = 0,
@@ -121,10 +121,10 @@ public extension String {
     ///   - addition: 一个包含 NSMutableAttributedString 的 Block，可以设置额外的 Attributed 属性
     /// - Returns: NSAttributedString
     func attributedString(highlightRange: [NSRange]? = [],
-                          font: UIFont = GGUI.Config.AttributedString.defaultFont,
+                          font: UIFont = Config.AttributedString.defaultFont,
                           highlightFont: UIFont? = nil,
-                          color: UIColor = GGUI.Config.AttributedString.defaultColor,
-                          highlightColor: UIColor = GGUI.Config.AttributedString.defaultColor,
+                          color: UIColor = Config.AttributedString.defaultColor,
+                          highlightColor: UIColor = Config.AttributedString.defaultColor,
                           lineSpacing: CGFloat? = nil,
                           alignment: NSTextAlignment = .left,
                           minimumLineHeight: CGFloat = 0,

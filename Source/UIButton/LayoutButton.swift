@@ -53,15 +53,11 @@ public enum TitleImageDirection: Int {
 open class LayoutButton: UIButton {
     /// 图片和文字的间距，默认为8
     @IBInspectable public var imageTitleSpace: CGFloat = 8 {
-        didSet {
-            layoutSubviews()
-        }
+        didSet { layoutSubviews() }
     }
 
     @IBInspectable public var titleHeight: CGFloat = 12 {
-        didSet {
-            layoutSubviews()
-        }
+        didSet { layoutSubviews() }
     }
 
     /// 图片相对文字的位置，默认为左
@@ -75,9 +71,7 @@ open class LayoutButton: UIButton {
     }
 
     public var imageDirection: TitleImageDirection = .left {
-        didSet {
-            layoutSubviews()
-        }
+        didSet { layoutSubviews() }
     }
 
     required public init?(coder aDecoder: NSCoder) {

@@ -1,5 +1,5 @@
 //
-//  UISearchBar+.swift
+//  UISearchBar+Convenient.swift
 //  GGUI
 //
 //  Created by John on 2019/5/17.

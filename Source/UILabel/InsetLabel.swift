@@ -8,24 +8,41 @@
 
 import UIKit
 
-/// 可对 Label 设置上下左右边距的 UILabel，默认为 16
-public class InsetLabel: UILabel {
-    @IBInspectable var topInset: CGFloat = GGUI.Config.InsetLabelConfig.defaultInset
-    @IBInspectable var bottomInset: CGFloat = GGUI.Config.InsetLabelConfig.defaultInset
-    @IBInspectable var leftInset: CGFloat = GGUI.Config.InsetLabelConfig.defaultInset
-    @IBInspectable var rightInset: CGFloat = GGUI.Config.InsetLabelConfig.defaultInset
+/// 可对 Label 设置上下左右边距的 UILabel，默认为 16。若 textInsets 不为 nil，优先设置 textInsets
+@IBDesignable
+open class InsetLabel: UILabel {
+    @IBInspectable open var topInset: CGFloat = Config.InsetLabel.defaultInset {
+        didSet { setNeedsDisplay() }
+    }
+    @IBInspectable open var bottomInset: CGFloat = Config.InsetLabel.defaultInset {
+        didSet { setNeedsDisplay() }
+    }
+    @IBInspectable open var leftInset: CGFloat = Config.InsetLabel.defaultInset {
+        didSet { setNeedsDisplay() }
+    }
+    @IBInspectable open var rightInset: CGFloat = Config.InsetLabel.defaultInset {
+        didSet { setNeedsDisplay() }
+    }
+    open var textInsets: UIEdgeInsets? {
+        didSet { setNeedsDisplay() }
+    }
 
     override public func drawText(in rect: CGRect) {
-        let insets: UIEdgeInsets = (text?.count ?? 0 > 0) ? UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset) : .zero
-        super.drawText(in: rect.inset(by: insets))
+        var insets = textInsets
+        if insets == nil {
+            insets = (text?.count ?? 0 > 0) ? UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset) : .zero
+        }
+        super.drawText(in: rect.inset(by: insets!))
     }
 
     override public var intrinsicContentSize: CGSize {
         let size = super.intrinsicContentSize
-        if text?.count ?? 0 > 0 {
-            return CGSize(width: size.width + leftInset + rightInset,
-                          height: size.height + topInset + bottomInset)
+        guard text?.count ?? 0 > 0 else { return size }
+        if let insets = textInsets {
+            return CGSize(width: size.width + insets.left + insets.right,
+                          height: size.height + insets.top + insets.bottom)
         }
-        return .zero
+        return CGSize(width: size.width + leftInset + rightInset,
+                      height: size.height + topInset + bottomInset)
     }
 }

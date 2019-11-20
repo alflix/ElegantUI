@@ -9,14 +9,18 @@
 import UIKit
 
 public enum LineStyle: Int {
-    case solid = 0, dash = 1
+    case solid
+    case dash
 }
 
-public class SingleLineView: UIView {
+@IBDesignable
+open class SingleLineView: UIView {
     private let singleLineAdjustOffset = ((1/UIScreen.main.scale)/2)
 
     /// 实线还是虚线 - solid: 实线 - dash: 点线
-    public var lineStyle: LineStyle = .solid
+    public var lineStyle: LineStyle = .solid {
+        didSet { setNeedsDisplay() }
+    }
     /// 实线还是虚线 - 0: 实线 - 1: 点线 (由于 enum 类型不可以在 Xib 中设置)
     @IBInspectable public var lineStyleInt: Int {
         get {
@@ -27,11 +31,13 @@ public class SingleLineView: UIView {
         }
     }
     /// 线高, 默认 1.0，可以通过 GGUI.Config.LineView.lineWidth 全局修改
-    @IBInspectable public var lineWidth: CGFloat = GGUI.Config.LineView.lineWidth
+    @IBInspectable public var lineWidth: CGFloat = Config.LineView.lineWidth {
+        didSet { setNeedsDisplay() }
+    }
     /// 线的颜色  默认 lightGray，可以通过 GGUI.Config.LineView.color 全局修改
-    @IBInspectable public var lineColor: UIColor = GGUI.Config.LineView.color {
+    @IBInspectable public var lineColor: UIColor = Config.LineView.color {
         didSet {
-            // 这个方法会调用 draw 方法
+            // 这个方法会调用 draw 方法, 所以不是 layoutSubviews()
             setNeedsDisplay()
         }
     }
@@ -41,7 +47,7 @@ public class SingleLineView: UIView {
         setupUI()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUI()
     }
