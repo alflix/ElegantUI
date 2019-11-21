@@ -21,6 +21,7 @@ open class SingleLineView: UIView {
     public var lineStyle: LineStyle = .solid {
         didSet { setNeedsDisplay() }
     }
+
     /// 实线还是虚线 - 0: 实线 - 1: 点线 (由于 enum 类型不可以在 Xib 中设置)
     @IBInspectable public var lineStyleInt: Int {
         get {
@@ -30,10 +31,12 @@ open class SingleLineView: UIView {
             lineStyle = LineStyle(rawValue: newValue) ?? .solid
         }
     }
+
     /// 线高, 默认 1.0，可以通过 GGUI.Config.LineView.lineWidth 全局修改
     @IBInspectable public var lineWidth: CGFloat = Config.LineView.lineWidth {
         didSet { setNeedsDisplay() }
     }
+
     /// 线的颜色  默认 lightGray，可以通过 GGUI.Config.LineView.color 全局修改
     @IBInspectable public var lineColor: UIColor = Config.LineView.color {
         didSet {

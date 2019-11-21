@@ -18,23 +18,23 @@ open class CustomTextField: UITextField {
     @IBInspectable public var checkPasswordSelectedImage: UIImage?
     /// 左间距
     @IBInspectable public var leftInset: CGFloat = 0.0 {
-        didSet { layoutSubviews() }
+        didSet { update() }
     }
     /// 右间距
     @IBInspectable public var rightInset: CGFloat = 0.0 {
-        didSet { layoutSubviews() }
+        didSet { update() }
     }
     /// 底部横线的高度，设置了才会显示，横线颜色 bottomLineColor
     @IBInspectable public var bottomLineHeight: CGFloat = 0 {
-        didSet { layoutSubviews() }
+        didSet { update() }
     }
     /// placeholder 颜色，可在 GGUI-CustomTextField-placeholderColor 统一设置
     @IBInspectable public var placeholderColor: UIColor = Config.CustomTextField.placeholderColor {
-        didSet { layoutSubviews() }
+        didSet { update() }
     }
     /// 底部横线颜色
     @IBInspectable public var bottomLineColor: UIColor = Config.LineView.color {
-        didSet { layoutSubviews() }
+        didSet { update() }
     }
 
     private var lineView: SingleLineView?
@@ -42,43 +42,51 @@ open class CustomTextField: UITextField {
     private var isShowLineView: Bool { return bottomLineHeight > 0 }
     private var isCheckPassword: Bool { return checkPasswordImage != nil }
 
-    override public func layoutSubviews() {
-        super.layoutSubviews()
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupUI()
+    }
+
+    required override public init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+
+    func setupUI() {
+        autocorrectionType = .no
+        if lineView?.superview == nil {
+            lineView = SingleLineView(frame: CGRect.zero)
+            addSubview(lineView!)
+        }
+
+        if checkPasswordButton?.superview ==  nil {
+            checkPasswordButton = UIButton(type: .custom)
+            _ = checkPasswordButton!.on(.touchUpInside, invokeHandler: { [weak self] (_) in
+                guard let self = self else { return }
+                self.checkPasswordButton!.isSelected = !self.checkPasswordButton!.isSelected
+                self.isSecureTextEntry = !self.checkPasswordButton!.isSelected
+            })
+            addSubview(checkPasswordButton!)
+        }
+    }
+
+    func update() {
         if let placeholder = placeholder {
             attributedPlaceholder = placeholder.attributedString(font: font!, color: placeholderColor)
         }
-        if isShowLineView {
-            if lineView?.superview == nil {
-                lineView = SingleLineView(frame: CGRect.zero)
-                addSubview(lineView!)
-            }
-            lineView!.frame = CGRect(x: 0, y: bounds.height-bottomLineHeight, width: bounds.width, height: bottomLineHeight)
-            lineView!.lineColor = bottomLineColor
-        } else {
-            lineView?.safeRemoveFromSuperview()
-        }
+        lineView!.frame = CGRect(x: 0, y: bounds.height-bottomLineHeight, width: bounds.width, height: bottomLineHeight)
+        lineView!.lineColor = bottomLineColor
+        lineView?.isHidden = !isShowLineView
 
-        if isCheckPassword {
-            if checkPasswordButton?.superview ==  nil {
-                checkPasswordButton = UIButton(type: .custom)
-                checkPasswordButton!.setImage(checkPasswordImage, for: .normal)
-                if let image = checkPasswordSelectedImage {
-                    checkPasswordButton!.setImage(image, for: .selected)
-                }
-                checkPasswordButton!.sizeToFit()
-                _ = checkPasswordButton!.on(.touchUpInside, invokeHandler: { [weak self] (_) in
-                    guard let self = self else { return }
-                    self.checkPasswordButton!.isSelected = !self.checkPasswordButton!.isSelected
-                    self.isSecureTextEntry = !self.checkPasswordButton!.isSelected
-                })
+        if let checkPasswordButton = checkPasswordButton {
+            checkPasswordButton.isHidden = !isCheckPassword
+            checkPasswordButton.setImage(checkPasswordImage, for: .normal)
+            if let image = checkPasswordSelectedImage {
+                checkPasswordButton.setImage(image, for: .selected)
             }
-            if let checkPasswordButton = checkPasswordButton {
-                checkPasswordButton.frame = CGRect(x: bounds.width - checkPasswordButton.bounds.width - rightInset,
-                                                   y: (bounds.height - checkPasswordButton.bounds.height)/2,
-                                                   width: checkPasswordButton.bounds.width, height: checkPasswordButton.bounds.height)
-            }
-        } else {
-            checkPasswordButton?.safeRemoveFromSuperview()
+            checkPasswordButton.frame = CGRect(x: bounds.width - checkPasswordButton.bounds.width - rightInset,
+                                               y: (bounds.height - checkPasswordButton.bounds.height)/2,
+                                               width: checkPasswordButton.bounds.width, height: checkPasswordButton.bounds.height)
         }
 
         if leftInset > 0 {
@@ -93,16 +101,6 @@ open class CustomTextField: UITextField {
                 rightView = UIView(frame: CGRect(x: 0, y: 0, width: rightInset, height: bounds.height))
             }
         }
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        autocorrectionType = .no
-    }
-
-    required override public init(frame: CGRect) {
-        super.init(frame: frame)
-        autocorrectionType = .no
     }
 
     public override func deleteBackward() {
