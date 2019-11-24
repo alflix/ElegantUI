@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="哈哈" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xUt-Jp-g2p" customClass="CustomTextField" customModule="Demo" customModuleProvider="target">
-                                <rect key="frame" x="173.5" y="88" width="67" height="34"/>
+                                <rect key="frame" x="178.5" y="88" width="57" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -29,7 +29,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdi-ZY-J5U" customClass="CustomButton" customModule="Demo" customModuleProvider="target">
-                                <rect key="frame" x="16" y="147" width="382" height="18"/>
+                                <rect key="frame" x="16" y="147" width="382" height="30"/>
                                 <state key="normal" title=" CustomButton  CustomButton CustomButton CustomButton CustomButton CustomButton CustomButton CustomButton CustomButton"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
@@ -38,7 +38,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNj-M9-MO3" customClass="SingleLineButton" customModule="Demo" customModuleProvider="target">
-                                <rect key="frame" x="148.5" y="191" width="117" height="30"/>
+                                <rect key="frame" x="148.5" y="203" width="117" height="30"/>
                                 <state key="normal" title="SingleLineButton"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="bottom">
@@ -47,8 +47,8 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iqh-ud-dzG" customClass="LayoutButton" customModule="Demo" customModuleProvider="target">
-                                <rect key="frame" x="139.5" y="246" width="135.5" height="22"/>
-                                <state key="normal" title="LayoutButton" image="square.and.arrow.up" catalog="system">
+                                <rect key="frame" x="152.5" y="258" width="109" height="34"/>
+                                <state key="normal" title="LayoutButton">
                                     <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -58,7 +58,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InsetLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAa-Ac-aTd" customClass="InsetLabel" customModule="Demo" customModuleProvider="target">
-                                <rect key="frame" x="161.5" y="293" width="91" height="32.5"/>
+                                <rect key="frame" x="167.5" y="317" width="79" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -100,7 +100,4 @@
             <point key="canvasLocation" x="-514.49275362318849" y="129.91071428571428"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
-    </resources>
 </document>

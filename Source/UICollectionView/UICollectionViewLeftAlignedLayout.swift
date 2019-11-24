@@ -3,7 +3,7 @@
 //  GGUI
 //
 //  Created by John on 22/2/16.
-//  Copyright © 2019 Ganguo. All rights reserved.
+//  Copyright © 2019 GGUI. All rights reserved.
 
 import UIKit
 

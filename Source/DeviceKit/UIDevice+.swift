@@ -3,7 +3,7 @@
 //  GGUI
 //
 //  Created by John on 2019/2/26.
-//  Copyright © 2019年 Ganguo. All rights reserved.
+//  Copyright © 2019年 GGUI. All rights reserved.
 //
 
 import Foundation

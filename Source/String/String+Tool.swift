@@ -3,7 +3,7 @@
 //  GGUI
 //
 //  Created by John on 2019/3/27.
-//  Copyright © 2019 Ganguo. All rights reserved.
+//  Copyright © 2019 GGUI. All rights reserved.
 //
 
 import UIKit
@@ -13,7 +13,7 @@ public extension String {
     /// 从 URL String中截取出参数
     /// 
     /// 🌰：http://example.com?param1=value1&param2=value2 -> Optional([“param1”: value1, “param2”: value2])
-    var urlParameters: [String: AnyObject]? {
+    var urlParameters: [String: Any]? {
         // 截取是否有参数
         guard let urlComponents = NSURLComponents(string: self), let queryItems = urlComponents.queryItems else { return nil }
         // 参数字典
@@ -33,12 +33,5 @@ public extension String {
             }
         })
         return parameters
-    }
-
-    /// json string 转换为 [String: Any]
-    func json() -> [String: Any]? {
-        let strData = self.data(using: .utf8) ?? Data()
-        let dict = try? JSONSerialization.jsonObject(with: strData, options: []) as? [String: Any]
-        return dict
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-internal let ClosureHandlerSelector = Selector(("handle"))
+internal let ClosureHandlerSelector = #selector(ClosureHandler<AnyObject>.handle)
 
 internal class ClosureHandler<T: AnyObject>: NSObject {
 
