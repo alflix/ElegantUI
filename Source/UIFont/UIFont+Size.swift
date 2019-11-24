@@ -14,27 +14,27 @@ public extension UIFont {
         if let fontWeight = self.fontDescriptor.fontAttributes[fontAttributeKey] as? String {
             switch fontWeight {
             case "CTFontBoldUsage":
-                return UIFont.Weight.bold
+                return .bold
             case "CTFontBlackUsage":
-                return UIFont.Weight.black
+                return .black
             case "CTFontHeavyUsage":
-                return UIFont.Weight.heavy
+                return .heavy
             case "CTFontUltraLightUsage":
-                return UIFont.Weight.ultraLight
+                return .ultraLight
             case "CTFontThinUsage":
-                return UIFont.Weight.thin
+                return .thin
             case "CTFontLightUsage":
-                return UIFont.Weight.light
+                return .light
             case "CTFontMediumUsage":
-                return UIFont.Weight.medium
+                return .medium
             case "CTFontDemiUsage":
-                return UIFont.Weight.semibold
+                return .semibold
             case "CTFontRegularUsage":
-                return UIFont.Weight.regular
+                return .regular
             default:
-                return UIFont.Weight.regular
+                return .regular
             }
         }
-        return UIFont.Weight.regular
+        return .regular
     }
 }

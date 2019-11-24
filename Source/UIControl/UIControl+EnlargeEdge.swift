@@ -70,6 +70,16 @@ public extension UIControl {
         self.largeLeft = NSNumber(value: left)
         self.largeRight = NSNumber(value: right)
     }
+}
+
+open class EnlargeButton: UIButton {
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let rect = self.enlargedRect()
+        if rect.equalTo(self.bounds) {
+            return super.point(inside: point, with: event)
+        }
+        return rect.contains(point) ? true : false
+    }
 
     private func enlargedRect() -> CGRect {
         let top = self.largeTop
@@ -84,13 +94,5 @@ public extension UIControl {
         } else {
             return self.bounds
         }
-    }
-
-    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        let rect = self.enlargedRect()
-        if rect.equalTo(self.bounds) {
-            return super.point(inside: point, with: event)
-        }
-        return rect.contains(point) ? true : false
     }
 }
