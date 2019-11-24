@@ -7,7 +7,8 @@ Pod::Spec.new do |s|
 	s.license               = { :type => 'Apache-2.0', :file => 'LICENSE' }
 	
 	s.authors               = { 'John' => 'jieyuanz24@gmail.com' }
-	s.source                = { :path => 'Source' }	
+	s.source                = { :git => 'https://github.com/alflix/GGUI.git', :tag => "#{s.version}" }
+	s.ios.framework         = 'UIKit'
 	
 	s.swift_version         = "4.2"
 	s.ios.deployment_target = "9.0"
