@@ -6,9 +6,9 @@
 //  Copyright © 2019 GGUI. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-// MARK: - String 的一些工具类
+// MARK: - String 的工具类
 public extension String {
     /// 从 URL String中截取出参数
     /// 

@@ -11,7 +11,8 @@ import UIKit
 public extension UIView {
     /// 添加渐变色图层
     func gradientColor(startPoint: CGPoint, endPoint: CGPoint, colors: [Any], frame: CGRect) {
-        guard startPoint.x >= 0, startPoint.x <= 1, startPoint.y >= 0, startPoint.y <= 1, endPoint.x >= 0, endPoint.x <= 1, endPoint.y >= 0, endPoint.y <= 1 else {
+        guard startPoint.x >= 0, startPoint.x <= 1, startPoint.y >= 0, startPoint.y <= 1,
+            endPoint.x >= 0, endPoint.x <= 1, endPoint.y >= 0, endPoint.y <= 1 else {
             return
         }
         // 外界如果改变了self的大小，需要先刷新
@@ -33,11 +34,10 @@ public extension UIView {
 
     /// 移除渐变图层（当希望只使用backgroundColor的颜色时，需要先移除之前加过的渐变图层）
     private func removeGradientLayer() {
-        if let sublayers = layer.sublayers {
-            for layer in sublayers {
-                if layer.isKind(of: CAGradientLayer.self) {
-                    layer.removeFromSuperlayer()
-                }
+        guard let sublayers = layer.sublayers else { return }
+        for layer in sublayers {
+            if layer.isKind(of: CAGradientLayer.self) {
+                layer.removeFromSuperlayer()
             }
         }
     }

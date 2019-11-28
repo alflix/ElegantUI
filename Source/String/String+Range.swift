@@ -6,7 +6,7 @@
 //  Copyright © 2019 GGUI. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public extension String {
     /// 寻找当前在传入文字的 range，只返回第一个匹配的

@@ -6,7 +6,7 @@
 //  Copyright © 2019 GGUI. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 // MARK: - 方便创建 NSAttributedString
 public extension String {
