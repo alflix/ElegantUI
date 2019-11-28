@@ -52,6 +52,16 @@ open class CustomTextField: UITextField {
         setupUI()
     }
 
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        lineView!.frame = CGRect(x: 0, y: bounds.height-bottomLineHeight, width: bounds.width, height: bottomLineHeight)
+        if let checkPasswordButton = checkPasswordButton {
+            checkPasswordButton.frame = CGRect(x: bounds.width - checkPasswordButton.bounds.width - rightInset,
+                                               y: (bounds.height - checkPasswordButton.bounds.height)/2,
+                                               width: checkPasswordButton.bounds.width, height: checkPasswordButton.bounds.height)
+        }
+    }
+
     func setupUI() {
         autocorrectionType = .no
         if lineView?.superview == nil {
@@ -74,7 +84,7 @@ open class CustomTextField: UITextField {
         if let placeholder = placeholder {
             attributedPlaceholder = placeholder.attributedString(font: font!, color: placeholderColor)
         }
-        lineView!.frame = CGRect(x: 0, y: bounds.height-bottomLineHeight, width: bounds.width, height: bottomLineHeight)
+
         lineView!.lineColor = bottomLineColor
         lineView?.isHidden = !isShowLineView
 
@@ -84,9 +94,6 @@ open class CustomTextField: UITextField {
             if let image = checkPasswordSelectedImage {
                 checkPasswordButton.setImage(image, for: .selected)
             }
-            checkPasswordButton.frame = CGRect(x: bounds.width - checkPasswordButton.bounds.width - rightInset,
-                                               y: (bounds.height - checkPasswordButton.bounds.height)/2,
-                                               width: checkPasswordButton.bounds.width, height: checkPasswordButton.bounds.height)
         }
 
         if leftInset > 0 {
