@@ -8,7 +8,7 @@
 
 import UIKit
 
-// MARK: - 方便计算某个字体下的 String 在 UILabel 上的宽度或高度（使用 UILabel 会比较准确）
+// MARK: - 方便计算某个字体下的 String 在 UILabel 上的宽度或高度（使用 UILabel 通常会比较准确，但有小的性能损耗）
 public extension String {
     /// 文字高度  
     ///
@@ -49,20 +49,41 @@ public extension String {
     ///   - width: 最大高度  
     /// - Returns: 宽度
     func widthForLabel(fontSize: CGFloat, height: CGFloat, width: CGFloat = CGFloat.greatestFiniteMagnitude) -> CGFloat {
-        return autoreleasepool { () -> CGFloat in
-            let label: UILabel = UILabel()
-            label.numberOfLines = 1
-            label.font = UIFont.systemFont(ofSize: fontSize, weight: .regular)
-            label.text = self
-            return label.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: height)).width
-        }
+        return widthForLabel(font: .systemFont(ofSize: fontSize, weight: .regular), height: height, width: width)
+    }
+}
+
+// MARK: - 计算某个字体下的 String 的宽度或高度
+public extension String {
+    /// 文字宽度 (boundingRect)
+    /// - Parameter font: 字体
+    func width(with font: UIFont) -> CGFloat {
+        let attributedString = self.attributedString(font: font)
+        return attributedString.width(considering: font.lineHeight)
     }
 
-    func boundingWidth(with font: UIFont) -> CGFloat {
-        let size = CGSize(width: CGFloat.greatestFiniteMagnitude, height: font.lineHeight)
-        let preferredRect = (self as NSString).boundingRect(with: size,
-                                                            options: [.usesLineFragmentOrigin, .usesFontLeading],
-                                                            attributes: [NSAttributedString.Key.font: font], context: nil)
-        return ceil(preferredRect.width)
+    /// 文字宽度 (boundingRect)
+    /// - Parameter font: 字体
+    func height(with font: UIFont) -> CGFloat {
+        let attributedString = self.attributedString(font: font)
+        return attributedString.height(considering: font.lineHeight)
+    }
+}
+
+public extension NSAttributedString {
+    /// AttributedString 宽度
+    /// - Parameter height: 高度限制
+    func width(considering height: CGFloat) -> CGFloat {
+        let constraintBox = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let rect = self.boundingRect(with: constraintBox, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
+        return rect.width
+    }
+
+    /// AttributedString 高度
+    /// - Parameter width: 宽度限制
+    func height(considering width: CGFloat) -> CGFloat {
+        let constraintBox = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let rect = self.boundingRect(with: constraintBox, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
+        return rect.height
     }
 }
