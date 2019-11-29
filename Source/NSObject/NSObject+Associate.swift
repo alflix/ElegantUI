@@ -7,6 +7,10 @@
 //
 import Foundation
 
+public func convertUnsafePointerToSwiftType<T>(_ value: UnsafeRawPointer) -> T {
+    return value.assumingMemoryBound(to: T.self).pointee
+}
+
 public extension NSObject {
     /// Sets an associated value for a given object using a weak reference to the associated object.
     /// **Note**: the `key` underlying type must be String.
@@ -40,4 +44,13 @@ public extension NSObject {
     func associatedObject(forKey key: UnsafeRawPointer) -> Any? {
         return objc_getAssociatedObject(self, key)
     }
+}
+
+/// 封装 swizzed 方法
+public let swizzling: (AnyClass, Selector, Selector) -> Void = { forClass, originalSelector, swizzledSelector in
+    guard
+        let originalMethod = class_getInstanceMethod(forClass, originalSelector),
+        let swizzledMethod = class_getInstanceMethod(forClass, swizzledSelector)
+        else { return }
+    method_exchangeImplementations(originalMethod, swizzledMethod)
 }

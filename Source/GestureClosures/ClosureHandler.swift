@@ -1,3 +1,11 @@
+//
+//  ClosureHandler.swift
+//  GGUI
+//
+//  Created by John on 2019/3/15.
+//  Copyright © 2019 GGUI. All rights reserved.
+//
+
 import Foundation
 
 internal let ClosureHandlerSelector = #selector(ClosureHandler<AnyObject>.handle)

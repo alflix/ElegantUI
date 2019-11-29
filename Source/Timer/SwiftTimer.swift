@@ -15,15 +15,15 @@ public class SwiftTimer {
 
     public let repeats: Bool
     public typealias SwiftTimerHandler = (SwiftTimer) -> Void
+
     public init(interval: DispatchTimeInterval, repeats: Bool = false,
                 queue: DispatchQueue = .main, handler: @escaping SwiftTimerHandler) {
         self.handler = handler
         self.repeats = repeats
         internalTimer = DispatchSource.makeTimerSource(queue: queue)
         internalTimer.setEventHandler { [weak self] in
-            if let strongSelf = self {
-                handler(strongSelf)
-            }
+            guard let self = self else { return }
+            handler(self)
         }
         if repeats {
             internalTimer.schedule(deadline: .now() + interval, repeating: interval)
@@ -37,12 +37,13 @@ public class SwiftTimer {
     }
 
     deinit {
-        if !self.isRunning {
+        if !isRunning {
             internalTimer.resume()
         }
     }
 
-    //You can use this method to fire a repeating timer without interrupting its regular firing schedule. If the timer is non-repeating, it is automatically invalidated after firing, even if its scheduled fire date has not arrived.
+    // You can use this method to fire a repeating timer without interrupting its regular firing schedule.
+    // If the timer is non-repeating, it is automatically invalidated after firing, even if its scheduled fire date has not arrived.
     public func fire() {
         if repeats {
             handler(self)
@@ -75,9 +76,8 @@ public class SwiftTimer {
     public func rescheduleHandler(handler: @escaping SwiftTimerHandler) {
         self.handler = handler
         internalTimer.setEventHandler { [weak self] in
-            if let strongSelf = self {
-                handler(strongSelf)
-            }
+            guard let self = self else { return }
+            handler(self)
         }
     }
 }
@@ -86,8 +86,8 @@ public class SwiftTimer {
 public extension SwiftTimer {
     private static var timers = [String: DispatchSourceTimer]()
 
-    public static func throttle(interval: DispatchTimeInterval, identifier: String,
-                                queue: DispatchQueue = .main, handler: @escaping () -> Void ) {
+    static func throttle(interval: DispatchTimeInterval, identifier: String,
+                         queue: DispatchQueue = .main, handler: @escaping () -> Void ) {
         if let previousTimer = timers[identifier] {
             previousTimer.cancel()
             timers.removeValue(forKey: identifier)
@@ -104,7 +104,7 @@ public extension SwiftTimer {
         timer.resume()
     }
 
-    public static func cancelThrottlingTimer(identifier: String) {
+    static func cancelThrottlingTimer(identifier: String) {
         if let previousTimer = timers[identifier] {
             previousTimer.cancel()
             timers.removeValue(forKey: identifier)
@@ -121,38 +121,37 @@ public class SwiftCountDownTimer {
 
     public init(interval: DispatchTimeInterval, times: Int, queue: DispatchQueue = .main,
                 handler:  @escaping (SwiftCountDownTimer, _ leftTimes: Int) -> Void ) {
-        self.leftTimes = times
-        self.originalTimes = times
+        leftTimes = times
+        originalTimes = times
         self.handler = handler
-        self.internalTimer = SwiftTimer.repeaticTimer(interval: interval, queue: queue, handler: { _ in
+        internalTimer = SwiftTimer.repeaticTimer(interval: interval, queue: queue, handler: { _ in
         })
-        self.internalTimer.rescheduleHandler { [weak self]  _ in
-            if let strongSelf = self {
-                if strongSelf.leftTimes > 0 {
-                    strongSelf.leftTimes = strongSelf.leftTimes - 1
-                    strongSelf.handler(strongSelf, strongSelf.leftTimes)
-                } else {
-                    strongSelf.internalTimer.suspend()
-                }
+        internalTimer.rescheduleHandler { [weak self] _ in
+            guard let self = self else { return }
+            if self.leftTimes > 0 {
+                self.leftTimes = self.leftTimes - 1
+                self.handler(self, self.leftTimes)
+            } else {
+                self.internalTimer.suspend()
             }
         }
     }
 
     public func start() {
-        self.internalTimer.start()
+        internalTimer.start()
     }
 
     public func suspend() {
-        self.internalTimer.suspend()
+        internalTimer.suspend()
     }
 
     public func reCountDown() {
-        self.leftTimes = self.originalTimes
+        leftTimes = originalTimes
     }
 }
 
 public extension DispatchTimeInterval {
-    public static func fromSeconds(_ seconds: Double) -> DispatchTimeInterval {
+    static func fromSeconds(_ seconds: Double) -> DispatchTimeInterval {
         return .milliseconds(Int(seconds * 1000))
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - 方便创建 NSAttributedString
 public extension String {
@@ -156,7 +157,6 @@ public extension String {
         addition?(attributedString)
         return attributedString.copy() as! NSAttributedString
     }
-
 }
 
 public extension NSMutableAttributedString {

@@ -10,15 +10,11 @@ import UIKit
 
 public extension UIImage {
     var width: CGFloat {
-        get {
-            return size.width
-        }
+        get { return size.width }
     }
 
     var height: CGFloat {
-        get {
-            return size.height
-        }
+        get { return size.height }
     }
 
     /// 通过图片创建 NSTextAttachment

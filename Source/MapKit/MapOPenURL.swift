@@ -101,13 +101,12 @@ public extension UIApplication {
             }))
         }
         alert.addAction(UIAlertAction(title: "cancel".bundleLocalize, style: .cancel, handler: { (_) in
-
         }))
         // https://stackoverflow.com/questions/24224916/presenting-a-uialertcontroller-properly-on-an-ipad-using-ios-8
         if let popoverController = alert.popoverPresentationController {
-            popoverController.sourceView = viewController.view //to set the source of your alert
-            popoverController.sourceRect = CGRect(x: viewController.view.bounds.midX, y: viewController.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
-            popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
+            popoverController.sourceView = viewController.view
+            popoverController.sourceRect = CGRect(x: viewController.view.bounds.midX, y: viewController.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
         }
         viewController.present(alert, animated: true, completion: nil)
     }

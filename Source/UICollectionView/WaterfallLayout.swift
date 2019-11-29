@@ -1,10 +1,9 @@
 //
 //  WaterfallLayout.swift
-//  WaterfallLayout
+//  GGUI
 //
-//  Created by suguru-kishimoto on 2017/10/03.
-//  Copyright © 2017年 Suguru Kishimoto. All rights reserved.
-//
+//  Created by John on 22/2/16.
+//  Copyright © 2019 GGUI. All rights reserved.
 
 import UIKit
 

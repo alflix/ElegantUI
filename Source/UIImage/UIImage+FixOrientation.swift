@@ -56,7 +56,6 @@ public extension UIImage {
         }
 
         let cgImage: CGImage = ctx.makeImage()!
-
         return UIImage(cgImage: cgImage)
     }
 }

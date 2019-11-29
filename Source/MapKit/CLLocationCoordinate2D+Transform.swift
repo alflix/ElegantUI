@@ -26,7 +26,9 @@ public extension CLLocationCoordinate2D {
         let revisedCoordinate = CLLocationCoordinate2D(latitude: latitude - deltaLatitude, longitude: longitude - deltaLongitude)
         return revisedCoordinate
     }
+}
 
+extension CLLocationCoordinate2D {
     private var isOutsideChina: Bool {
         if longitude < 72.004 || longitude > 137.8347 {
             return true

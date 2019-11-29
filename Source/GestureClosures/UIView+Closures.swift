@@ -1,3 +1,11 @@
+//
+//  UIView+Closures.swift
+//  GGUI
+//
+//  Created by John on 2019/3/15.
+//  Copyright © 2019 GGUI. All rights reserved.
+//
+
 import UIKit
 
 public extension UIView {

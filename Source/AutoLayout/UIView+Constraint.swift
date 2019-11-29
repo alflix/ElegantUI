@@ -17,10 +17,8 @@ private var heightConstraintKey: Void?
 public extension UIView {
     var topConstraint: NSLayoutConstraint? {
         get {
-            if let value = objc_getAssociatedObject(self, &topConstraintKey) as? NSLayoutConstraint {
-                return value
-            }
-            return nil
+            guard let value = objc_getAssociatedObject(self, &topConstraintKey) as? NSLayoutConstraint else { return nil }
+            return value
         }
         set {
             topConstraint?.isActive = false
@@ -33,10 +31,8 @@ public extension UIView {
 
     var bottomConstraint: NSLayoutConstraint? {
         get {
-            if let value = objc_getAssociatedObject(self, &bottomConstraintKey) as? NSLayoutConstraint {
-                return value
-            }
-            return nil
+            guard let value = objc_getAssociatedObject(self, &bottomConstraintKey) as? NSLayoutConstraint else { return nil }
+            return value
         }
         set {
             bottomConstraint?.isActive = false
@@ -49,10 +45,8 @@ public extension UIView {
 
     var leadingConstraint: NSLayoutConstraint? {
         get {
-            if let value = objc_getAssociatedObject(self, &leadingConstraintKey) as? NSLayoutConstraint {
-                return value
-            }
-            return nil
+            guard let value = objc_getAssociatedObject(self, &leadingConstraintKey) as? NSLayoutConstraint else { return nil }
+            return value
         }
         set {
             leadingConstraint?.isActive = false
@@ -65,10 +59,8 @@ public extension UIView {
 
     var trailingConstraint: NSLayoutConstraint? {
         get {
-            if let value = objc_getAssociatedObject(self, &trailingConstraintKey) as? NSLayoutConstraint {
-                return value
-            }
-            return nil
+            guard let value = objc_getAssociatedObject(self, &trailingConstraintKey) as? NSLayoutConstraint else { return nil }
+            return value
         }
         set {
             trailingConstraint?.isActive = false
@@ -81,10 +73,8 @@ public extension UIView {
 
     var widthConstraint: NSLayoutConstraint? {
         get {
-            if let value = objc_getAssociatedObject(self, &widthConstraintKey) as? NSLayoutConstraint {
-                return value
-            }
-            return nil
+            guard let value = objc_getAssociatedObject(self, &widthConstraintKey) as? NSLayoutConstraint else { return nil }
+            return value
         }
         set {
             widthConstraint?.isActive = false
@@ -97,10 +87,8 @@ public extension UIView {
 
     var heightConstraint: NSLayoutConstraint? {
         get {
-            if let value = objc_getAssociatedObject(self, &heightConstraintKey) as? NSLayoutConstraint {
-                return value
-            }
-            return nil
+            guard let value = objc_getAssociatedObject(self, &heightConstraintKey) as? NSLayoutConstraint else { return nil }
+            return value
         }
         set {
             heightConstraint?.isActive = false
@@ -132,11 +120,8 @@ public extension UIView {
     }
 
     func fillSuperview() {
-        guard let superview = self.superview else {
-            return
-        }
+        guard let superview = self.superview else { return }
         translatesAutoresizingMaskIntoConstraints = false
-
         let constraints: [NSLayoutConstraint] = [
             leftAnchor.constraint(equalTo: superview.leftAnchor),
             rightAnchor.constraint(equalTo: superview.rightAnchor),
