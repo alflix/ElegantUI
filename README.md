@@ -15,103 +15,112 @@ See:
 
 ```
 ├── AutoLayout
-│   ├── LayoutConstraint.swift
-│   └── UIView+Constraint.swift
-├── CALayer
-│   └── CALayer+Sketch.swift
+│   ├── LayoutConstraint
+│   └── UIView+Constraint
 ├── Codable
-│   ├── Codable+.swift
-│   ├── Decodable+Convenient.swift
-│   └── Encodable+Convenient.swift
+│   ├── Codable+
+│   ├── Decodable+Convenient
+│   └── Encodable+Convenient
 ├── Date
-│   └── Date+Formatter.swift
+│   └── Date+Formatter
 ├── DeviceKit
-│   ├── Device.generated.swift
-│   └── UIDevice+.swift
+│   ├── Device.generated
+│   └── UIDevice+
 ├── DispatchQueue
-│   └── DispatchQueue+Delay.swift
+│   ├── DispatchQueue+Delay
+│   └── DispatchQueue+Once
 ├── General
-│   ├── GGUI.swift
-│   └── Globals.swift
+│   ├── GGUI
+│   └── Globals
 ├── GestureClosures
-│   ├── ClosureHandler.swift
-│   ├── GestureClosure.swift
-│   ├── UIBarButtonItem+Closures.swift
-│   ├── UIControl+Closures.swift
-│   ├── UIGestureRecognizer+Closures.swift
-│   └── UIView+Closures.swift
+│   ├── ClosureHandler
+│   ├── GestureClosure
+│   ├── UIBarButtonItem+Closures
+│   ├── UIControl+Closures
+│   ├── UIGestureRecognizer+Closures
+│   └── UIView+Closures
 ├── MapKit
-│   ├── CLLocationCoordinate2D+Transform.swift
-│   └── MapOPenURL.swift
+│   ├── CLLocationCoordinate2D+Transform
+│   └── MapOPenURL
 ├── NSObject
-│   ├── NSObject+Associate.swift
-│   └── NSObject+Convenient.swift
+│   ├── NSObject+Associate
+│   └── NSObject+Convenient
 ├── Number
-│   └── Number+Convenient.swift
+│   ├── Double+Transform
+│   ├── Int+Random
+│   └── Int+Transform
 ├── Photos
-│   ├── ImageCropperViewController.swift
-│   ├── PhotoPickerHelper.swift
-│   └── PhotoSaveHelper.swift
+│   ├── ImageCropperViewController
+│   ├── PhotoPickerHelper
+│   └── PhotoSaveHelper
 ├── SizeHelper
-│   └── SizeHelper.swift
+│   └── SizeHelper
 ├── String
-│   ├── String+Attributed.swift
-│   ├── String+Range.swift
-│   ├── String+Size.swift
-│   └── String+Tool.swift
+│   ├── Lorem
+│   ├── String+Attributed
+│   ├── String+Range
+│   ├── String+Size
+│   └── String+Tool
+├── Timer
+│   ├── DateTimer
+│   └── SwiftTimer
 ├── UIBarButtonItem
-│   ├── CustomBarButtonItem.swift
-│   └── UIBarButtonItem+Convenient.swift
+│   ├── CustomBarButtonItem
+│   └── UIBarButtonItem+Convenient
 ├── UIButton
-│   ├── CustomButton.swift
-│   ├── LayoutButton.swift
-│   └── SingleLineButton.swift
+│   ├── CountdownButton
+│   ├── CustomButton
+│   ├── LayoutButton
+│   └── SingleLineButton
 ├── UICollectionView
-│   ├── CollectionViewCenteredFlowLayout.swift
-│   ├── UICollectionViewLeftAlignedLayout.swift
-│   └── WaterfallLayout.swift
+│   ├── CollectionViewCenteredFlowLayout
+│   ├── UICollectionViewLeftAlignedLayout
+│   └── WaterfallLayout
 ├── UIControl
-│   └── UIControl+EnlargeEdge.swift
+│   └── UIControl+EnlargeEdge
 ├── UIFont
-│   └── UIFont+Size.swift
+│   └── UIFont+Size
 ├── UIImage
-│   ├── UIImage+Convenient.swift
-│   ├── UIImage+Draw.swift
-│   └── UIImage+FixOrientation.swift
+│   ├── UIImage+Convenient
+│   ├── UIImage+Draw
+│   └── UIImage+FixOrientation
 ├── UILabel
-│   ├── InsetLabel.swift
-│   └── UILabel+TapAction.swift
+│   ├── InsetLabel
+│   └── UILabel+TapAction
 ├── UIScrollView
-│   ├── ScrollDirectionTracker.swift
-│   └── UIScrollView+Convenient.swift
+│   ├── ScrollDirectionTracker
+│   └── UIScrollView+Convenient
 ├── UISearchBar
-│   └── UISearchBar+Convenient.swift
+│   └── UISearchBar+Convenient
 ├── UITableView
-│   └── UITableView+Convenient.swift
+│   └── UITableView+Convenient
 ├── UITextField
-│   ├── CustomTextField.swift
-│   └── UITextField+Slice.swift
+│   ├── CustomTextField
+│   └── UITextField+Slice
 ├── UITextView
-│   ├── UITextView+Fix.swift
-│   └── UITextView+Slice.swift
+│   ├── UITextView+Fix
+│   └── UITextView+Slice
 ├── UIView
-│   ├── SingleLineView.swift
-│   ├── UIView+Convenient.swift
-│   ├── UIView+Find.swift
-│   └── UIView+Style.swift
+│   ├── CALayer+Sketch
+│   ├── SingleLineView
+│   ├── UIView+Convenient
+│   ├── UIView+Find
+│   └── UIView+Style
 ├── UIViewController
-│   ├── InpuctNotifyViewController.swift
-│   ├── UIViewController+Convenient.swift
-│   └── UIViewController+Find.swift
+│   ├── InpuctNotifyViewController
+│   ├── UIViewController+Convenient
+│   └── UIViewController+Find
+├── UserDefaults
+│   └── UserDefaults+Convience
 └── ViewModelBinding
-    └── ViewModelBinding.swift
+    └── ViewModelBinding
 ```
 
 ## Installation 
 
 ### Requirements 
 
-- Swift 4.2 ( Swift 4.2 -> use 'version 1.0.0' )
+- Swift 4.2
 - iOS 9.0 
 
 ### Cocoapods
