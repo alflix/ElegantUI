@@ -57,10 +57,8 @@ public extension Date {
         return dateFormatter
     }
 
-    // print the time as 0:ss if duration is up to 59 seconds
-    // print the time as m:ss if duration is up to 59:59 seconds
-    // print the time as h:mm:ss for anything longer
-    static func clockFormatter(duration: Float) -> String {
+    // 倒计时时间格式
+    static func countdownClockFormatter(duration: Float) -> String {
         var retunValue = "0:00"
         if duration < 60 {
             retunValue = String(format: "0:%.02d", Int(duration.rounded(.up)))

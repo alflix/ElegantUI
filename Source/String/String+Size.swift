@@ -62,11 +62,11 @@ public extension String {
         return attributedString.width(considering: font.lineHeight)
     }
 
-    /// 文字宽度 (boundingRect)
+    /// 文字高度 (boundingRect)
     /// - Parameter font: 字体
-    func height(with font: UIFont) -> CGFloat {
+    func height(with font: UIFont, considering width: CGFloat) -> CGFloat {
         let attributedString = self.attributedString(font: font)
-        return attributedString.height(considering: font.lineHeight)
+        return attributedString.height(considering: width)
     }
 }
 
