@@ -68,7 +68,7 @@ open class SingleLineButton: UIButton {
             if bottomLineView.superview == nil {
                 addSubview(bottomLineView)
             }
-            bottomLineView.frame = CGRect(x: bottomOffset, y: bounds.height - bottomOffset, width: bounds.width-bottomOffset*2, height: bottomOffset)
+            bottomLineView.frame = CGRect(x: bottomOffset, y: bounds.height - bottom, width: bounds.width-bottomOffset*2, height: bottom)
         }
         if right > 0 {
             if rightLineView.superview == nil {

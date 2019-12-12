@@ -14,7 +14,7 @@ public struct StopWatch {
     public init(totalSeconds: Int) {
         self.totalSeconds = totalSeconds
     }
-    
+
     public var years: Int {
         return totalSeconds / 31536000
     }
