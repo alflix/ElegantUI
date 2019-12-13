@@ -1,4 +1,4 @@
-<img src="./Doc/logo.png">
+<img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9uxymizmaj310g096weo.jpg">
 
 [![Version](https://img.shields.io/cocoapods/v/GGUI.svg?style=flat)](http://cocoapods.org/pods/GGUI)
 [![License](https://img.shields.io/cocoapods/l/GGUI.svg?style=flat)](http://cocoapods.org/pods/GGUI)
