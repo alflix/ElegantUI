@@ -22,6 +22,20 @@ public struct UIRectSide: OptionSet {
 }
 
 public extension UIView {
+    var snapshotImage: UIImage? {
+        let imageSize = self.bounds.size
+        UIGraphicsBeginImageContextWithOptions(imageSize, false, 0)
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        let previousFrame = frame
+        frame = CGRect(origin: frame.origin, size: imageSize)
+        layer.render(in: context)
+        frame = previousFrame
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+
     ///  画虚线边框
     ///
     /// - Parameters:

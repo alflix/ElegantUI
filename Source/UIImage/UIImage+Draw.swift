@@ -55,4 +55,32 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         return resultImg!
     }
+
+    /// 生成带文字的图片
+    static func titleToImage(attributedString: NSAttributedString,
+                             size: CGSize,
+                             backColor: UIColor? = .clear,
+                             radius: CGFloat? = nil,
+                             bgImage: UIImage? = nil) -> UIImage {
+        let scale = UIScreen.main.scale
+        let label = UILabel(frame: CGRect(origin: .zero, size: size))
+        label.backgroundColor = backColor
+        label.numberOfLines = 0
+        label.attributedText = attributedString
+        label.clipsToBounds = true
+        if let radius = radius {
+            label.layer.cornerRadius = radius
+        }
+
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        label.layer.render(in: UIGraphicsGetCurrentContext()!)
+        if let bgImage = bgImage {
+            bgImage.draw(in: CGRect(origin: CGPoint.zero, size: bgImage.size))
+            label.layer.render(in: UIGraphicsGetCurrentContext()!)
+        }
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
 }
