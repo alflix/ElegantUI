@@ -5,6 +5,7 @@
 //  Created by John on 2019/5/22.
 //  Copyright © 2018 GGUI. All rights reserved.
 //
+
 import Foundation
 
 public func convertUnsafePointerToSwiftType<T>(_ value: UnsafeRawPointer) -> T {

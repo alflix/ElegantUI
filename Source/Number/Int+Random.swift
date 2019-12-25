@@ -32,8 +32,8 @@ private extension UInt {
             arc4random_buf(&result, MemoryLayout.size(ofValue: result))
             return result
         } else {
-            let range         = max - min + 1
-            let limit         = UInt.max - UInt.max % range
+            let range = max - min + 1
+            let limit = UInt.max - UInt.max % range
             var result: UInt = 0
             repeat {
                 arc4random_buf(&result, MemoryLayout.size(ofValue: result))
