@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UIViewController {
-    /// 检查是否是 present 出来的
+    /// 检查是否是 present 出来的（会检查父视图）
     var isModal: Bool {
         let presentingIsModal = presentingViewController != nil
         let presentingIsNavigation = navigationController?.presentingViewController?.presentedViewController == navigationController
@@ -28,10 +28,12 @@ public extension UIViewController {
 
     /// dismiss/popToRootViewController 取决于是否是 present 出来的
     @objc func popBackOrDismiss() {
-        if isModal {
+        if navigationController?.children.count ?? 0 > 1 {
+            navigationController?.popViewController(animated: true)
+        } else if presentingViewController != nil {
             dismiss(animated: true, completion: nil)
         } else {
-            navigationController?.popViewController(animated: true)
+            assert(true, "can't dismiss or pop back")
         }
     }
 
