@@ -25,17 +25,13 @@ open class InpuctNotifyViewController: UIViewController {
 
     /// 需要高亮的提交按钮
     open var inpuctNotifyButton: UIButton? {
-        #if DEBUG
         assert(false, "must override inpuctNotifyButton ")
-        #endif
         return nil
     }
 
     /// 是否允许提交按钮点击
     open var ableToSubmit: Bool {
-        #if DEBUG
         assert(false, "must override ableToSubmit ")
-        #endif
         return false
     }
 
