@@ -29,6 +29,7 @@ public extension UIBarButtonItem {
 
     convenience init(title: String,
                      color: UIColor,
+                     backgroundColor: UIColor? = nil,
                      font: UIFont,
                      contentEdgeInsets: UIEdgeInsets = .zero,
                      actionBlock: VoidBlock? = nil) {
@@ -40,6 +41,7 @@ public extension UIBarButtonItem {
         barButton.onTap { (_) in
             actionBlock?()
         }
+        barButton.backgroundColor =  backgroundColor
         barButton.contentEdgeInsets = contentEdgeInsets
         barButton.sizeToFit()
         self.customView = barButton
@@ -50,6 +52,7 @@ public extension UIBarButtonItem {
                      direction: TitleImageDirection = .left,
                      space: CGFloat,
                      color: UIColor,
+                     backgroundColor: UIColor? = nil,
                      font: UIFont,
                      contentEdgeInsets: UIEdgeInsets = .zero,
                      actionBlock: VoidBlock? = nil) {
@@ -61,6 +64,7 @@ public extension UIBarButtonItem {
         barButton.setImage(image, for: .normal)
         barButton.imageDirection = direction
         barButton.imageTitleSpace = space
+        barButton.backgroundColor =  backgroundColor
         barButton.onTap { (_) in
             actionBlock?()
         }
