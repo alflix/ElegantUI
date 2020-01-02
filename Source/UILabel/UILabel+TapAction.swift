@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UILabel {
-    /// 设置富文本并对其中包含的文字添加点击事件(⚠️，使用这个方法时 Label 必须是根据其内容自适应宽度和高度的，不能限制宽高，否则点击事件的位置计算会出错)
+    /// 设置富文本并对其中包含的文字添加点击事件(⚠️ 使用这个方法时 Label 必须是根据其内容自适应宽度和高度的，不能限制宽高，否则点击事件的位置计算会出错)
     ///
     /// - Parameters:
     ///   - attrText: 富文本
@@ -46,27 +46,34 @@ public extension UILabel {
 
     private func didTap(in targetRange: NSRange, tap: UITapGestureRecognizer) -> Bool {
         let textContainer = NSTextContainer(size: bounds.size)
+        // UILabel 没有左右间距，所以这个值是 0
         textContainer.lineFragmentPadding = 0.0
-        textContainer.lineBreakMode = lineBreakMode
+        if let attributes = attributedText?.attribute(.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle {
+             textContainer.lineBreakMode = attributes.lineBreakMode
+        } else {
+            textContainer.lineBreakMode = lineBreakMode
+        }
         textContainer.maximumNumberOfLines = numberOfLines
-
+            
         let layoutManager = NSLayoutManager()
         layoutManager.addTextContainer(textContainer)
 
         let textStorage = NSTextStorage(attributedString: attributedText!)
         textStorage.addLayoutManager(layoutManager)
+        guard textStorage.length > 0 else { return false }
 
-        let textBoundingBox = layoutManager.usedRect(for: textContainer)
-        let textContainerOffset = CGPoint(x: ( bounds.size.width - textBoundingBox.size.width) * 0.5 - textBoundingBox.origin.x,
-                                          y: ( bounds.size.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y)
+        // 点击位置
+        let location = tap.location(in: self)
+        // 点击位置所在的字符
+        let index = layoutManager.glyphIndex(for: location, in: textContainer)
+        // 点击位置所在的字符的所在一行的 Rect
+        let lineRect = layoutManager.lineFragmentUsedRect(forGlyphAt: index, effectiveRange: nil)
+        var characterIndex: Int = 0
 
-        let locationOfTouchInLabel = tap.location(in: self)
-        let locationOfTouchInTextContainer = CGPoint(x: locationOfTouchInLabel.x - textContainerOffset.x,
-                                                     y: locationOfTouchInLabel.y - textContainerOffset.y)
+        if lineRect.contains(location) {
+            characterIndex = layoutManager.characterIndexForGlyph(at: index)
+        }
 
-        let indexOfCharacter = layoutManager.characterIndex(for: locationOfTouchInTextContainer,
-                                                            in: textContainer,
-                                                            fractionOfDistanceBetweenInsertionPoints: nil)
-        return NSLocationInRange(indexOfCharacter, targetRange)
+        return NSLocationInRange(characterIndex, targetRange)
     }
 }
