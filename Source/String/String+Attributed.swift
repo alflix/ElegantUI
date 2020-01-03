@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+public typealias AttributedStringBlock = (_ attributedString: NSMutableAttributedString) -> Void
+
 // MARK: - 方便创建 NSAttributedString
 public extension String {
     /// 创建 NSAttributedString（简洁版）
