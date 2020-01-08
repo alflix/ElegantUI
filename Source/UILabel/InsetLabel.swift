@@ -9,7 +9,6 @@
 import UIKit
 
 /// 可对 Label 设置上下左右边距的 UILabel，默认为 16。若 textInsets 不为 nil，优先设置 textInsets
-@IBDesignable
 open class InsetLabel: UILabel {
     @IBInspectable open var topInset: CGFloat = Config.InsetLabel.defaultInset {
         didSet { setNeedsDisplay() }

@@ -49,7 +49,6 @@ public enum TitleImageDirection: Int {
 }
 
 /// 自定义设置图片，文字布局方式的 UIButton
-@IBDesignable
 open class LayoutButton: UIButton {
     /// 图片和文字的间距，默认为8
     @IBInspectable public var imageTitleSpace: CGFloat = 8 {

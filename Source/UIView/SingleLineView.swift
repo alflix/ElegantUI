@@ -13,7 +13,6 @@ public enum LineStyle: Int {
     case dash
 }
 
-@IBDesignable
 open class SingleLineView: UIView {
     private let singleLineAdjustOffset = ((1/UIScreen.main.scale)/2)
 

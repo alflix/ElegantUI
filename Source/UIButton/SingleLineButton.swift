@@ -9,7 +9,6 @@ import UIKit
 
 /// 可以方便的对 Button 的上下左右设置横线
 // TODO： 可能有问题，调用太多layoutSubviews
-@IBDesignable
 open class SingleLineButton: UIButton {
     /// 上横线
     @IBInspectable public var top: CGFloat = 0 {

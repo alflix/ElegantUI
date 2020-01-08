@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 open class CustomTextField: UITextField {
     /// 点击清除按钮 Block
     public var backKeyPressed: VoidBlock?
