@@ -1,9 +1,9 @@
 //
 //  Decodable+Convenient.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2019/7/4.
-//  Copyright © 2019 GGUI. All rights reserved.
+//  Copyright © 2019 ElegantUI. All rights reserved.
 //
 
 import Foundation
@@ -13,7 +13,7 @@ public extension Decodable {
     ///
     /// - Parameters:
     ///   - from: json
-    ///   - dateFormat: 日期格式，可在 GGUI.Config.Codable.dateDecodingStrategy 中设置
+    ///   - dateFormat: 日期格式，可在 ElegantUI.Config.Codable.dateDecodingStrategy 中设置
     /// - Throws: 解析错误
     init(from: Any, dateFormat: String? = nil) throws {
         let data = try JSONSerialization.data(withJSONObject: from, options: .prettyPrinted)

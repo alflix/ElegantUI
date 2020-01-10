@@ -1,9 +1,9 @@
 //
 //  SingleLineView.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2019/2/27.
-//  Copyright © 2019 GGUI. All rights reserved.
+//  Copyright © 2019 ElegantUI. All rights reserved.
 //
 
 import UIKit
@@ -31,12 +31,12 @@ open class SingleLineView: UIView {
         }
     }
 
-    /// 线高, 默认 1.0，可以通过 GGUI.Config.LineView.lineWidth 全局修改
+    /// 线高, 默认 1.0，可以通过 ElegantUI.Config.LineView.lineWidth 全局修改
     @IBInspectable public var lineWidth: CGFloat = Config.LineView.lineWidth {
         didSet { setNeedsDisplay() }
     }
 
-    /// 线的颜色  默认 lightGray，可以通过 GGUI.Config.LineView.color 全局修改
+    /// 线的颜色  默认 lightGray，可以通过 ElegantUI.Config.LineView.color 全局修改
     @IBInspectable public var lineColor: UIColor = Config.LineView.color {
         didSet {
             // 这个方法会调用 draw 方法, 所以不是 layoutSubviews()

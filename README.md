@@ -1,13 +1,11 @@
-<img src="https://tva1.sinaimg.cn/large/006tNbRwgy1g9uxymizmaj310g096weo.jpg">
-
-[![Version](https://img.shields.io/cocoapods/v/GGUI.svg?style=flat)](http://cocoapods.org/pods/GGUI)
-[![License](https://img.shields.io/cocoapods/l/GGUI.svg?style=flat)](http://cocoapods.org/pods/GGUI)
-[![Platform](https://img.shields.io/cocoapods/p/GGUI.svg?style=flat)](http://cocoapods.org/pods/GGUI)
+[![Version](https://img.shields.io/cocoapods/v/ElegantUI.svg?style=flat)](http://cocoapods.org/pods/ElegantUI)
+[![License](https://img.shields.io/cocoapods/l/ElegantUI.svg?style=flat)](http://cocoapods.org/pods/ElegantUI)
+[![Platform](https://img.shields.io/cocoapods/p/ElegantUI.svg?style=flat)](http://cocoapods.org/pods/ElegantUI)
 ![Swift](https://img.shields.io/badge/%20in-swift%205.0-orange.svg)
 
 ## Written in Swift 5.1
 
-GGUI, greate UIKit Extensions
+ElegantUI, greate UIKit Extensions
 
 ## Features
 
@@ -30,7 +28,7 @@ See:
 │   ├── DispatchQueue+Delay
 │   └── DispatchQueue+Once
 ├── General
-│   ├── GGUI
+│   ├── ElegantUI
 │   └── Globals
 ├── GestureClosures
 │   ├── ClosureHandler
@@ -125,12 +123,12 @@ See:
 
 ### Cocoapods
 
-GGUI is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+ElegantUI is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
 platform :ios, '9.0'
-pod "GGUI"
+pod "ElegantUI"
 ```
 ## License 
 
-GGUI is available under the MIT license.
+ElegantUI is available under the MIT license.

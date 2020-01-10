@@ -1,15 +1,15 @@
 //
-//  GGUI.Config.swift
-//  GGUI
+//  ElegantUI.Config.swift
+//  ElegantUI
 //
 //  Created by John on 2019/1/21.
-//  Copyright © 2019 GGUI. All rights reserved.
+//  Copyright © 2019 ElegantUI. All rights reserved.
 //
 
 import UIKit
 import Foundation
 
-/// 重要，GGUI 的全局设置，需要调整时，请在 AppDelegate 中配置
+/// 重要，ElegantUI 的全局设置，需要调整时，请在 AppDelegate 中配置
 public struct Config {
     /// 自定义 LineView 配置
     public enum LineView {

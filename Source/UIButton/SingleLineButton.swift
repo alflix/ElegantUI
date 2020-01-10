@@ -1,6 +1,6 @@
 //
 //  SingleLineButton.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2019/5/21.
 //

@@ -1,9 +1,9 @@
 //
 //  Int+Random.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2018/10/29.
-//  Copyright © 2018 GGUI. All rights reserved.
+//  Copyright © 2018 ElegantUI. All rights reserved.
 //
 
 import Foundation

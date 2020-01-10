@@ -37,7 +37,7 @@
 		52EB3BFE23B3171F00912F71 /* UIView+Find.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB3BA323B3171F00912F71 /* UIView+Find.swift */; };
 		52EB3BFF23B3171F00912F71 /* SingleLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB3BA423B3171F00912F71 /* SingleLineView.swift */; };
 		52EB3C0023B3171F00912F71 /* CALayer+Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB3BA523B3171F00912F71 /* CALayer+Sketch.swift */; };
-		52EB3C0123B3171F00912F71 /* GGUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB3BA723B3171F00912F71 /* GGUI.swift */; };
+		52EB3C0123B3171F00912F71 /* ElegantUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB3BA723B3171F00912F71 /* ElegantUI.swift */; };
 		52EB3C0223B3171F00912F71 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB3BA823B3171F00912F71 /* Globals.swift */; };
 		52EB3C0323B3171F00912F71 /* UIFont+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB3BAA23B3171F00912F71 /* UIFont+Size.swift */; };
 		52EB3C0423B3171F00912F71 /* UIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EB3BAC23B3171F00912F71 /* UIDevice+.swift */; };
@@ -118,7 +118,7 @@
 		52EB3BA323B3171F00912F71 /* UIView+Find.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Find.swift"; sourceTree = "<group>"; };
 		52EB3BA423B3171F00912F71 /* SingleLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleLineView.swift; sourceTree = "<group>"; };
 		52EB3BA523B3171F00912F71 /* CALayer+Sketch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Sketch.swift"; sourceTree = "<group>"; };
-		52EB3BA723B3171F00912F71 /* GGUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GGUI.swift; sourceTree = "<group>"; };
+		52EB3BA723B3171F00912F71 /* ElegantUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElegantUI.swift; sourceTree = "<group>"; };
 		52EB3BA823B3171F00912F71 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		52EB3BAA23B3171F00912F71 /* UIFont+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Size.swift"; sourceTree = "<group>"; };
 		52EB3BAC23B3171F00912F71 /* UIDevice+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+.swift"; sourceTree = "<group>"; };
@@ -345,7 +345,7 @@
 		52EB3BA623B3171F00912F71 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				52EB3BA723B3171F00912F71 /* GGUI.swift */,
+				52EB3BA723B3171F00912F71 /* ElegantUI.swift */,
 				52EB3BA823B3171F00912F71 /* Globals.swift */,
 			);
 			path = General;
@@ -652,7 +652,7 @@
 				52EB3BF423B3171F00912F71 /* SingleLineButton.swift in Sources */,
 				52EB3BFE23B3171F00912F71 /* UIView+Find.swift in Sources */,
 				52EB3C2823B3171F00912F71 /* NSObject+Associate.swift in Sources */,
-				52EB3C0123B3171F00912F71 /* GGUI.swift in Sources */,
+				52EB3C0123B3171F00912F71 /* ElegantUI.swift in Sources */,
 				52EB3BED23B3171F00912F71 /* ScrollDirectionTracker.swift in Sources */,
 				52EB3C2A23B3171F00912F71 /* PhotoPickerHelper.swift in Sources */,
 				52EB3C0423B3171F00912F71 /* UIDevice+.swift in Sources */,

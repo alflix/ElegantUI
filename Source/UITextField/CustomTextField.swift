@@ -1,9 +1,9 @@
 //
 //  CustomTextField.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2019/3/27.
-//  Copyright © 2019 GGUI. All rights reserved.
+//  Copyright © 2019 ElegantUI. All rights reserved.
 //
 
 import UIKit
@@ -27,7 +27,7 @@ open class CustomTextField: UITextField {
     @IBInspectable public var bottomLineHeight: CGFloat = 0 {
         didSet { update() }
     }
-    /// placeholder 颜色，可在 GGUI-CustomTextField-placeholderColor 统一设置
+    /// placeholder 颜色，可在 ElegantUI-CustomTextField-placeholderColor 统一设置
     @IBInspectable public var placeholderColor: UIColor = Config.CustomTextField.placeholderColor {
         didSet { update() }
     }

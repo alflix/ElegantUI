@@ -1,9 +1,9 @@
 //
 //  CALayer+Sketch.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2019/05/21.
-//  Copyright © 201p GGUI. All rights reserved.
+//  Copyright © 201p ElegantUI. All rights reserved.
 //
 
 import UIKit

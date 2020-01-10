@@ -1,9 +1,9 @@
 //
 //  UIView+Convenient.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2019/7/25.
-//  Copyright © 2019 GGUI. All rights reserved.
+//  Copyright © 2019 ElegantUI. All rights reserved.
 //
 
 import UIKit
@@ -28,7 +28,7 @@ public extension CGRect {
 }
 
 public extension UIView {
-    // TODO: 可封装 -> GGUI
+    // TODO: 可封装 -> ElegantUI
     /// 添加虚线边框
     @discardableResult
     func drawDottedLine(start point0: CGPoint,

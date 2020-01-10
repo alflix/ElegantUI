@@ -1,9 +1,9 @@
 //
 //  MapOPenURL.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2018/10/25.
-//  Copyright © 2018年 GGUI. All rights reserved.
+//  Copyright © 2018年 ElegantUI. All rights reserved.
 //
 
 import UIKit

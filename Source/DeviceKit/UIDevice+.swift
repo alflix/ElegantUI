@@ -1,9 +1,9 @@
 //
 //  Device+.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2019/2/26.
-//  Copyright © 2019年 GGUI. All rights reserved.
+//  Copyright © 2019年 ElegantUI. All rights reserved.
 //
 
 import Foundation

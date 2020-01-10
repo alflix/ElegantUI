@@ -1,9 +1,9 @@
 //
 //  String+Attributed.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2019/3/27.
-//  Copyright © 2019 GGUI. All rights reserved.
+//  Copyright © 2019 ElegantUI. All rights reserved.
 //
 
 import Foundation
@@ -59,10 +59,10 @@ public extension String {
     ///
     /// - Parameters:
     ///   - highlight: 需要高亮的文字数组，默认为空数组
-    ///   - font: 字体 默认 .systemFont(ofSize: 14)，可在 GGUI.Config.AttributedString 统一设置
-    ///   - highlightFont: 高亮字体 默认 .pingfangFont(ofSize: 14)，可在 GGUI.Config.AttributedString 统一设置
-    ///   - color: 文字颜色，默认 .black，可在 GGUI.Config.AttributedString 统一设置
-    ///   - highlightColor: 高亮文字颜色， 默认 .black，可在 GGUI.Config.AttributedString 统一设置
+    ///   - font: 字体 默认 .systemFont(ofSize: 14)，可在 ElegantUI.Config.AttributedString 统一设置
+    ///   - highlightFont: 高亮字体 默认 .pingfangFont(ofSize: 14)，可在 ElegantUI.Config.AttributedString 统一设置
+    ///   - color: 文字颜色，默认 .black，可在 ElegantUI.Config.AttributedString 统一设置
+    ///   - highlightColor: 高亮文字颜色， 默认 .black，可在 ElegantUI.Config.AttributedString 统一设置
     ///   - lineSpacing: 行距，默认 字体大小*0.25
     ///   - alignment: 对齐方式，默认左对齐
     ///   - minimumLineHeight: 最小行高，默认不设置
@@ -112,10 +112,10 @@ public extension String {
     ///
     /// - Parameters:
     ///   - highlightRange: 需要高亮的 NSRange 数组，默认为空数组
-    ///   - font: 字体 默认 .systemFont(ofSize: 14)，可在 GGUI.Config.AttributedString 统一设置
-    ///   - highlightFont: 高亮字体 默认 .pingfangFont(ofSize: 14)，可在 GGUI.Config.AttributedString 统一设置
-    ///   - color: 文字颜色，默认 .black，可在 GGUI.Config.AttributedString 统一设置
-    ///   - highlightColor: 高亮文字颜色， 默认 .black，可在 GGUI.Config.AttributedString 统一设置
+    ///   - font: 字体 默认 .systemFont(ofSize: 14)，可在 ElegantUI.Config.AttributedString 统一设置
+    ///   - highlightFont: 高亮字体 默认 .pingfangFont(ofSize: 14)，可在 ElegantUI.Config.AttributedString 统一设置
+    ///   - color: 文字颜色，默认 .black，可在 ElegantUI.Config.AttributedString 统一设置
+    ///   - highlightColor: 高亮文字颜色， 默认 .black，可在 ElegantUI.Config.AttributedString 统一设置
     ///   - lineSpacing: 行距，默认 字体大小*0.25
     ///   - alignment: 对齐方式，默认左对齐
     ///   - minimumLineHeight: 最小行高，默认不设置

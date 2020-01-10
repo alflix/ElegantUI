@@ -1,9 +1,9 @@
 //
 //  UIBarButtonItem+Convenient.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2018/11/22.
-//  Copyright © 2018 GGUI. All rights reserved.
+//  Copyright © 2018 ElegantUI. All rights reserved.
 //
 
 import UIKit

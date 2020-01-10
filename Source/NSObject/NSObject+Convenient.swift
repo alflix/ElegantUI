@@ -1,9 +1,9 @@
 //
 //  NSObject+Convenient.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2019/5/22.
-//  Copyright © 2018 GGUI. All rights reserved.
+//  Copyright © 2018 ElegantUI. All rights reserved.
 //
 
 import Foundation

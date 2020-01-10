@@ -1,9 +1,9 @@
 //
 //  UIControl+EnlargeEdge.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2018/12/11.
-//  Copyright © 2018 GGUI. All rights reserved.
+//  Copyright © 2018 ElegantUI. All rights reserved.
 //
 
 import UIKit

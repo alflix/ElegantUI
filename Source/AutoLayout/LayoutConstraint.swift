@@ -1,9 +1,9 @@
 //
 //  NavHeightConstraint.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2018/12/5.
-//  Copyright © 2019 GGUI. All rights reserved.
+//  Copyright © 2019 ElegantUI. All rights reserved.
 //
 
 import UIKit

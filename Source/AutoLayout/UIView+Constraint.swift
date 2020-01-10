@@ -1,6 +1,6 @@
 //
 //  UIView+Constraint.swift
-//  GGUI
+//  ElegantUI
 //
 //  Created by John on 2019/4/24.
 //
