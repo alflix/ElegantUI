@@ -34,4 +34,41 @@ public extension String {
         })
         return parameters
     }
+
+    // 获取拼音首字母
+    func getPinyinHead() -> String {
+        // 字符串转换为首字母大写
+        let pinyin = self.transformToPinyin().capitalized
+        var headPinyinStr = ""
+
+        // 获取所有大写字母
+        for character in pinyin {
+            if character <= "Z" && character >= "A" {
+                headPinyinStr.append(character)
+            }
+        }
+        return headPinyinStr
+    }
+
+    // 是否包含中文
+    func isIncludeChinese() -> Bool {
+        for character in self.unicodeScalars {
+            // 中文字符范围：0x4e00 ~ 0x9fff
+            if 0x4e00 < character.value  && character.value < 0x9fff {
+                return true
+            }
+        }
+        return false
+    }
+
+    private func transformToPinyin() -> String {
+        let stringRef = NSMutableString(string: self) as CFMutableString
+        // 转换为带音标的拼音
+        CFStringTransform(stringRef, nil, kCFStringTransformToLatin, false)
+        // 去掉音标
+        CFStringTransform(stringRef, nil, kCFStringTransformStripCombiningMarks, false)
+        let pinyin = stringRef as String
+
+        return pinyin
+    }
 }
