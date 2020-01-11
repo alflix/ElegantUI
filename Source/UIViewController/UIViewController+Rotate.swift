@@ -14,7 +14,7 @@ public extension UIViewController {
     }
 
     /// 强制设置设备方向，需同时实现 shouldAutorotate 和 supportedInterfaceOrientations，通常在 viewWillAppear & viewWillDisappear 调用
-    public var rotateOrientations: UIInterfaceOrientation {
+    var rotateOrientations: UIInterfaceOrientation {
         get {
             guard let rotateOrientation = associatedObject(forKey: &AssociatedKey.rotateOrientation) as? UIInterfaceOrientation else {
                 return .portrait
