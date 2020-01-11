@@ -11,7 +11,7 @@ import Foundation
 // MARK: - String 的工具类
 public extension String {
     /// 从 URL String中截取出参数
-    /// 
+    ///
     /// 🌰：http://example.com?param1=value1&param2=value2 -> Optional([“param1”: value1, “param2”: value2])
     var urlParameters: [String: Any]? {
         // 截取是否有参数
@@ -35,10 +35,10 @@ public extension String {
         return parameters
     }
 
-    // 获取拼音首字母
-    func getPinyinHead() -> String {
+    // 获取拼音首字母(大写)
+    var firstPinyinCapitalized: String {
         // 字符串转换为首字母大写
-        let pinyin = self.transformToPinyin().capitalized
+        let pinyin = transformToPinyin.capitalized
         var headPinyinStr = ""
 
         // 获取所有大写字母
@@ -51,7 +51,7 @@ public extension String {
     }
 
     // 是否包含中文
-    func isIncludeChinese() -> Bool {
+    var isIncludeChinese: Bool {
         for character in self.unicodeScalars {
             // 中文字符范围：0x4e00 ~ 0x9fff
             if 0x4e00 < character.value  && character.value < 0x9fff {
@@ -61,7 +61,7 @@ public extension String {
         return false
     }
 
-    private func transformToPinyin() -> String {
+    private var transformToPinyin: String {
         let stringRef = NSMutableString(string: self) as CFMutableString
         // 转换为带音标的拼音
         CFStringTransform(stringRef, nil, kCFStringTransformToLatin, false)
