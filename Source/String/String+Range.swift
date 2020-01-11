@@ -35,3 +35,20 @@ public extension String {
         return matches.map {$0.range}
     }
 }
+
+/// https://stackoverflow.com/questions/26152448/swift-generate-an-array-of-swift-characters
+/// let characters = ("a"..."z").characters  // "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+/// let string = ("a"..."z").string          // "abcdefghijklmnopqrstuvwxyz"
+public extension ClosedRange where Bound == Unicode.Scalar {
+    static let asciiPrintable: ClosedRange = " "..."~"
+    var range: ClosedRange<UInt32> { return lowerBound.value...upperBound.value }
+    var scalars: [Unicode.Scalar] { return range.compactMap(Unicode.Scalar.init) }
+    var characters: [Character] { return scalars.map(Character.init) }
+    var string: String { return String(scalars) }
+}
+
+public extension String {
+    init<S: Sequence>(_ sequence: S) where S.Element == Unicode.Scalar {
+        self.init(UnicodeScalarView(sequence))
+    }
+}
