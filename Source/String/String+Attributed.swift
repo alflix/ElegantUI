@@ -33,6 +33,7 @@ public extension String {
     ///   - color: 文字颜色，默认 .black
     ///   - lineSpacing: 行距，默认 字体大小*0.25
     ///   - alignment: 对齐方式，默认左对齐
+    ///   - lineBreakMode: 换行方式
     ///   - minimumLineHeight: 最小行高，默认不设置
     ///   - baselineOffset: 基准线 offset，默认不设置
     ///   - addition: 一个包含 NSMutableAttributedString 的 Block，可以设置额外的 Attributed 属性
@@ -41,6 +42,7 @@ public extension String {
                           color: UIColor = Config.AttributedString.defaultColor,
                           lineSpacing: CGFloat? = nil,
                           alignment: NSTextAlignment = .left,
+                          lineBreakMode: NSLineBreakMode = .byWordWrapping,
                           minimumLineHeight: CGFloat = 0,
                           baselineOffset: CGFloat = 0,
                           addition: AttributedStringBlock? = nil) -> NSAttributedString {
@@ -50,6 +52,7 @@ public extension String {
                                 highlightColor: color,
                                 lineSpacing: lineSpacing,
                                 alignment: alignment,
+                                lineBreakMode: lineBreakMode,
                                 minimumLineHeight: minimumLineHeight,
                                 baselineOffset: baselineOffset,
                                 addition: addition)
@@ -65,6 +68,7 @@ public extension String {
     ///   - highlightColor: 高亮文字颜色， 默认 .black，可在 ElegantUI.Config.AttributedString 统一设置
     ///   - lineSpacing: 行距，默认 字体大小*0.25
     ///   - alignment: 对齐方式，默认左对齐
+    ///   - lineBreakMode: 换行方式
     ///   - minimumLineHeight: 最小行高，默认不设置
     ///   - baselineOffset: 基准线 offset，默认不设置
     ///   - centerBaseLineTwoFont: 使两个不同字体水平方向对齐
@@ -77,12 +81,13 @@ public extension String {
                           highlightColor: UIColor = Config.AttributedString.defaultColor,
                           lineSpacing: CGFloat? = nil,
                           alignment: NSTextAlignment = .left,
+                          lineBreakMode: NSLineBreakMode = .byWordWrapping,
                           minimumLineHeight: CGFloat = 0,
                           baselineOffset: CGFloat? = nil,
                           centerBaseLineTwoFont: Bool = false,
                           addition: AttributedStringBlock? = nil) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = .byWordWrapping
+        paragraphStyle.lineBreakMode = lineBreakMode
         paragraphStyle.lineSpacing = lineSpacing ?? font.pointSize * 0.25
         paragraphStyle.alignment = alignment
         if minimumLineHeight > 0 {
@@ -118,6 +123,7 @@ public extension String {
     ///   - highlightColor: 高亮文字颜色， 默认 .black，可在 ElegantUI.Config.AttributedString 统一设置
     ///   - lineSpacing: 行距，默认 字体大小*0.25
     ///   - alignment: 对齐方式，默认左对齐
+    ///   - lineBreakMode: 换行方式
     ///   - minimumLineHeight: 最小行高，默认不设置
     ///   - baselineOffset: 基准线 offset，默认不设置
     ///   - centerBaseLineTwoFont: 使两个不同字体水平方向对齐
@@ -130,12 +136,13 @@ public extension String {
                           highlightColor: UIColor = Config.AttributedString.defaultColor,
                           lineSpacing: CGFloat? = nil,
                           alignment: NSTextAlignment = .left,
+                          lineBreakMode: NSLineBreakMode = .byWordWrapping,
                           minimumLineHeight: CGFloat = 0,
                           baselineOffset: CGFloat? = nil,
                           centerBaseLineTwoFont: Bool = false,
                           addition: AttributedStringBlock? = nil) -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = .byWordWrapping
+        paragraphStyle.lineBreakMode = lineBreakMode
         paragraphStyle.lineSpacing = lineSpacing ?? font.pointSize * 0.25
         paragraphStyle.alignment = alignment
         if minimumLineHeight > 0 {
