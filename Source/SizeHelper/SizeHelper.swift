@@ -8,20 +8,66 @@
 
 import UIKit
 
+/*
+iPhone                   | 状态栏 | 状态栏  |    导航栏    | 导航栏     | tabBar     |    tabBar
+                         | 竖屏   | 横屏   |    竖屏      | 横屏       | 竖屏       |    横屏
+5s/SE/6/6s/7/8(iOS10)    | 20    | 20    |    44        | 32        | 49        |    49
+5s/SE/6/6s/7/8(iOS11)    | 20    | 20    |    44        | 32        | 49        |    32
+6/6s/7/8 Plus            | 20    | 20    |    44        | 44        | 49        |    49
+X/XS                     | 44    | 0     |    44        | 32        | 83(49+34) |    53(32+21)
+XR/XS Max                | 44    | 0     |    44        | 44        | 83(49+34) |    70(49+21)
+*/
 public class Size {
-    /// 屏幕宽度
-    public static let screenWidth = UIScreen.main.bounds.width
-    /// 屏幕高度
-    public static let screenHeight = UIScreen.main.bounds.height
-    /// NavagationBar 高度
-    public static let navigationBarHeight: CGFloat = statusBarHeight + 44
-    /// TabBar 高度
-    public static let tabBarHeight: CGFloat = bottomSafeAreaHeight + 44
-    /// BottomSafeAreaHeight，如果是iPhone X则为34，其它为0
-    public static let bottomSafeAreaHeight: CGFloat = UIDevice.current.isIphoneXSeries ? 34 : 0
+    static let share = Size()
+    private let tabarController = UITabBarController()
+    private let navigationController = UINavigationController()
 
-    /// StatusBar高度
-    public static let statusBarHeight: CGFloat = {
+    /// 屏幕宽度
+    public static var screenWidth = UIScreen.main.bounds.width
+    /// 屏幕高度
+    public static var screenHeight = UIScreen.main.bounds.height
+    /// 屏幕最大边
+    public static var screenMax = max(UIScreen.main.bounds.height, UIScreen.main.bounds.width)
+    /// 屏幕最小边
+    public static var screenMin = min(UIScreen.main.bounds.height, UIScreen.main.bounds.width)
+
+    /// 屏幕宽度(考虑屏幕旋转)
+    public static var screenWidthConsiderOrientation: CGFloat {
+        if case .portrait = Device.current.orientation {
+            return screenMin
+        }
+        return screenMax
+    }
+
+    /// 屏幕高度(考虑屏幕旋转)
+    public static var screenHeightConsiderOrientation: CGFloat {
+        if case .portrait = Device.current.orientation {
+            return screenMax
+        }
+        return screenMin
+    }
+
+    /// NavagationBar 高度 (屏幕宽度小于400的设备横屏时为32，其余情况为44)
+    public static var navigationBarHeight: CGFloat {
+        return statusBarHeight + share.navigationController.navigationBar.frame.height
+    }
+
+    /// TabBar 高度 (屏幕宽度小于400的设备在iOS11以上的系统横屏时为32，其余情况为49)
+    public static var tabBarHeight: CGFloat {
+        return bottomSafeAreaHeight + Size.share.tabarController.tabBar.frame.height
+//        UIApplication.shared.keyWindow?.safeAreaInsets.bottom
+    }
+
+    /// BottomSafeAreaHeight（如果是iPhone X则为34 (竖屏)，21(横屏)，其它为0）
+    public static var bottomSafeAreaHeight: CGFloat {
+        if case .portrait = Device.current.orientation {
+            return UIDevice.current.isIphoneXSeries ? 34 : 0
+        }
+        return UIDevice.current.isIphoneXSeries ? 21 : 0
+    }
+
+    /// StatusBar高度(全面屏iPhone竖屏44，全面屏iPhone横屏0，普通iPhone为20)
+    public static var statusBarHeight: CGFloat {
         let statusBarFrame = UIApplication.shared.statusBarFrame
         var topOffset = min(statusBarFrame.maxX, statusBarFrame.maxY)
         let isInCallStatusBar = topOffset == 40.0
@@ -29,7 +75,7 @@ public class Size {
             topOffset -= 20.0
         }
         return topOffset
-    }()
+    }
 
     /// 计算内容时文字标签的 collectionView 的高度
     ///
