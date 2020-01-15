@@ -36,7 +36,7 @@ public extension String {
     }
 
     // 获取拼音首字母(大写)
-    var firstPinyinCapitalized: String {
+    var pinyinCapitalized: String {
         // 字符串转换为首字母大写
         let pinyin = transformToPinyin.capitalized
         var headPinyinStr = ""
@@ -48,6 +48,11 @@ public extension String {
             }
         }
         return headPinyinStr
+    }
+
+    // 获取拼音首字母中的第一个(大写)
+    var firstPinyinCapitalized: Character? {
+        return pinyinCapitalized.first
     }
 
     // 是否包含中文
