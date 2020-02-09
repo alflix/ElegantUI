@@ -56,7 +56,13 @@ public extension UIImage {
         return resultImg!
     }
 
-    /// 生成带文字的图片
+    /// 生成带文字的图片，方便用于 NSTextAttachment
+    /// - Parameters:
+    ///   - attributedString: 文字
+    ///   - size: 图片尺寸
+    ///   - backColor: 背景颜色
+    ///   - radius: 圆角
+    ///   - bgImage: 背景图片
     static func titleToImage(attributedString: NSAttributedString,
                              size: CGSize,
                              backColor: UIColor? = .clear,
