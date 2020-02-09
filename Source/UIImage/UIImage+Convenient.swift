@@ -34,7 +34,6 @@ public extension UIImage {
                                             width: imageAttachment.image!.size.width,
                                             height: imageAttachment.image!.size.height)
         }
-        let imageString = NSAttributedString(attachment: imageAttachment)
-        return imageString
+        return NSAttributedString(attachment: imageAttachment)
     }
 }
