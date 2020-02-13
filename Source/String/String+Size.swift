@@ -22,7 +22,7 @@ public extension String {
             label.numberOfLines = line
             label.font = font
             label.text = self
-            return label.sizeThatFits(CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)).height
+            return label.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude)).height
         }
     }
 
@@ -30,9 +30,9 @@ public extension String {
     ///
     /// - Parameters:
     ///   - font: 字体
-    ///   - width: 最大高度  
+    ///   - height: 最大高度
     /// - Returns: 宽度
-    func widthForLabel(font: UIFont, height: CGFloat, width: CGFloat = CGFloat.greatestFiniteMagnitude) -> CGFloat {
+    func widthForLabel(font: UIFont, height: CGFloat) -> CGFloat {
         return autoreleasepool { () -> CGFloat in
             let label: UILabel = UILabel()
             label.numberOfLines = 1
@@ -43,13 +43,12 @@ public extension String {
     }
 
     /// 文字宽度
-    ///
     /// - Parameters:
     ///   - fontSize: 字体 size
-    ///   - width: 最大高度  
+    ///   - height: 最大高度
     /// - Returns: 宽度
-    func widthForLabel(fontSize: CGFloat, height: CGFloat, width: CGFloat = CGFloat.greatestFiniteMagnitude) -> CGFloat {
-        return widthForLabel(font: .systemFont(ofSize: fontSize, weight: .regular), height: height, width: width)
+    func widthForLabel(fontSize: CGFloat, height: CGFloat) -> CGFloat {
+        return widthForLabel(font: .systemFont(ofSize: fontSize, weight: .regular), height: height)
     }
 }
 
