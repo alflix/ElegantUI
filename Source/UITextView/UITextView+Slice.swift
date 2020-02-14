@@ -12,6 +12,7 @@ public extension UITextView {
     /// 裁剪文字（通常在 textViewDidChange 中调用）
     ///
     /// - Parameter limit: 限制字符
+    /// - Parameter twoCountInFullWidthCharacter: 全角字符是否视为2个
     /// - Returns: 裁剪后的文字数量
     @discardableResult
     func slice(to limit: Int, twoCountInFullWidthCharacter: Bool = false) -> Int {
@@ -31,9 +32,7 @@ public extension UITextView {
     }
 
     /// 文字数量
-    /// - Returns: 数量
-    /// 文字数量
-    /// - Returns: 数量
+    /// - Parameter twoCountInFullWidthCharacter: 全角字符是否视为2个
     func textCount(_ twoCountInFullWidthCharacter: Bool) -> Int {
         guard let currentText = text else { return 0 }
         var length = 0
